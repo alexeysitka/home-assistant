@@ -1,0 +1,52 @@
+- title: Освещение
+  icon: mdi:radiator
+  cards:
+
+    - type: vertical-stack
+      cards:
+      - type: markdown
+        content: >
+           **Термостаты**
+
+      - type: horizontal-stack
+        cards:
+          - type: thermostat
+            entity: climate.0xbc33acfffe6d878e_climate
+            name: "Спальня"
+
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: script.yeelight_1_toggle
+              - entity: script.yeelight_1_on_full
+              - entity: script.yeelight_1_on_evening
+              - entity: script.yeelight_1_on_night
+
+      - type: horizontal-stack
+        cards:
+          - type: thermostat
+            entity: climate.0xbc33acfffe6d7ffd_climate
+            name: "Детская"
+
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: script.gledopto_1_toggle
+              - entity: script.gledopto_1_on_full
+              - entity: script.gledopto_1_on_evening
+              - entity: script.gledopto_1_on_night
+
+      - type: horizontal-stack
+        cards:
+          - type: thermostat
+            entity: climate.0xbc33acfffe655649_climate
+            name: "Гостиная"
+
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: script.gledopto_1_toggle
+              - entity: script.gledopto_1_on_full
+              - entity: script.gledopto_1_on_evening
+              - entity: script.gledopto_1_on_night
+

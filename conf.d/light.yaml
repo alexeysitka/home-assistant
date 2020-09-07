@@ -1,0 +1,15 @@
+- platform: xiaomi_miio
+  name: philips_desklamp
+  host: 192.168.31.241
+  token: 01b809785feacf076864029955f23c42
+  model: philips.light.sread1
+
+- platform: "mqtt"
+  state_topic: "zigbee2mqtt/0x00124b001ee73a8f"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  color_temp: true
+  xy: true
+  schema: "json"
+  command_topic: "zigbee2mqtt/0x00124b001ee73a8f/set"
+  brightness_scale: 254

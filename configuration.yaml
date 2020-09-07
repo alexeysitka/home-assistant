@@ -1,0 +1,53 @@
+homeassistant:
+  name: "Калининград"
+  latitude: !secret latitude_coord
+  longitude: !secret longitude_coord
+  elevation: 20.5
+  unit_system: metric
+  time_zone: Europe/Kaliningrad
+  # customize: !include customize.yaml
+
+# customize: !include customize.yaml
+
+lovelace:
+  mode: yaml
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+mqtt:
+## Выбрать один из вариантов для брокера
+  broker: core-mosquitto  # Локальный брокер
+  # broker: IP adress  # Внешний брокер
+  discovery: true
+  discovery_prefix: homeassistant
+  username: mqtt
+  password: mqtt
+
+#Вынос во внешние файлы
+timer: !include conf.d/timer.yaml
+input_boolean: !include conf.d/input_boolean.yaml
+group: !include conf.d/groups.yaml
+scene: !include conf.d/scenes.yaml
+# recorder: !include conf.d/recorder.yaml
+
+input_number: !include conf.d/input_number.yaml
+
+#Подразделы устройств
+#vacuum: !include conf.d/vacuum.yaml
+yeelight: !include conf.d/yeelight.yaml
+light: !include conf.d/light.yaml
+
+#Вынос во внешние папки
+sensor: !include_dir_merge_list conf.d/sensor
+automation: !include_dir_merge_list conf.d/automation
+script: !include_dir_merge_named conf.d/script
+switch: !include_dir_merge_list conf.d/switch

@@ -1,0 +1,32 @@
+yeelight_1_toggle:
+  alias: Переключение состояния
+  sequence:
+   - service: light.toggle
+     entity_id: light.yeelight_rgb_1
+
+yeelight_1_on_full:
+  alias: Максимум яркость
+  sequence:
+    - service: light.turn_on
+      entity_id: light.yeelight_rgb_1
+      data_template:
+        brightness_pct: 100
+        kelvin: 4000
+
+yeelight_1_on_evening:
+  alias: Вечерний режим
+  sequence:
+    - service: light.turn_on
+      entity_id: light.yeelight_rgb_1
+      data_template:
+        brightness_pct: 100
+        kelvin: 3000
+
+yeelight_1_on_night:
+  alias: Вечерний режим
+  sequence:
+    - service: light.turn_on
+      entity_id: light.yeelight_rgb_1
+      data_template:
+        brightness_pct: 3
+        rgb_color: [255, 36, 36]

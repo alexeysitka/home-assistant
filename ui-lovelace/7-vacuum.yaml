@@ -1,0 +1,15 @@
+#- icon: mdi:robot-vacuum
+#  cards:
+#  - type: custom:xiaomi-vacuum-card
+#    entity: vacuum.xiaomi_vacuum_cleaner
+#    image: false
+#    name: Шурик
+#    vendor: xiaomi
+#    labels:
+#      status: Статус
+#      battery: Батарея
+#      mode: Режим
+#      main_brush: Основная щётка
+#      side_brush: Боковая щётка
+#      filter: Фильтр
+#      sensor: Сенсоры

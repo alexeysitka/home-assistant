@@ -1,0 +1,6 @@
+  db_url: mysql://hass:hasspass@core-mariadb/homeassistant?charset=utf8
+  include:
+    domains:
+      - switch
+      - light
+      

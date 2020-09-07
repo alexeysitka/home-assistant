@@ -1,0 +1,80 @@
+- alias: gledopto_1_toggle
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: sensor.be_control_al_click
+    to: left
+  action:
+    - service: script.turn_on
+      entity_id: script.gledopto_1_toggle
+
+- alias: gledopto_1_on_full
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: sensor.be_control_al_click
+    to: right
+  action:
+    - service: script.turn_on
+      entity_id: script.gledopto_1_on_full
+
+- alias: gledopto_1_on_half
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: sensor.be_control_al_click
+    to: right_double
+  action:
+    - service: script.turn_on
+      entity_id: script.gledopto_1_on_evening
+
+- alias: gledopto_1_on_night
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: sensor.be_control_al_click
+    to: right_long
+  action:
+    - service: script.turn_on
+      entity_id: script.gledopto_1_on_night
+
+
+- alias: gledopto_2_toggle
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: sensor.be_control_jul_click
+    to: left
+  action:
+    - service: script.turn_on
+      entity_id: script.gledopto_2_toggle
+
+- alias: gledopto_2_on_full
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: sensor.be_control_jul_click
+    to: right
+  action:
+    - service: script.turn_on
+      entity_id: script.gledopto_2_on_full
+
+- alias: gledopto_2_on_half
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: sensor.be_control_jul_click
+    to: right_double
+  action:
+    - service: script.turn_on
+      entity_id: script.gledopto_2_on_evening
+
+- alias: gledopto_2_on_night
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: sensor.be_control_jul_click
+    to: right_long
+  action:
+    - service: script.turn_on
+      entity_id: script.gledopto_2_on_night

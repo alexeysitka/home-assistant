@@ -1,0 +1,53 @@
+- title: Освещение
+  icon: mdi:lightbulb-group
+  cards:
+
+    - type: vertical-stack
+      cards:
+      - type: markdown
+        content: >
+           **Панель переключателей**
+
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - entity: light.philips_desklamp
+            name: "Настольная"
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - entity: light.philips_desklamp_ambient_light
+            name: "Настольная эмбиент"
+
+    - type: vertical-stack
+      cards:
+      - type: markdown
+        content: >
+           **Светильники**
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.be_night_light_al_light
+            name: "Прикроватная лампа Алексея"
+
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: script.gledopto_1_toggle
+              - entity: script.gledopto_1_on_full
+              - entity: script.gledopto_1_on_evening
+              - entity: script.gledopto_1_on_night
+
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.be_night_light_jul_light
+            name: "Прикроватная лампа Юлии"
+
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: script.gledopto_2_toggle
+              - entity: script.gledopto_2_on_full
+              - entity: script.gledopto_2_on_evening
+              - entity: script.gledopto_2_on_night

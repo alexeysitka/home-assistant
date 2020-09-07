@@ -1,0 +1,42 @@
+'0x00158d00044fa853':
+  friendly_name: HA_Light
+  retain: true
+'0x00158d0004517ceb':
+  friendly_name: HA_Motion
+  retain: true
+'0x00158d000408f98b':
+  friendly_name: HA_Door
+  retain: true
+'0x00158d0003a85661':
+  friendly_name: CO_Socket
+  retain: true
+'0x00124b0018e300e2':
+  friendly_name: BE_Router
+  retain: true
+'0xbc33acfffe6d878e':
+  friendly_name: BE_Thermostat
+  retain: true
+'0x00124b001ee73a8f':
+  friendly_name: BE_Night_light_Al
+  retain: true
+'0x00124b00210f6b9d':
+  friendly_name: BE_Night_light_Jul
+  retain: true
+'0x00124b0018e2eeed':
+  friendly_name: CH_Router
+  retain: true
+'0x00158d000428defb':
+  friendly_name: CH_Door
+  retain: true
+'0xbc33acfffe6d7ffd':
+  friendly_name: CH_Thermostat
+  retain: true
+'0xbc33acfffe655649':
+  friendly_name: LI_Thermostat
+  retain: true
+'0x00158d00042acad9':
+  friendly_name: KN_Smoke_Detector
+  retain: true
+'0x00158d0003a85823':
+  friendly_name: KN_Behind_TV
+  retain: true
