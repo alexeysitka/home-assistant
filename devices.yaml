@@ -25,18 +25,30 @@
 '0x00124b0018e2eeed':
   friendly_name: CH_Router
   retain: true
+'0x00158d00044f05c5':
+  friendly_name: CH_Temperature
+  retain: true
 '0x00158d000428defb':
   friendly_name: CH_Door
   retain: true
 '0xbc33acfffe6d7ffd':
   friendly_name: CH_Thermostat
   retain: true
+'0x00158d00045c2a49':
+  friendly_name: LI_Temperature
+  retain: true
 '0xbc33acfffe655649':
   friendly_name: LI_Thermostat
+  retain: true
+'0x00158d00045c3746':
+  friendly_name: KN_Temperature
   retain: true
 '0x00158d00042acad9':
   friendly_name: KN_Smoke_Detector
   retain: true
 '0x00158d0003a85823':
   friendly_name: KN_Behind_TV
+  retain: true
+'0x00158d0002d77fa5':
+  friendly_name: LO_Temperature
   retain: true
