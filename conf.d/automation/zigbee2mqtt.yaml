@@ -13,7 +13,7 @@
     - service: timer.start
       data:
         entity_id: timer.zigbee_permit_join
-      
+
 - id: Выключить добавление Zigbee
   alias: disable_zigbee_join
   initial_state: true
@@ -25,11 +25,11 @@
     - service: mqtt.publish
       data:
         topic: zigbee2mqtt/bridge/config/permit_join
-        payload: 'false'    
+        payload: 'false'
     - service: timer.cancel
       data:
         entity_id: timer.zigbee_permit_join
-      
+
 - id: Выключение по таймеру добавления Zigbee
   alias: disable_zigbee_join_timer
   initial_state: true

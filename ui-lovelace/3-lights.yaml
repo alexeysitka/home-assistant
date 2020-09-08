@@ -51,3 +51,9 @@
               - entity: script.gledopto_2_on_full
               - entity: script.gledopto_2_on_evening
               - entity: script.gledopto_2_on_night
+
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.sls_hub_bedroom
+            name: "Шлюз в спальне"

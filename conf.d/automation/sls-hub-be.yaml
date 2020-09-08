@@ -1,0 +1,51 @@
+- alias: Включить ночник в спальне при движении после захода
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.be_motion_occupancy
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: template  # from sunset until sunrise
+        value_template: "{{ state_attr('sun.sun', 'elevation') < 1 }}"
+      - condition: numeric_state
+        entity_id: sensor.be_motion_illuminance
+        below: 5
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.sls_hub_bedroom
+        brightness: 120
+        rgb_color: [255,0,0]
+    - service: timer.cancel
+      data:
+        entity_id: timer.be_night_light
+
+- alias: Выключить ночник в спальне через 2 минуты после последнего движения
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.be_motion_occupancy
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: light.sls_hub_bedroom
+      state: 'on'
+  action:
+    - service: timer.start
+      data:
+        entity_id: timer.be_night_light
+
+- alias: Выключение ночника в спальне по таймеру
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.be_night_light
+  action:
+    - service: light.turn_off
+      entity_id: light.sls_hub_bedroom
+    - service: timer.cancel
+      data:
+        entity_id: timer.be_night_light

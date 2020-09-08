@@ -1,3 +1,7 @@
 zigbee_permit_join:
   name: Time remaining
   duration: 600
+
+be_night_light:
+  name: Ночник в спальне
+  duration: 120
