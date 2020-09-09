@@ -1,52 +1,173 @@
-- title: Освещение
+- title: Обогрев
   icon: mdi:radiator
   cards:
 
     - type: vertical-stack
       cards:
-      - type: markdown
-        content: >
-           **Термостаты**
+        - type: markdown
+          style: |
+            ha-card { font-size: 26px; }
+          content: >
+            **Спальня**
 
-      - type: horizontal-stack
-        cards:
-          - type: thermostat
-            entity: climate.0xbc33acfffe6d878e_climate
-            name: "Спальня"
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:
+            - type: custom:mini-graph-card
+              entities:
+                - entity: sensor.be_temperature_temperature_2
+                  name: Температура
+              color_thresholds:
+                - value: 10
+                  color: "#191970"
+                - value: 15
+                  color: "#0000FF"
+                - value: 20
+                  color: "#ADD8E6"
+                - value: 25
+                  color: "#E0FFFF"
+                - value: 30
+                  color: "#FFFF00"
+                - value: 50
+                  color: "#FFD700"
+              animate: true
+              line_width: 2
+              hour24: true
+              points_per_hour: 1
+              group_by: hour
+              hours_to_show: 72
 
-          - type: entities
-            show_header_toggle: false
-            entities:
-              - entity: script.yeelight_1_toggle
-              - entity: script.yeelight_1_on_full
-              - entity: script.yeelight_1_on_evening
-              - entity: script.yeelight_1_on_night
+            - type: custom:simple-thermostat
+              entity: climate.be_thermostat_climate
+              step_layout: row
+              name: false
+              icon: false
 
-      - type: horizontal-stack
-        cards:
-          - type: thermostat
-            entity: climate.0xbc33acfffe6d7ffd_climate
-            name: "Детская"
+            - type: entities
+              show_state: true
+              show_name: true
+              state_color: true
+              entities:
+                - entity: binary_sensor.be_thermostat_valve
+                  name: Клапан термостата
 
-          - type: entities
-            show_header_toggle: false
-            entities:
-              - entity: script.gledopto_1_toggle
-              - entity: script.gledopto_1_on_full
-              - entity: script.gledopto_1_on_evening
-              - entity: script.gledopto_1_on_night
+            - type: entities
+              show_header_toggle: false
+              entities:
+                - entity: lock.be_thermostat_child_lock
+                  name: Блокировка термостата
 
-      - type: horizontal-stack
-        cards:
-          - type: thermostat
-            entity: climate.0xbc33acfffe655649_climate
-            name: "Гостиная"
 
-          - type: entities
-            show_header_toggle: false
-            entities:
-              - entity: script.gledopto_1_toggle
-              - entity: script.gledopto_1_on_full
-              - entity: script.gledopto_1_on_evening
-              - entity: script.gledopto_1_on_night
 
+    - type: vertical-stack
+      cards:
+        - type: markdown
+          style: |
+            ha-card { font-size: 26px; }
+          content: >
+            **Детская**
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:
+            - type: custom:mini-graph-card
+              entities:
+                - entity: sensor.ch_temperature_temperature
+                  name: Температура
+              color_thresholds:
+                - value: 10
+                  color: "#191970"
+                - value: 15
+                  color: "#0000FF"
+                - value: 20
+                  color: "#ADD8E6"
+                - value: 25
+                  color: "#E0FFFF"
+                - value: 30
+                  color: "#FFFF00"
+                - value: 50
+                  color: "#FFD700"
+              animate: true
+              line_width: 2
+              hour24: true
+              points_per_hour: 1
+              group_by: hour
+              hours_to_show: 72
+
+            - type: custom:simple-thermostat
+              entity: climate.ch_thermostat_climate
+              step_layout: row
+              name: false
+              icon: false
+
+            - type: entities
+              show_state: true
+              show_name: true
+              state_color: true
+              entities:
+                - entity: binary_sensor.ch_thermostat_valve
+                  name: Клапан термостата
+
+            - type: entities
+              show_header_toggle: false
+              entities:
+                - entity: lock.ch_thermostat_child_lock
+                  name: Блокировка термостата
+
+
+
+
+    - type: vertical-stack
+      cards:
+        - type: markdown
+          style: |
+            ha-card { font-size: 26px; }
+          content: >
+            **Гостиная**
+
+        - type: custom:stack-in-card
+          mode: vertical
+          cards:
+            - type: custom:mini-graph-card
+              entities:
+                - entity: sensor.li_temperature_temperature
+                  name: Температура
+              color_thresholds:
+                - value: 10
+                  color: "#191970"
+                - value: 15
+                  color: "#0000FF"
+                - value: 20
+                  color: "#ADD8E6"
+                - value: 25
+                  color: "#E0FFFF"
+                - value: 30
+                  color: "#FFFF00"
+                - value: 50
+                  color: "#FFD700"
+              animate: true
+              line_width: 2
+              hour24: true
+              points_per_hour: 1
+              group_by: hour
+              hours_to_show: 72
+
+            - type: custom:simple-thermostat
+              entity: climate.li_thermostat_climate
+              step_layout: row
+              name: false
+              icon: false
+
+            - type: entities
+              show_state: true
+              show_name: true
+              state_color: true
+              entities:
+                - entity: binary_sensor.li_thermostat_valve
+                  name: Клапан термостата
+
+            - type: entities
+              show_header_toggle: false
+              entities:
+                - entity: lock.li_thermostat_child_lock
+                  name: Блокировка термостата

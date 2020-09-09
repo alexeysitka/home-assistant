@@ -1,0 +1,35 @@
+- platform: template
+  sensors:
+    be_thermostat_valve:
+      friendly_name: 'Термостат спальня'
+      value_template: >-
+        {{ state_attr('climate.be_thermostat_climate', 'position') | int == 100 }}
+      device_class: lock
+      icon_template: >-
+        {% if is_state("binary_sensor.be_thermostat_valve", "on") %}
+        mdi:valve-open
+        {% else %}
+        mdi:valve-closed
+        {% endif %}
+    ch_thermostat_valve:
+      friendly_name: 'Термостат детская'
+      value_template: >-
+        {{ state_attr('climate.ch_thermostat_climate', 'position') | int == 100 }}
+      device_class: lock
+      icon_template: >-
+        {% if is_state("binary_sensor.ch_thermostat_valve", "on") %}
+        mdi:valve-open
+        {% else %}
+        mdi:valve-closed
+        {% endif %}
+    li_thermostat_valve:
+      friendly_name: 'Термостат гостиная'
+      value_template: >-
+        {{ state_attr('climate.li_thermostat_climate', 'position') | int == 100 }}
+      device_class: lock
+      icon_template: >-
+        {% if is_state("binary_sensor.li_thermostat_valve", "on") %}
+        mdi:valve-open
+        {% else %}
+        mdi:valve-closed
+        {% endif %}
