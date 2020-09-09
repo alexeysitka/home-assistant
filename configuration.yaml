@@ -42,7 +42,7 @@ scene: !include conf.d/scenes.yaml
 input_number: !include conf.d/input_number.yaml
 
 #Подразделы устройств
-#vacuum: !include conf.d/vacuum.yaml
+vacuum: !include conf.d/vacuum.yaml
 yeelight: !include conf.d/yeelight.yaml
 
 #Вынос во внешние папки
