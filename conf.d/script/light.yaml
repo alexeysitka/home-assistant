@@ -2,13 +2,13 @@ gledopto_1_toggle:
   alias: Переключение состояния
   sequence:
    - service: light.toggle
-     entity_id: light.be_night_light_al_light
+     entity_id: light.be_nightlightalexey_light
 
 gledopto_1_on_full:
   alias: Максимум яркость
   sequence:
     - service: light.turn_on
-      entity_id: light.be_night_light_al_light
+      entity_id: light.be_nightlightalexey_light
       data_template:
         brightness_pct: 100
         kelvin: 4000
@@ -17,7 +17,7 @@ gledopto_1_on_evening:
   alias: Вечерний режим
   sequence:
     - service: light.turn_on
-      entity_id: light.be_night_light_al_light
+      entity_id: light.be_nightlightalexey_light
       data_template:
         brightness_pct: 100
         kelvin: 500
@@ -26,7 +26,7 @@ gledopto_1_on_night:
   alias: Ночной режим
   sequence:
     - service: light.turn_on
-      entity_id: light.be_night_light_al_light
+      entity_id: light.be_nightlightalexey_light
       data_template:
         brightness_pct: 80
         rgb_color: [255, 0, 0]
@@ -36,13 +36,13 @@ gledopto_2_toggle:
   alias: Переключение состояния
   sequence:
     - service: light.toggle
-      entity_id: light.be_night_light_jul_light
+      entity_id: light.be_nightlightjulia_light
 
 gledopto_2_on_full:
   alias: Максимум яркость
   sequence:
     - service: light.turn_on
-      entity_id: light.be_night_light_jul_light
+      entity_id: light.be_nightlightjulia_light
       data_template:
         brightness_pct: 100
         kelvin: 4000
@@ -51,7 +51,7 @@ gledopto_2_on_evening:
   alias: Вечерний режим
   sequence:
     - service: light.turn_on
-      entity_id: light.be_night_light_jul_light
+      entity_id: light.be_nightlightjulia_light
       data_template:
         brightness_pct: 100
         kelvin: 500
@@ -60,7 +60,7 @@ gledopto_2_on_night:
   alias: Ночной режим
   sequence:
     - service: light.turn_on
-      entity_id: light.be_night_light_jul_light
+      entity_id: light.be_nightlightjulia_light
       data_template:
         brightness_pct: 80
         rgb_color: [255, 0, 0]

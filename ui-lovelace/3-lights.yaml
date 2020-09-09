@@ -27,7 +27,7 @@
       - type: horizontal-stack
         cards:
           - type: light
-            entity: light.be_night_light_al_light
+            entity: light.be_nightlightalexey_light
             name: "Прикроватная лампа Алексея"
 
           - type: entities
@@ -41,7 +41,7 @@
       - type: horizontal-stack
         cards:
           - type: light
-            entity: light.be_night_light_jul_light
+            entity: light.be_nightlightjulia_light
             name: "Прикроватная лампа Юлии"
 
           - type: entities
