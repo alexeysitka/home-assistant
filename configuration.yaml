@@ -43,7 +43,6 @@ input_number: !include conf.d/input_number.yaml
 
 #Подразделы устройств
 vacuum: !include conf.d/vacuum.yaml
-yeelight: !include conf.d/yeelight.yaml
 
 #Вынос во внешние папки
 sensor: !include_dir_merge_list conf.d/sensor
