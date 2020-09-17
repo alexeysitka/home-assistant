@@ -33,7 +33,6 @@ mqtt:
   password: mqtt
 
 #Вынос во внешние файлы
-timer: !include conf.d/timer.yaml
 input_boolean: !include conf.d/input_boolean.yaml
 group: !include conf.d/groups.yaml
 scene: !include conf.d/scenes.yaml
@@ -45,6 +44,7 @@ input_number: !include conf.d/input_number.yaml
 vacuum: !include conf.d/vacuum.yaml
 
 #Вынос во внешние папки
+timer: !include_dir_merge_named conf.d/timer
 sensor: !include_dir_merge_list conf.d/sensor
 binary_sensor: !include_dir_merge_list conf.d/bin_sensor
 automation: !include_dir_merge_list conf.d/automation
