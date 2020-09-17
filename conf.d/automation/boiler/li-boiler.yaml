@@ -1,0 +1,49 @@
+- id: Включить канал обогрева для термостата гостиной
+  alias: li_enable_boiler_channel
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.li_thermostat_valve
+      to: 'on'
+    - platform: state
+      entity_id: switch.li_boiler_channel
+      to: 'on'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.li_boiler_channel
+    - service: timer.start
+      data:
+        entity_id: timer.li_boiler_channel
+
+- id: Выключить канал обогрева для термостата гостиной
+  alias: li_disable_boiler_channel
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.li_thermostat_valve
+      to: 'off'
+    - platform: state
+      entity_id: switch.li_boiler_channel
+      to: 'off'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.li_boiler_channel
+    - service: timer.cancel
+      data:
+        entity_id: timer.li_boiler_channel
+
+- id: Выключение канал обогрева для термостата гостиной по таймеру
+  alias: li_disable_boiler_channel_by_timer
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.li_boiler_channel
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.li_boiler_channel
+    - service: timer.cancel
+      data:
+        entity_id: timer.li_boiler_channel
