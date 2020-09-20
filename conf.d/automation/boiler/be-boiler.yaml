@@ -1,34 +1,36 @@
 - id: Включить канал обогрева для термостата спальни
   alias: be_enable_boiler_channel
+  initial_state: true
   trigger:
     - platform: state
       entity_id: binary_sensor.be_thermostat_valve
-      to: 'on'
+      to: "on"
     - platform: state
       entity_id: switch.be_boiler_channel
-      to: 'on'
+      to: "on"
   action:
     - service: script.turn_on
       entity_id: script.enable_boiler_channel
       data:
-        channel: switch.be_boiler_channel
-        timer: timer.be_boiler_channel
+        channel: "switch.be_boiler_channel"
+        timer: "timer.be_boiler_channel"
 
 - id: Выключить канал обогрева для термостата спальни
   alias: be_disable_boiler_channel
+  initial_state: true
   trigger:
     - platform: state
       entity_id: binary_sensor.be_thermostat_valve
-      to: 'off'
+      to: "off"
     - platform: state
       entity_id: switch.be_boiler_channel
-      to: 'off'
+      to: "off"
   action:
     - service: script.turn_on
       entity_id: script.disable_boiler_channel
       data:
-        channel: switch.be_boiler_channel
-        timer: timer.be_boiler_channel
+        channel: "switch.be_boiler_channel"
+        timer: "timer.be_boiler_channel"
 
 - id: Выключение канал обогрева для термостата спальни по таймеру
   alias: be_disable_boiler_channel_by_timer
@@ -42,5 +44,5 @@
     - service: script.turn_on
       entity_id: script.disable_boiler_channel
       data:
-        channel: switch.be_boiler_channel
-        timer: timer.be_boiler_channel
+        channel: "switch.be_boiler_channel"
+        timer: "timer.be_boiler_channel"

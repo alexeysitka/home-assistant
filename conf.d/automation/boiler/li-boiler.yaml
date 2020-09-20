@@ -1,12 +1,13 @@
 - id: Включить канал обогрева для термостата гостиной
   alias: li_enable_boiler_channel
+  initial_state: true
   trigger:
     - platform: state
       entity_id: binary_sensor.li_thermostat_valve
-      to: 'on'
+      to: "on"
     - platform: state
       entity_id: switch.li_boiler_channel
-      to: 'on'
+      to: "on"
   action:
     - service: script.turn_on
       entity_id: script.enable_boiler_channel
@@ -16,13 +17,14 @@
 
 - id: Выключить канал обогрева для термостата гостиной
   alias: li_disable_boiler_channel
+  initial_state: true
   trigger:
     - platform: state
       entity_id: binary_sensor.li_thermostat_valve
-      to: 'off'
+      to: "off"
     - platform: state
       entity_id: switch.li_boiler_channel
-      to: 'off'
+      to: "off"
   action:
     - service: script.turn_on
       entity_id: script.disable_boiler_channel
