@@ -8,12 +8,11 @@
       entity_id: switch.be_boiler_channel
       to: 'on'
   action:
-    - service: switch.turn_on
+    - service: script.turn_on
+      entity_id: script.enable_boiler_channel
       data:
-        entity_id: switch.be_boiler_channel
-    - service: timer.start
-      data:
-        entity_id: timer.be_boiler_channel
+        channel: switch.be_boiler_channel
+        timer: timer.be_boiler_channel
 
 - id: Выключить канал обогрева для термостата спальни
   alias: be_disable_boiler_channel
@@ -25,12 +24,11 @@
       entity_id: switch.be_boiler_channel
       to: 'off'
   action:
-    - service: switch.turn_off
+    - service: script.turn_on
+      entity_id: script.disable_boiler_channel
       data:
-        entity_id: switch.be_boiler_channel
-    - service: timer.cancel
-      data:
-        entity_id: timer.be_boiler_channel
+        channel: switch.be_boiler_channel
+        timer: timer.be_boiler_channel
 
 - id: Выключение канал обогрева для термостата спальни по таймеру
   alias: be_disable_boiler_channel_by_timer
@@ -41,9 +39,8 @@
       event_data:
         entity_id: timer.be_boiler_channel
   action:
-    - service: switch.turn_off
+    - service: script.turn_on
+      entity_id: script.disable_boiler_channel
       data:
-        entity_id: switch.be_boiler_channel
-    - service: timer.cancel
-      data:
-        entity_id: timer.be_boiler_channel
+        channel: switch.be_boiler_channel
+        timer: timer.be_boiler_channel
