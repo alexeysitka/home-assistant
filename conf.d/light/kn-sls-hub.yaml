@@ -1,8 +1,8 @@
 - platform: mqtt
-  name: SLS Hub Bedroom
-  availability_topic: "SLSHubBE/bridge/state"
-  command_topic: "SLSHubBE/led"
-  rgb_command_topic: "SLSHubBE/led"
+  name: KN_SLSHub
+  availability_topic: "SLSHubKN/bridge/state"
+  command_topic: "SLSHubKN/led"
+  rgb_command_topic: "SLSHubKN/led"
   rgb_command_template: >-
     {
       "mode": "manual",

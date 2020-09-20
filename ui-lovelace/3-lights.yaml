@@ -55,5 +55,11 @@
       - type: horizontal-stack
         cards:
           - type: light
-            entity: light.sls_hub_bedroom
+            entity: light.be_slshub
             name: "Шлюз в спальне"
+
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.kn_slshub
+            name: "Шлюз на кухне"
