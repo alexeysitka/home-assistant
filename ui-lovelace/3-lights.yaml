@@ -13,11 +13,20 @@
         entities:
           - entity: light.philips_desklamp
             name: "Настольная"
-      - type: entities
-        show_header_toggle: false
-        entities:
           - entity: light.philips_desklamp_ambient_light
             name: "Настольная эмбиент"
+          - entity: light.be_nightlightalexey_light
+            name: "Прикроватная лампа Алексея"
+          - entity: light.be_nightlightjulia_light
+            name: "Прикроватная лампа Юлии"
+          - entity: light.be_slshub
+            name: "Шлюз в спальне"
+          - entity: light.kn_slshub
+            name: "Шлюз на кухне"
+          - entity: light.ch_slshub
+            name: "Шлюз в детской"
+          - entity: light.to_slshub
+            name: "Шлюз в туалете"
 
     - type: vertical-stack
       cards:
@@ -26,10 +35,6 @@
            **Светильники**
       - type: horizontal-stack
         cards:
-          - type: light
-            entity: light.be_nightlightalexey_light
-            name: "Прикроватная лампа Алексея"
-
           - type: entities
             show_header_toggle: false
             entities:
@@ -37,13 +42,6 @@
               - entity: script.gledopto_1_on_full
               - entity: script.gledopto_1_on_evening
               - entity: script.gledopto_1_on_night
-
-      - type: horizontal-stack
-        cards:
-          - type: light
-            entity: light.be_nightlightjulia_light
-            name: "Прикроватная лампа Юлии"
-
           - type: entities
             show_header_toggle: false
             entities:
@@ -51,15 +49,3 @@
               - entity: script.gledopto_2_on_full
               - entity: script.gledopto_2_on_evening
               - entity: script.gledopto_2_on_night
-
-      - type: horizontal-stack
-        cards:
-          - type: light
-            entity: light.be_slshub
-            name: "Шлюз в спальне"
-
-      - type: horizontal-stack
-        cards:
-          - type: light
-            entity: light.kn_slshub
-            name: "Шлюз на кухне"
