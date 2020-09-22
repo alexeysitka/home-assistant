@@ -40,21 +40,3 @@
 '0xbc33acfffe655649':
   friendly_name: LI_Thermostat
   retain: true
-'0x00158d00045c3746':
-  friendly_name: KN_Temperature
-  retain: true
-'0x00158d00042acad9':
-  friendly_name: KN_Smoke_Detector
-  retain: true
-'0x00158d0003a85823':
-  friendly_name: KN_Behind_TV
-  retain: true
-'0x00158d000444d989':
-  friendly_name: KN_BoilerOne
-  retain: true
-'0x00158d0004457e13':
-  friendly_name: KN_BoilerTwo
-  retain: true
-'0x00158d0002d77fa5':
-  friendly_name: LO_Temperature
-  retain: true
