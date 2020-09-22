@@ -9,8 +9,7 @@
       entity_id: switch.li_boiler_channel
       to: "on"
   action:
-    - service: script.turn_on
-      entity_id: script.enable_boiler_channel
+    - service: script.enable_boiler_channel
       data:
         channel: switch.li_boiler_channel
         timer: timer.li_boiler_channel
@@ -26,8 +25,7 @@
       entity_id: switch.li_boiler_channel
       to: "off"
   action:
-    - service: script.turn_on
-      entity_id: script.disable_boiler_channel
+    - service: script.disable_boiler_channel
       data:
         channel: switch.li_boiler_channel
         timer: timer.li_boiler_channel
@@ -41,8 +39,7 @@
       event_data:
         entity_id: timer.li_boiler_channel
   action:
-    - service: script.turn_on
-      entity_id: script.disable_boiler_channel
+    - service: script.disable_boiler_channel
       data:
         channel: switch.li_boiler_channel
         timer: timer.li_boiler_channel
