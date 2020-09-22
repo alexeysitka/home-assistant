@@ -4,17 +4,14 @@
       friendly_name: 'Температура на термостате спальня'
       value_template: >-
         {{ state_attr('climate.be_thermostat_climate', 'current_temperature') }}
-      #device_class: sensor
       icon_template: 'mdi:thermostat'
     ch_thermostat_temperature:
       friendly_name: 'Температура на термостате детская'
       value_template: >-
         {{ state_attr('climate.ch_thermostat_climate', 'current_temperature') }}
-      #device_class: sensor
       icon_template: 'mdi:thermostat'
     li_thermostat_temperature:
       friendly_name: 'Температура на термостате гостиная'
       value_template: >-
         {{ state_attr('climate.li_thermostat_climate', 'current_temperature') }}
-      #device_class: sensor
       icon_template: 'mdi:thermostat'
