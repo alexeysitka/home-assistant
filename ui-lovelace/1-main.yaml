@@ -1,14 +1,14 @@
 - title: Главная
   icon: mdi:home-assistant
-  
+
   cards:
     - type: vertical-stack
       cards:
-  
+
         - type: markdown
           content: >
             **Текущее состояние**
-      
+
         - type: entities
           show_header_toggle: false
           entities:
@@ -20,31 +20,31 @@
             - entity: sensor.date
               name: Дата
               icon: mdi:calendar-check-outline
-        
+
         - type: markdown
           content: >
             **Резервное копирование**
-      
-        - type: entities
-          show_header_toggle: false
-          entities:
-            - entity: sensor.last_google_backup_train
-            - entity: sensor.snapshots_in_hassio_train
-            - entity: sensor.snapshots_in_google_drive_train
-        
+
+#        - type: entities
+#          show_header_toggle: false
+#          entities:
+#            - entity: sensor.last_google_backup_train
+#            - entity: sensor.snapshots_in_hassio_train
+#            - entity: sensor.snapshots_in_google_drive_train
+
         - type: entities
           show_header_toggle: false
           entities:
             - entity: sensor.maria_db_size
               name: Объём БД
               icon: mdi:database
-              
+
     - type: vertical-stack
       cards:
         - type: markdown
           content: >
-             **Графики** 
-              
+             **Графики**
+
         - type: horizontal-stack
           cards:
             - type: gauge
@@ -55,7 +55,7 @@
                 green: 0
                 yellow: 60
                 red: 85
-             
+
             - type: gauge
               name: ОЗУ
               unit: '%'
@@ -64,7 +64,7 @@
                 green: 0
                 yellow: 60
                 red: 85
-                
+
         - type: horizontal-stack
           cards:
             - type: entity
@@ -77,7 +77,7 @@
               name: Свободное место
               icon: 'mdi:harddisk'
               unit: 'Гб'
-  
+
         - type: history-graph
           entities:
             - entity: sensor.maria_db_size
