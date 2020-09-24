@@ -1,13 +1,2 @@
 title: Home Assistant - сервер
-resources:
-  - url: /local/xiaomi-vacuum-card.js?v=3.0.1
-    type: module
-  - url: /local/lovelace-custom/stack-in-card.js?v=1.0
-    type: module
-  - url: /local/lovelace-custom/mini-graph-card-bundle.js?v=1.0
-    type: module
-  - url: /local/lovelace-custom/simple-thermostat.js?v=1.0
-    type: module
-
-
 views: !include_dir_merge_list ui-lovelace

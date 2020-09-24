@@ -2,15 +2,23 @@ homeassistant:
   name: "Калининград"
   latitude: !secret latitude_coord
   longitude: !secret longitude_coord
-  elevation: 20.5
+  elevation: !secret elevation_coord
   unit_system: metric
   time_zone: Europe/Kaliningrad
-  # customize: !include customize.yaml
 
 # customize: !include customize.yaml
 
 lovelace:
   mode: yaml
+  resources:
+    - url: /local/xiaomi-vacuum-card.js?v=3.0.1
+      type: module
+    - url: /local/lovelace-custom/stack-in-card.js?v=1.0
+      type: module
+    - url: /local/lovelace-custom/mini-graph-card-bundle.js?v=1.0
+      type: module
+    - url: /local/lovelace-custom/simple-thermostat.js?v=1.0
+      type: module
 
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
@@ -39,6 +47,7 @@ scene: !include conf.d/scenes.yaml
 # recorder: !include conf.d/recorder.yaml
 
 input_number: !include conf.d/input_number.yaml
+input_select: !include_dir_merge_named conf.d/input-select
 
 #Подразделы устройств
 vacuum: !include conf.d/vacuum.yaml
