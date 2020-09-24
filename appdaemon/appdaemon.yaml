@@ -1,0 +1,15 @@
+---
+secrets: /config/secrets.yaml
+appdaemon:
+  latitude: !secret latitude_coord
+  longitude: !secret longitude_coord
+  elevation: !secret elevation_coord
+  time_zone: Europe/Kaliningrad
+  plugins:
+    HASS:
+      type: hass
+http:
+  url: http://127.0.0.1:5050
+admin:
+api:
+hadashboard:

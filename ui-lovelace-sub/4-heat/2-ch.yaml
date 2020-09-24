@@ -4,14 +4,14 @@
       style: |
         ha-card { font-size: 26px; }
       content: >
-        **Спальня**
+        **Детская**
 
     - type: custom:stack-in-card
       mode: vertical
       cards:
         - type: custom:mini-graph-card
           entities:
-            - entity: sensor.be_temperature_temperature_2
+            - entity: sensor.ch_temperature
               name: Температура
           color_thresholds:
             - value: 10
@@ -33,16 +33,22 @@
           group_by: hour
           hours_to_show: 48
 
+        - type: custom:simple-thermostat
+          entity: climate.ch_radiator
+          step_layout: row
+          name: false
+          icon: false
+
         - type: entities
           show_state: true
           show_name: true
           state_color: true
           entities:
-            - entity: switch.be_boiler_channel
-              name: Обогрев спальни
-            - entity: timer.be_boiler_channel
+            - entity: switch.ch_boiler_channel
+              name: Обогрев детской
+            - entity: timer.ch_boiler_channel
               name: До отключения обогрева
-            - entity: binary_sensor.be_thermostat_valve
+            - entity: binary_sensor.ch_thermostat_valve
               name: Клапан термостата
-            - entity: lock.be_thermostat_child_lock
+            - entity: lock.ch_thermostat_child_lock
               name: Блокировка термостата
