@@ -6,6 +6,7 @@ schedy_heating:  # This is our app instance name.
 
   schedule_append:
     - v: "OFF"
+#    - v: 20
 
   rooms:
     bedroom:
@@ -13,7 +14,6 @@ schedy_heating:  # This is our app instance name.
       actors:
         climate.be_radiator:
       schedule:
-        - v: 20
         - v: 24
           rules:
             - weekdays: 1-5
@@ -28,7 +28,6 @@ schedy_heating:  # This is our app instance name.
       actors:
         climate.ch_radiator:
       schedule:
-        - v: 20
         - v: 24
           rules:
             - weekdays: 1-5
@@ -43,7 +42,6 @@ schedy_heating:  # This is our app instance name.
       actors:
         climate.li_radiator:
       schedule:
-        - v: 20
         - v: 24
           rules:
             - weekdays: 1-5
