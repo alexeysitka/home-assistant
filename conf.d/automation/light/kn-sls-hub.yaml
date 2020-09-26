@@ -5,13 +5,12 @@
       entity_id: binary_sensor.kn_motion_occupancy
       to: 'on'
   condition:
-    condition: and
-    conditions:
-      - condition: template  # from sunset until sunrise
-        value_template: "{{ state_attr('sun.sun', 'elevation') < 1 }}"
-      - condition: numeric_state
-        entity_id: sensor.kn_motion_illuminance
-        below: 5
+    - condition: template  # from sunset until sunrise
+      value_template: "{{ state_attr('sun.sun', 'elevation') < 1 }}"
+    - condition: numeric_state
+      entity_id: sensor.kn_motion_illuminance
+      below: 5
+
   action:
     - service: light.turn_on
       data:
@@ -29,7 +28,7 @@
       for: "00:01:00"
     - platform: numeric_state
       entity_id: sensor.be_motion_illuminance
-      above: 10
+      above: 5
   action:
     - service: light.turn_off
       entity_id: light.kn_slshub
