@@ -26,7 +26,17 @@
           - entity: light.ch_slshub
             name: "Шлюз в детской"
           - entity: light.to_slshub
-            name: "Шлюз в туалете"
+            name: "Шлюз в коридоре"
+          - entity: switch.co_light_switch
+            name: "Свет в коридоре"
+          - entity: timer.co_light
+            name: "Таймер света в коридоре"
+          - entity: switch.co_mirror_light
+            name: "Подсветка зеркала в коридоре"
+          - entity: switch.to_light_switch
+            name: "Свет в туалете"
+          - entity: timer.to_light
+            name: "Таймер света в туалете"
 
     - type: vertical-stack
       cards:
