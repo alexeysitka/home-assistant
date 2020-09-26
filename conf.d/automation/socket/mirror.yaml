@@ -1,0 +1,14 @@
+- id: Включить выключенную розетку возле зеркала
+  alias: co_enable_mirror_socket
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: switch.co_mirror_light
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: switch.co_mirror_socket
+      state: 'off'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.co_mirror_socket

@@ -1,0 +1,39 @@
+- platform: template
+  switches:
+    co_mirror_light:
+      friendly_name: 'Подсветка зеркала'
+      value_template: >-
+        {{ is_state('switch.co_mirror_switch_l2', 'on') }}
+      turn_on:
+        - service: switch.turn_on
+          data:
+            entity_id: switch.co_mirror_switch_l2
+      turn_off:
+        - service: switch.turn_off
+          data:
+            entity_id: switch.co_mirror_switch_l2
+      icon_template: >-
+        {% if is_state("switch.kn_boilerone_switch_l1", "on") %}
+        mdi:lightbulb-group
+        {% else %}
+        mdi:lightbulb-group-off
+        {% endif %}
+
+    co_mirror_socket:
+      friendly_name: 'Розетка зеркала'
+      value_template: >-
+        {{ is_state('switch.co_mirror_switch_l1', 'on') }}
+      turn_on:
+        - service: switch.turn_on
+          data:
+            entity_id: switch.co_mirror_switch_l1
+      turn_off:
+        - service: switch.turn_off
+          data:
+            entity_id: switch.co_mirror_switch_l1
+      icon_template: >-
+        {% if is_state("switch.co_mirror_switch_l1", "on") %}
+        mdi:power-plug
+        {% else %}
+        mdi:power-plug-off
+        {% endif %}
