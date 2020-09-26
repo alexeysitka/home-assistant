@@ -1,0 +1,81 @@
+- id: Запустить таймер при включении света в коридоре
+  alias: co_start_timer_on_light_switched_on
+  trigger:
+    - platform: state
+      entity_id: switch.co_light_switch
+      to: 'on'
+  action:
+    - service: timer.start
+      entity_id: timer.co_light
+
+- id: Перезапустить таймер при включённом свете и движении на одном из датчиков коридора
+  alias: co_restart_timer_on_light_switched_on_and_motion_detected
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.co_motionbathroom_occupancy
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.co_motionkitchen_occupancy
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.co_motionmirror_occupancy
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.co_light_switch
+      state: "on"
+  action:
+    - service: timer.start
+      entity_id: timer.co_light
+
+- id: Выключить свет в коридоре по таймеру
+  alias: co_disable_light_on_timer_finished
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.co_light
+  action:
+    - service: switch.turn_off
+      entity_id: switch.co_light_switch
+
+- id: Выключить свет возле зеркала через 2 минуты после последнего движения
+  alias: co_disable_light_in_2_minute_after_occupancy
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.co_motionmirror_occupancy
+      to: "off"
+      for: "00:02:00"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.co_mirror_light
+
+- id: Переключить свет в коридоре с ремоута возле спальни
+  alias: co_enable_light_using_remote
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: sensor.co_lightremote_action
+      to: "single"
+  action:
+    - service: switch.toggle
+      entity_id: switch.co_light_switch
+
+- id: Выключить весь свет в коридоре
+  alias: co_disable_all_light
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: sensor.co_lightremote_action
+      to: "hold"
+    - platform: state
+      entity_id: sensor.co_light_action
+      to: "hold"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.co_light_switch
+    - service: switch.turn_off
+      entity_id: switch.co_mirror_light
