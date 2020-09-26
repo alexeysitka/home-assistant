@@ -8,7 +8,7 @@
     - service: timer.start
       entity_id: timer.to_light
 
-- id: Включить свет и запустить таймер при движении в туалете
+- id: Включить свет и запустить таймер при движении в туалете при открытой двери
   alias: to_enable_light_and_restart_timer_on_motion_detected
   trigger:
     - platform: state
