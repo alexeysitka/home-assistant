@@ -1,0 +1,78 @@
+- id: Запустить таймер при включении света в прихожей
+  alias: ha_start_timer_on_light_switched_on
+  trigger:
+    - platform: state
+      entity_id: switch.ha_light_switch
+      to: 'on'
+  action:
+    - service: timer.start
+      entity_id: timer.ha_light
+
+- id: Включить свет и запустить таймер при движении в прихожей при открытой входной двери
+  alias: ha_enable_light_and_restart_timer_on_motion_detected_with_opened_door
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ha_motion_occupancy
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: binary_sensor.ha_door_contact
+      state: "on"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.ha_light_switch
+    - service: timer.start
+      entity_id: timer.ha_light
+
+- id: Включить свет и запустить таймер при открытии входной двери и отсутствии движения в прихожей
+  alias: ha_enable_light_and_restart_timer_on_opened_door_with_motion_detected
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ha_door_contact
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: binary_sensor.ha_motion_occupancy
+      state: "off"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.ha_light_switch
+    - service: timer.start
+      entity_id: timer.ha_light
+
+- id: Перезапустить таймер при включённом свете и движении на датчике прихожей
+  alias: ha_restart_timer_on_light_switched_on_and_motion_detected
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ha_motion_occupancy
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.ha_light_switch
+      state: "on"
+  action:
+    - service: timer.start
+      entity_id: timer.ha_light
+
+- id: Остановить таймер при выключении света в прихожей
+  alias: ha_cancel_timer_on_light_switched_off
+  trigger:
+    - platform: state
+      entity_id: switch.ha_light_switch
+      to: 'off'
+  action:
+    - service: timer.cancel
+      entity_id: timer.ha_light
+
+- id: Выключить свет в прихожей по таймеру
+  alias: ha_disable_light_on_timer_finished
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.ha_light
+  action:
+    - service: switch.turn_off
+      entity_id: switch.ha_light_switch
