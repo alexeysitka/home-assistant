@@ -29,6 +29,16 @@
     - service: timer.start
       entity_id: timer.co_light
 
+- id: Остановить таймер при выключении света в коридоре
+  alias: co_cancel_timer_on_light_switched_off
+  trigger:
+    - platform: state
+      entity_id: switch.co_light_switch
+      to: 'off'
+  action:
+    - service: timer.cancel
+      entity_id: timer.co_light
+
 - id: Выключить свет в коридоре по таймеру
   alias: co_disable_light_on_timer_finished
   initial_state: true
