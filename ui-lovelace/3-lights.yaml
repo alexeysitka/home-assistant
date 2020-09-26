@@ -37,6 +37,12 @@
             name: "Свет в туалете"
           - entity: timer.to_light
             name: "Таймер света в туалете"
+          - entity: switch.ha_light_switch
+            name: "Свет в прихожей"
+          - entity: timer.ha_light
+            name: "Таймер света в прихожей"
+          - entity: switch.ba_light_switch
+            name: "Свет в ванной"
 
     - type: vertical-stack
       cards:
