@@ -1,0 +1,9 @@
+set_state:
+  description: 'Set state for sensor'
+  fields:
+    entity_id:
+      description: 'Entity to apply state'
+      example: binary_sensor.ba_high_humidity
+    state:
+      description: 'New applying state'
+      example: 'off'
