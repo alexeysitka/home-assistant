@@ -1,4 +1,4 @@
-- id: Запустить таймер при включении света в туалете
+- id: 'Запустить таймер при включении света в туалете'
   alias: to_start_timer_on_light_switched_on
   trigger:
     - platform: state
@@ -8,7 +8,7 @@
     - service: timer.start
       entity_id: timer.to_light
 
-- id: Включить свет и запустить таймер при движении в туалете при открытой двери
+- id: 'Включить свет и запустить таймер при движении в туалете при открытой двери'
   alias: to_enable_light_and_restart_timer_on_motion_detected
   trigger:
     - platform: state
@@ -27,7 +27,7 @@
     - service: timer.start
       entity_id: timer.to_light
 
-- id: Остановить таймер при закрытии двери в туалет
+- id: 'Остановить таймер при закрытии двери в туалет'
   alias: to_cancel_timer_on_door_close
   trigger:
     - platform: state
@@ -36,8 +36,10 @@
   action:
     - service: timer.cancel
       entity_id: timer.to_light
+    - service: automation.turn_off
+      entity_id: automation.to_disable_light_on_timer_finished
 
-- id: Запустить таймер при открытии двери в туалет
+- id: 'Запустить таймер при открытии двери в туалет'
   alias: to_start_timer_on_door_open
   trigger:
     - platform: state
@@ -46,8 +48,10 @@
   action:
     - service: timer.start
       entity_id: timer.to_light
+    - service: automation.turn_on
+      entity_id: automation.to_disable_light_on_timer_finished
 
-- id: Остановить таймер при выключении света в туалете
+- id: 'Остановить таймер при выключении света в туалете'
   alias: to_cancel_timer_on_light_switched_off
   trigger:
     - platform: state
@@ -57,9 +61,8 @@
     - service: timer.cancel
       entity_id: timer.to_light
 
-- id: Выключить свет в коридоре по таймеру
+- id: 'Выключить свет в туалете по таймеру'
   alias: to_disable_light_on_timer_finished
-  initial_state: true
   trigger:
     - platform: event
       event_type: timer.finished

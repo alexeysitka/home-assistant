@@ -22,7 +22,6 @@
 #
 #- id: Выключить ночник в туалете через 1 минуту после последнего движения
 #  alias: to_disable_nightlight_in_1_minute_after_occupancy
-#  initial_state: true
 #  trigger:
 #    - platform: state
 #      entity_id: binary_sensor.kn_motion_occupancy

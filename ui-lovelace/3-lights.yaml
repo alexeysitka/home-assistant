@@ -27,6 +27,10 @@
             name: 'Шлюз в детской'
           - entity: light.to_slshub
             name: 'Шлюз в коридоре'
+          - entity: light.ha_light
+            name: 'Свет в прихожей'
+          - entity: timer.ha_light
+            name: 'Таймер света в прихожей'
           - entity: light.co_light
             name: 'Свет в коридоре'
           - entity: timer.co_light
@@ -37,10 +41,8 @@
             name: 'Свет в туалете'
           - entity: timer.to_light
             name: 'Таймер света в туалете'
-          - entity: light.ha_light
-            name: 'Свет в прихожей'
-          - entity: timer.ha_light
-            name: 'Таймер света в прихожей'
+          - entity: automation.to_disable_light_on_timer_finished
+            name: 'Автоматизация выключения света в туалете'
           - entity: light.ba_light
             name: 'Свет в ванной'
 

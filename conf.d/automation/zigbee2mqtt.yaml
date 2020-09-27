@@ -1,6 +1,5 @@
 - id: Включить добавление Zigbee
   alias: enable_zigbee_join
-  initial_state: true
   trigger:
     platform: state
     entity_id: input_boolean.zigbee_permit_join
@@ -32,7 +31,6 @@
 
 - id: Выключение по таймеру добавления Zigbee
   alias: disable_zigbee_join_timer
-  initial_state: true
   trigger:
     - platform: event
       event_type: timer.finished

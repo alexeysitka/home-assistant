@@ -1,5 +1,5 @@
 # Временно хаб туалета находится в коридоре
-- id: Включить ночник в коридоре при движении после захода солнца
+- id: 'Включить ночник в коридоре при движении после захода солнца'
   alias: co_enable_nightlight_after_sunset
   trigger:
     - platform: state
@@ -33,9 +33,8 @@
       data:
         entity_id: timer.co_night_light
 
-- id: Выключить ночник в коридоре если включили основной свет или достаточно другого освещения возле ночника
+- id: 'Выключить ночник в коридоре если включили основной свет или достаточно другого освещения возле ночника'
   alias: co_disable_nightlight_if_main_light_switched_on
-  initial_state: true
   trigger:
     - platform: numeric_state
       entity_id: sensor.co_motionbathroom_illuminance
@@ -50,9 +49,8 @@
     - service: light.turn_off
       entity_id: light.to_slshub
 
-- id: Выключить ночник в коридоре по таймеру
+- id: 'Выключить ночник в коридоре по таймеру'
   alias: co_disable_nightlight_on_timer_finished
-  initial_state: true
   trigger:
     - platform: event
       event_type: timer.finished

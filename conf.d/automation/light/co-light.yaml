@@ -1,4 +1,4 @@
-- id: Запустить таймер при включении света в коридоре
+- id: 'Запустить таймер при включении света в коридоре'
   alias: co_start_timer_on_light_switched_on
   trigger:
     - platform: state
@@ -8,9 +8,8 @@
     - service: timer.start
       entity_id: timer.co_light
 
-- id: Перезапустить таймер при включённом свете и движении на одном из датчиков коридора
+- id: 'Перезапустить таймер при включённом свете и движении на одном из датчиков коридора'
   alias: co_restart_timer_on_light_switched_on_and_motion_detected
-  initial_state: true
   trigger:
     - platform: state
       entity_id: binary_sensor.co_motionbathroom_occupancy
@@ -29,7 +28,7 @@
     - service: timer.start
       entity_id: timer.co_light
 
-- id: Остановить таймер при выключении света в коридоре
+- id: 'Остановить таймер при выключении света в коридоре'
   alias: co_cancel_timer_on_light_switched_off
   trigger:
     - platform: state
@@ -39,7 +38,7 @@
     - service: timer.cancel
       entity_id: timer.co_light
 
-- id: Выключить свет в коридоре по таймеру
+- id: 'Выключить свет в коридоре по таймеру'
   alias: co_disable_light_on_timer_finished
   initial_state: true
   trigger:
@@ -51,9 +50,8 @@
     - service: light.turn_off
       entity_id: light.co_light
 
-- id: Выключить свет возле зеркала через 2 минуты после последнего движения
+- id: 'Выключить свет возле зеркала через 2 минуты после последнего движения'
   alias: co_disable_light_in_2_minute_after_occupancy
-  initial_state: true
   trigger:
     - platform: state
       entity_id: binary_sensor.co_motionmirror_occupancy
@@ -63,7 +61,7 @@
     - service: light.turn_off
       entity_id: light.co_mirror_light
 
-- id: Переключить свет в коридоре с ремоута возле спальни
+- id: 'Переключить свет в коридоре с ремоута возле спальни'
   alias: co_enable_light_using_remote
   initial_state: true
   trigger:
@@ -74,9 +72,8 @@
     - service: light.toggle
       entity_id: light.co_light
 
-- id: Выключить весь свет в коридоре
+- id: 'Выключить весь свет в коридоре'
   alias: co_disable_all_light
-  initial_state: true
   trigger:
     - platform: state
       entity_id: sensor.co_lightremote_action
@@ -84,10 +81,13 @@
     - platform: state
       entity_id: sensor.co_light_action
       to: 'hold'
+    - platform: state
+      entity_id: sensor.ha_light_action
+      to: 'hold'
   action:
     - service: light.turn_off
       entity_id: light.co_light
     - service: light.turn_off
       entity_id: light.co_mirror_light
     - service: light.turn_off
-      entity_id: light.ha_light_switch
+      entity_id: light.ha_light

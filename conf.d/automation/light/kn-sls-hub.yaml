@@ -1,4 +1,4 @@
-- id: Включить ночник на кухне при движении после захода
+- id: 'Включить ночник на кухне при движении после захода'
   alias: kn_enable_nightlight_after_sunset
   trigger:
     - platform: state
@@ -18,9 +18,8 @@
         brightness_pct: 70
         rgb_color: [255,0,0]
 
-- id: Выключить ночник на кухне через 1 минуту после последнего движения
+- id: 'Выключить ночник на кухне через 1 минуту после последнего движения'
   alias: kn_disable_nightlight_in_1_minute_after_occupancy
-  initial_state: true
   trigger:
     - platform: state
       entity_id: binary_sensor.kn_motion_occupancy

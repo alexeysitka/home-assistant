@@ -1,5 +1,4 @@
 - alias: gledopto_1_toggle
-  initial_state: true
   trigger:
     platform: state
     entity_id: sensor.be_control_al_click
@@ -19,7 +18,6 @@
       entity_id: script.gledopto_1_on_full
 
 - alias: gledopto_1_on_half
-  initial_state: true
   trigger:
     platform: state
     entity_id: sensor.be_control_al_click
@@ -29,7 +27,6 @@
       entity_id: script.gledopto_1_on_evening
 
 - alias: gledopto_1_on_night
-  initial_state: true
   trigger:
     platform: state
     entity_id: sensor.be_control_al_click
@@ -40,7 +37,6 @@
 
 
 - alias: gledopto_2_toggle
-  initial_state: true
   trigger:
     platform: state
     entity_id: sensor.be_control_jul_click
@@ -50,7 +46,6 @@
       entity_id: script.gledopto_2_toggle
 
 - alias: gledopto_2_on_full
-  initial_state: true
   trigger:
     platform: state
     entity_id: sensor.be_control_jul_click
@@ -60,7 +55,6 @@
       entity_id: script.gledopto_2_on_full
 
 - alias: gledopto_2_on_half
-  initial_state: true
   trigger:
     platform: state
     entity_id: sensor.be_control_jul_click
@@ -70,7 +64,6 @@
       entity_id: script.gledopto_2_on_evening
 
 - alias: gledopto_2_on_night
-  initial_state: true
   trigger:
     platform: state
     entity_id: sensor.be_control_jul_click

@@ -1,6 +1,5 @@
 - id: Включить канал обогрева для термостата спальни
   alias: be_enable_boiler_channel
-  initial_state: true
   trigger:
     - platform: state
       entity_id: binary_sensor.be_thermostat_valve
@@ -32,7 +31,6 @@
 
 - id: Выключение канал обогрева для термостата спальни по таймеру
   alias: be_disable_boiler_channel_by_timer
-  initial_state: true
   trigger:
     - platform: event
       event_type: timer.finished

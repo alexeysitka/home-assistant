@@ -1,6 +1,5 @@
 - id: Включить канал обогрева для термостата детской
   alias: ch_enable_boiler_channel
-  initial_state: true
   trigger:
     - platform: state
       entity_id: binary_sensor.ch_thermostat_valve
@@ -32,7 +31,6 @@
 
 - id: Выключение канал обогрева для термостата детской по таймеру
   alias: ch_disable_boiler_channel_by_timer
-  initial_state: true
   trigger:
     - platform: event
       event_type: timer.finished

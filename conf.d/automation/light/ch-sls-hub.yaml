@@ -1,4 +1,4 @@
-- id: Включить ночник в детской при движении после захода
+- id: 'Включить ночник в детской при движении после захода'
   alias: ch_enable_nightlight_after_sunset
   trigger:
     - platform: state
@@ -18,9 +18,8 @@
         brightness_pct: 5
         rgb_color: [255,0,0]
 
-- id: Выключить ночник в детской через 1 минуту после последнего движения
+- id: 'Выключить ночник в детской через 1 минуту после последнего движения'
   alias: ch_disable_nightlight_in_1_minute_after_occupancy
-  initial_state: true
   trigger:
     - platform: state
       entity_id: binary_sensor.ch_motion_occupancy
