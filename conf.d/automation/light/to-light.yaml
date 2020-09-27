@@ -18,6 +18,9 @@
     - condition: state
       entity_id: binary_sensor.to_door_contact
       state: 'on'
+    - condition: time
+      after: '08:00:00'
+      before: '23:00:00'
   action:
     - service: light.turn_on
       entity_id: light.to_light
