@@ -1,5 +1,5 @@
 - platform: mqtt
-  name: KN_SLSHub
+  name: kn_slshub
   availability_topic: "SLSHubKN/bridge/state"
   command_topic: "SLSHubKN/led"
   rgb_command_topic: "SLSHubKN/led"

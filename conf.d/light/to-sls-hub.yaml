@@ -1,5 +1,5 @@
 - platform: mqtt
-  name: TO_SLSHub
+  name: to_slshub
   availability_topic: "SLSHubTO/bridge/state"
   command_topic: "SLSHubTO/led"
   rgb_command_topic: "SLSHubTO/led"
