@@ -1,4 +1,4 @@
-- id: Сжатие базы
+- id: 'Сжатие базы'
   alias: 00_purge_everyday
   trigger:
     - platform: time

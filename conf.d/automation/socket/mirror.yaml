@@ -1,4 +1,4 @@
-- id: Включить выключенную розетку возле зеркала
+- id: 'Включить выключенную розетку возле зеркала'
   alias: co_enable_mirror_socket
   trigger:
     - platform: state

@@ -1,4 +1,4 @@
-- id: Включить канал обогрева для термостата детской
+- id: 'Включить канал обогрева для термостата детской'
   alias: ch_enable_boiler_channel
   trigger:
     - platform: state
@@ -13,7 +13,7 @@
         channel: switch.ch_boiler_channel
         timer: timer.ch_boiler_channel
 
-- id: Выключить канал обогрева для термостата детской
+- id: 'Выключить канал обогрева для термостата детской'
   alias: ch_disable_boiler_channel
   initial_state: true
   trigger:
@@ -29,7 +29,7 @@
         channel: switch.ch_boiler_channel
         timer: timer.ch_boiler_channel
 
-- id: Выключение канал обогрева для термостата детской по таймеру
+- id: 'Выключение канал обогрева для термостата детской по таймеру'
   alias: ch_disable_boiler_channel_by_timer
   trigger:
     - platform: event
