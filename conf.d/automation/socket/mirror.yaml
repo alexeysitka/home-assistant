@@ -3,7 +3,7 @@
   initial_state: true
   trigger:
     - platform: state
-      entity_id: switch.co_mirror_light
+      entity_id: light.co_mirror_light
       to: 'on'
   condition:
     - condition: state
