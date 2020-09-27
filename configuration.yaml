@@ -55,7 +55,7 @@ vacuum: !include conf.d/vacuum.yaml
 #Вынос во внешние папки
 timer: !include_dir_merge_named conf.d/timer
 sensor: !include_dir_merge_list conf.d/sensor
-binary_sensor: !include_dir_merge_list conf.d/bin_sensor
+binary_sensor: !include_dir_merge_list conf.d/bin-sensor
 automation: !include_dir_merge_list conf.d/automation
 script: !include_dir_merge_named conf.d/script
 switch: !include_dir_merge_list conf.d/switch
