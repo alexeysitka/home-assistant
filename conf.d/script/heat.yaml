@@ -1,35 +1,35 @@
 enable_boiler_channel:
-  description: "Включить канал обогрева на котле"
+  description: 'Включить канал обогрева на котле'
   mode: parallel
   fields:
     channel:
-      description: "Канал котла"
+      description: 'Канал котла'
       example: switch.be_boiler_channel
     timer:
-      description: "Таймер для активности канала котла"
+      description: 'Таймер для активности канала котла'
       example: timer.be_boiler_channel
   sequence:
     - service: switch.turn_on
       data:
-        entity_id: "{{ channel }}"
+        entity_id: '{{ channel }}'
     - service: timer.start
       data:
-        entity_id: "{{ timer }}"
+        entity_id: '{{ timer }}'
 
 disable_boiler_channel:
-  description: "Выключить канал обогрева на котле"
+  description: 'Выключить канал обогрева на котле'
   mode: parallel
   fields:
     channel:
-      description: "Канал котла"
+      description: 'Канал котла'
       example: switch.be_boiler_channel
     timer:
-      description: "Таймер для активности канала котла"
+      description: 'Таймер для активности канала котла'
       example: timer.be_boiler_channel
   sequence:
     - service: switch.turn_off
       data:
-        entity_id: "{{ channel }}"
+        entity_id: '{{ channel }}'
     - service: timer.cancel
       data:
-        entity_id: "{{ timer }}"
+        entity_id: '{{ timer }}'
