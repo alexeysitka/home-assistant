@@ -1,12 +1,22 @@
 be_bedlight_toggle:
-  alias: 'Переключение состояния'
+  description: 'Переключение состояния'
+  mode: parallel
+  fields:
+    bed_light:
+      description: 'Прикроватная лампа'
+      example: light.be_bedlight_alexey
   sequence:
    - service: light.toggle
      data:
        entity_id: '{{ bed_light }}'
 
 be_bedlight_on_day_cold:
-  alias: 'Максимум яркости, холодный свет'
+  description: 'Максимум яркости, холодный свет'
+  mode: parallel
+  fields:
+    bed_light:
+      description: 'Прикроватная лампа'
+      example: light.be_bedlight_alexey
   sequence:
     - service: light.turn_on
       data:
@@ -16,7 +26,12 @@ be_bedlight_on_day_cold:
         kelvin: 4000
 
 be_bedlight_on_evening_warm:
-  alias: 'Вечерний режим'
+  description: 'Вечерний режим'
+  mode: parallel
+  fields:
+    bed_light:
+      description: 'Прикроватная лампа'
+      example: light.be_bedlight_alexey
   sequence:
     - service: light.turn_on
       data:
@@ -26,7 +41,12 @@ be_bedlight_on_evening_warm:
         kelvin: 500
 
 be_bedlight_on_night_red:
-  alias: 'Ночной режим'
+  description: 'Ночной режим'
+  mode: parallel
+  fields:
+    bed_light:
+      description: 'Прикроватная лампа'
+      example: light.be_bedlight_alexey
   sequence:
     - service: light.turn_on
       data:
