@@ -6,7 +6,7 @@
       cards:
       - type: markdown
         content: >
-           **Панель переключателей**
+           **Панель светильников**
 
       - type: entities
         show_header_toggle: false
@@ -15,9 +15,9 @@
             name: 'Настольная'
           - entity: light.philips_desklamp_ambient_light
             name: 'Настольная эмбиент'
-          - entity: light.be_nightlightalexey_light
+          - entity: light.be_bedlight_alexey
             name: 'Прикроватная лампа Алексея'
-          - entity: light.be_nightlightjulia_light
+          - entity: light.be_bedlight_julia
             name: 'Прикроватная лампа Юлии'
           - entity: light.be_slshub
             name: 'Шлюз в спальне'
@@ -45,25 +45,3 @@
             name: 'Автоматизация выключения света в туалете'
           - entity: light.ba_light
             name: 'Свет в ванной'
-
-    - type: vertical-stack
-      cards:
-      - type: markdown
-        content: >
-           **Светильники**
-      - type: horizontal-stack
-        cards:
-          - type: entities
-            show_header_toggle: false
-            entities:
-              - entity: script.gledopto_1_toggle
-              - entity: script.gledopto_1_on_full
-              - entity: script.gledopto_1_on_evening
-              - entity: script.gledopto_1_on_night
-          - type: entities
-            show_header_toggle: false
-            entities:
-              - entity: script.gledopto_2_toggle
-              - entity: script.gledopto_2_on_full
-              - entity: script.gledopto_2_on_evening
-              - entity: script.gledopto_2_on_night
