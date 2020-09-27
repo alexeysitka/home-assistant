@@ -2,7 +2,7 @@
   alias: co_start_timer_on_light_switched_on
   trigger:
     - platform: state
-      entity_id: switch.co_light_switch
+      entity_id: light.co_light
       to: 'on'
   action:
     - service: timer.start
@@ -23,7 +23,7 @@
       to: "on"
   condition:
     - condition: state
-      entity_id: switch.co_light_switch
+      entity_id: light.co_light
       state: "on"
   action:
     - service: timer.start
@@ -33,7 +33,7 @@
   alias: co_cancel_timer_on_light_switched_off
   trigger:
     - platform: state
-      entity_id: switch.co_light_switch
+      entity_id: light.co_light
       to: 'off'
   action:
     - service: timer.cancel
@@ -48,8 +48,8 @@
       event_data:
         entity_id: timer.co_light
   action:
-    - service: switch.turn_off
-      entity_id: switch.co_light_switch
+    - service: light.turn_off
+      entity_id: light.co_light
 
 - id: Выключить свет возле зеркала через 2 минуты после последнего движения
   alias: co_disable_light_in_2_minute_after_occupancy
@@ -60,8 +60,8 @@
       to: "off"
       for: "00:02:00"
   action:
-    - service: switch.turn_off
-      entity_id: switch.co_mirror_light
+    - service: light.turn_off
+      entity_id: light.co_mirror_light
 
 - id: Переключить свет в коридоре с ремоута возле спальни
   alias: co_enable_light_using_remote
@@ -71,8 +71,8 @@
       entity_id: sensor.co_lightremote_action
       to: "single"
   action:
-    - service: switch.toggle
-      entity_id: switch.co_light_switch
+    - service: light.toggle
+      entity_id: light.co_light
 
 - id: Выключить весь свет в коридоре
   alias: co_disable_all_light
@@ -85,7 +85,9 @@
       entity_id: sensor.co_light_action
       to: "hold"
   action:
-    - service: switch.turn_off
-      entity_id: switch.co_light_switch
-    - service: switch.turn_off
-      entity_id: switch.co_mirror_light
+    - service: light.turn_off
+      entity_id: light.co_light
+    - service: light.turn_off
+      entity_id: light.co_mirror_light
+    - service: light.turn_off
+      entity_id: light.ha_light_switch

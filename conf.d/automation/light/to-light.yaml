@@ -2,7 +2,7 @@
   alias: to_start_timer_on_light_switched_on
   trigger:
     - platform: state
-      entity_id: switch.to_light_switch
+      entity_id: light.to_light
       to: 'on'
   action:
     - service: timer.start
@@ -19,8 +19,8 @@
       entity_id: binary_sensor.to_door_contact
       state: "on"
   action:
-    - service: switch.turn_on
-      entity_id: switch.to_light_switch
+    - service: light.turn_on
+      entity_id: light.to_light
     - service: timer.start
       entity_id: timer.to_light
 
@@ -48,7 +48,7 @@
   alias: to_cancel_timer_on_light_switched_off
   trigger:
     - platform: state
-      entity_id: switch.to_light_switch
+      entity_id: light.to_light
       to: 'off'
   action:
     - service: timer.cancel
@@ -63,5 +63,5 @@
       event_data:
         entity_id: timer.to_light
   action:
-    - service: switch.turn_off
-      entity_id: switch.to_light_switch
+    - service: light.turn_off
+      entity_id: light.to_light
