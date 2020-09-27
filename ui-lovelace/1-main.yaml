@@ -1,4 +1,4 @@
-- title: Главная
+- title: 'Главная'
   icon: mdi:home-assistant
 
   cards:
@@ -15,10 +15,10 @@
             - entity: sensor.last_boot_human
             - entity: sensor.online_human
             - entity: sensor.time
-              name: Текущее время
+              name: 'Текущее время'
               icon: mdi:clock-outline
             - entity: sensor.date
-              name: Дата
+              name: 'Дата'
               icon: mdi:calendar-check-outline
 
         - type: markdown
@@ -36,7 +36,7 @@
           show_header_toggle: false
           entities:
             - entity: sensor.maria_db_size
-              name: Объём БД
+              name: 'Объём БД'
               icon: mdi:database
 
     - type: vertical-stack
@@ -48,7 +48,7 @@
         - type: horizontal-stack
           cards:
             - type: gauge
-              name: Процессор
+              name: 'Процессор'
               unit: '%'
               entity: sensor.processor_use
               severity:
@@ -57,7 +57,7 @@
                 red: 85
 
             - type: gauge
-              name: ОЗУ
+              name: 'ОЗУ'
               unit: '%'
               entity: sensor.memory_use_percent
               severity:
@@ -69,16 +69,16 @@
           cards:
             - type: entity
               entity: sensor.disk_use_percent
-              name: Диск заполнен
+              name: 'Диск заполнен'
               icon: 'mdi:chart-donut'
               unit: '%'
             - type: entity
               entity: sensor.disk_free
-              name: Свободное место
+              name: 'Свободное место'
               icon: 'mdi:harddisk'
               unit: 'Гб'
 
         - type: history-graph
           entities:
             - entity: sensor.maria_db_size
-              name: Maria DB
+              name: 'Maria DB'

@@ -1,4 +1,4 @@
-- title: Обогрев
+- title: 'Обогрев'
   icon: mdi:radiator
   type: horizontal-stack
   cards: !include_dir_merge_list ../ui-lovelace-sub/4-heat

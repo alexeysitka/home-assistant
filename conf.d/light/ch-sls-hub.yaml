@@ -1,12 +1,12 @@
 - platform: mqtt
   name: ch_slshub
-  availability_topic: "SLSHubCH/bridge/state"
-  command_topic: "SLSHubCH/led"
-  rgb_command_topic: "SLSHubCH/led"
+  availability_topic: 'SLSHubCH/bridge/state'
+  command_topic: 'SLSHubCH/led'
+  rgb_command_topic: 'SLSHubCH/led'
   rgb_command_template: >-
     {
       "mode": "manual",
       "hex": "#{{ '%02x%02x%02x' | format(red, green, blue) }}"
     }
-  on_command_type: "brightness"
+  on_command_type: 'brightness'
   payload_off: '{"mode": "off"}'

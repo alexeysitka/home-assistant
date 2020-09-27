@@ -10,7 +10,7 @@
             entity_id: switch.kn_boilerone_switch_l1
         - service: mqtt.publish
           data:
-            topic: "zigbee2mqtt/BE_Thermostat/set"
+            topic: 'zigbee2mqtt/BE_Thermostat/set'
             payload: "{\"system_mode\": \"boost\"}"
       turn_off:
         - service: switch.turn_off
@@ -18,10 +18,10 @@
             entity_id: switch.kn_boilerone_switch_l1
         - service: mqtt.publish
           data:
-            topic: "zigbee2mqtt/BE_Thermostat/set"
+            topic: 'zigbee2mqtt/BE_Thermostat/set'
             payload: "{\"system_mode\": \"off\"}"
       icon_template: >-
-        {% if is_state("switch.kn_boilerone_switch_l1", "on") %}
+        {% if is_state('switch.kn_boilerone_switch_l1', 'on') %}
         mdi:radiator
         {% else %}
         mdi:radiator-disabled
@@ -37,7 +37,7 @@
             entity_id: switch.kn_boilerone_switch_l2
         - service: mqtt.publish
           data:
-            topic: "zigbee2mqtt/CH_Thermostat/set"
+            topic: 'zigbee2mqtt/CH_Thermostat/set'
             payload: "{\"system_mode\": \"boost\"}"
       turn_off:
         - service: switch.turn_off
@@ -45,10 +45,10 @@
             entity_id: switch.kn_boilerone_switch_l2
         - service: mqtt.publish
           data:
-            topic: "zigbee2mqtt/CH_Thermostat/set"
+            topic: 'zigbee2mqtt/CH_Thermostat/set'
             payload: "{\"system_mode\": \"off\"}"
       icon_template: >-
-        {% if is_state("switch.kn_boilerone_switch_l2", "on") %}
+        {% if is_state('switch.kn_boilerone_switch_l2', 'on') %}
         mdi:radiator
         {% else %}
         mdi:radiator-disabled
@@ -64,7 +64,7 @@
             entity_id: switch.kn_boilertwo_switch_l1
         - service: mqtt.publish
           data:
-            topic: "zigbee2mqtt/LI_Thermostat/set"
+            topic: 'zigbee2mqtt/LI_Thermostat/set'
             payload: "{\"system_mode\": \"boost\"}"
       turn_off:
         - service: switch.turn_off
@@ -72,10 +72,10 @@
             entity_id: switch.kn_boilertwo_switch_l1
         - service: mqtt.publish
           data:
-            topic: "zigbee2mqtt/LI_Thermostat/set"
+            topic: 'zigbee2mqtt/LI_Thermostat/set'
             payload: "{\"system_mode\": \"off\"}"
       icon_template: >-
-        {% if is_state("switch.kn_boilertwo_switch_l1", "on") %}
+        {% if is_state('switch.kn_boilertwo_switch_l1', 'on') %}
         mdi:radiator
         {% else %}
         mdi:radiator-disabled

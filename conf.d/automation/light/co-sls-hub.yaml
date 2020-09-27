@@ -19,10 +19,10 @@
       below: 5
     - condition: state
       entity_id: switch.co_light_switch
-      state: "off"
+      state: 'off'
     - condition: state
       entity_id: switch.co_mirror_light
-      state: "off"
+      state: 'off'
   action:
     - service: light.turn_on
       data:
@@ -42,10 +42,10 @@
       above: 5
     - platform: state
       entity_id: switch.co_light_switch
-      to: "on"
+      to: 'on'
     - platform: state
       entity_id: switch.co_mirror_light
-      to: "on"
+      to: 'on'
   action:
     - service: light.turn_off
       entity_id: light.to_slshub

@@ -13,11 +13,11 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.ha_motion_occupancy
-      to: "on"
+      to: 'on'
   condition:
     - condition: state
       entity_id: binary_sensor.ha_door_contact
-      state: "on"
+      state: 'on'
   action:
     - service: light.turn_on
       entity_id: light.ha_light
@@ -29,11 +29,11 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.ha_door_contact
-      to: "on"
+      to: 'on'
   condition:
     - condition: state
       entity_id: binary_sensor.ha_motion_occupancy
-      state: "off"
+      state: 'off'
   action:
     - service: light.turn_on
       entity_id: light.ha_light
@@ -46,11 +46,11 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.ha_motion_occupancy
-      to: "on"
+      to: 'on'
   condition:
     - condition: state
       entity_id: light.ha_light
-      state: "on"
+      state: 'on'
   action:
     - service: timer.start
       entity_id: timer.ha_light

@@ -3,7 +3,7 @@
   - type: custom:xiaomi-vacuum-card
     entity: vacuum.xiaomi_vacuum_cleaner
     image: false
-    name: Шурик
+    name: 'Шурик'
     vendor: xiaomi
     labels:
       status: Статус

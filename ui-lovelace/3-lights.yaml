@@ -1,4 +1,4 @@
-- title: Освещение
+- title: 'Освещение'
   icon: mdi:lightbulb-group
   cards:
 
@@ -12,37 +12,37 @@
         show_header_toggle: false
         entities:
           - entity: light.philips_desklamp
-            name: "Настольная"
+            name: 'Настольная'
           - entity: light.philips_desklamp_ambient_light
-            name: "Настольная эмбиент"
+            name: 'Настольная эмбиент'
           - entity: light.be_nightlightalexey_light
-            name: "Прикроватная лампа Алексея"
+            name: 'Прикроватная лампа Алексея'
           - entity: light.be_nightlightjulia_light
-            name: "Прикроватная лампа Юлии"
+            name: 'Прикроватная лампа Юлии'
           - entity: light.be_slshub
-            name: "Шлюз в спальне"
+            name: 'Шлюз в спальне'
           - entity: light.kn_slshub
-            name: "Шлюз на кухне"
+            name: 'Шлюз на кухне'
           - entity: light.ch_slshub
-            name: "Шлюз в детской"
+            name: 'Шлюз в детской'
           - entity: light.to_slshub
-            name: "Шлюз в коридоре"
+            name: 'Шлюз в коридоре'
           - entity: light.co_light
-            name: "Свет в коридоре"
+            name: 'Свет в коридоре'
           - entity: timer.co_light
-            name: "Таймер света в коридоре"
+            name: 'Таймер света в коридоре'
           - entity: light.co_mirror_light
-            name: "Подсветка зеркала в коридоре"
+            name: 'Подсветка зеркала в коридоре'
           - entity: light.to_light
-            name: "Свет в туалете"
+            name: 'Свет в туалете'
           - entity: timer.to_light
-            name: "Таймер света в туалете"
+            name: 'Таймер света в туалете'
           - entity: light.ha_light
-            name: "Свет в прихожей"
+            name: 'Свет в прихожей'
           - entity: timer.ha_light
-            name: "Таймер света в прихожей"
+            name: 'Таймер света в прихожей'
           - entity: light.ba_light
-            name: "Свет в ванной"
+            name: 'Свет в ванной'
 
     - type: vertical-stack
       cards:

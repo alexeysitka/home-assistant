@@ -4,10 +4,10 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.li_thermostat_valve
-      to: "on"
+      to: 'on'
     - platform: state
       entity_id: switch.li_boiler_channel
-      to: "on"
+      to: 'on'
   action:
     - service: script.enable_boiler_channel
       data:
@@ -20,10 +20,10 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.li_thermostat_valve
-      to: "off"
+      to: 'off'
     - platform: state
       entity_id: switch.li_boiler_channel
-      to: "off"
+      to: 'off'
   action:
     - service: script.disable_boiler_channel
       data:

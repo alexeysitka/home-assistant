@@ -24,8 +24,8 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.ch_motion_occupancy
-      to: "off"
-      for: "00:01:00"
+      to: 'off'
+      for: '00:01:00'
     - platform: numeric_state
       entity_id: sensor.ch_motion_illuminance
       above: 5

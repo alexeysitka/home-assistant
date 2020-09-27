@@ -13,7 +13,7 @@
           data:
             entity_id: switch.co_mirror_switch_l1
       icon_template: >-
-        {% if is_state("switch.co_mirror_switch_l1", "on") %}
+        {% if is_state('switch.co_mirror_switch_l1', 'on') %}
         mdi:power-plug
         {% else %}
         mdi:power-plug-off

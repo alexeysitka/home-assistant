@@ -14,17 +14,17 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.co_motionbathroom_occupancy
-      to: "on"
+      to: 'on'
     - platform: state
       entity_id: binary_sensor.co_motionkitchen_occupancy
-      to: "on"
+      to: 'on'
     - platform: state
       entity_id: binary_sensor.co_motionmirror_occupancy
-      to: "on"
+      to: 'on'
   condition:
     - condition: state
       entity_id: light.co_light
-      state: "on"
+      state: 'on'
   action:
     - service: timer.start
       entity_id: timer.co_light
@@ -57,8 +57,8 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.co_motionmirror_occupancy
-      to: "off"
-      for: "00:02:00"
+      to: 'off'
+      for: '00:02:00'
   action:
     - service: light.turn_off
       entity_id: light.co_mirror_light
@@ -69,7 +69,7 @@
   trigger:
     - platform: state
       entity_id: sensor.co_lightremote_action
-      to: "single"
+      to: 'single'
   action:
     - service: light.toggle
       entity_id: light.co_light
@@ -80,10 +80,10 @@
   trigger:
     - platform: state
       entity_id: sensor.co_lightremote_action
-      to: "hold"
+      to: 'hold'
     - platform: state
       entity_id: sensor.co_light_action
-      to: "hold"
+      to: 'hold'
   action:
     - service: light.turn_off
       entity_id: light.co_light

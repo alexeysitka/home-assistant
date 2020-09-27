@@ -12,7 +12,7 @@
         - type: custom:mini-graph-card
           entities:
             - entity: sensor.ch_temperature
-              name: Температура
+              name: 'Температура'
           color_thresholds:
             - value: 10
               color: "#191970"
@@ -45,10 +45,10 @@
           state_color: true
           entities:
             - entity: switch.ch_boiler_channel
-              name: Обогрев детской
+              name: 'Обогрев детской'
             - entity: timer.ch_boiler_channel
-              name: До отключения обогрева
+              name: 'До отключения обогрева'
             - entity: binary_sensor.ch_thermostat_valve
-              name: Клапан термостата
+              name: 'Клапан термостата'
             - entity: lock.ch_thermostat_child_lock
-              name: Блокировка термостата
+              name: 'Блокировка термостата'

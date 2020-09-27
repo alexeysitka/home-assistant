@@ -1,4 +1,4 @@
-- title: СС 2531
+- title: 'СС 2531'
   icon: mdi:usb-flash-drive
   cards:
     - type: vertical-stack
@@ -8,7 +8,7 @@
            **Добавление устройств**
 
       - type: entities
-        title: Добавление Zigbee устройств
+        title: 'Добавление Zigbee устройств'
         show_header_toggle: false
         entities:
            - entity: input_boolean.zigbee_permit_join
