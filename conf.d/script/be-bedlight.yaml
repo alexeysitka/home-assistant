@@ -26,7 +26,7 @@ be_bedlight_on_day_cold:
         kelvin: 4000
 
 be_bedlight_on_evening_warm:
-  description: 'Вечерний режим'
+  description: 'Вечерний режим, тёплый свет'
   mode: parallel
   fields:
     bed_light:
@@ -41,7 +41,7 @@ be_bedlight_on_evening_warm:
         kelvin: 500
 
 be_bedlight_on_night_red:
-  description: 'Ночной режим'
+  description: 'Ночной режим, красный свет'
   mode: parallel
   fields:
     bed_light:
