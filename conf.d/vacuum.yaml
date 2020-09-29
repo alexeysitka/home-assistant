@@ -1,5 +1,0 @@
-- platform: xiaomi_miio
-  host: 192.168.31.212
-  # token: 4ee0474c1e8b552ba23b9e8e2172702b
-  # token: 11c72b62e14612c900564954da5f59cf
-  token: 78535174514b7357614c4c6f36755449

@@ -1,15 +1,28 @@
-- icon: mdi:robot-vacuum
+- title: 'Освещение'
+  icon: mdi:robot-vacuum
   cards:
-  - type: custom:xiaomi-vacuum-card
-    entity: vacuum.xiaomi_vacuum_cleaner
-    image: false
-    name: 'Шурик'
-    vendor: xiaomi
-    labels:
-      status: Статус
-      battery: Батарея
-      mode: Режим
-      main_brush: Основная щётка
-      side_brush: Боковая щётка
-      filter: Фильтр
-      sensor: Сенсоры
+
+    - type: vertical-stack
+      cards:
+        - type: custom:xiaomi-vacuum-card
+          entity: vacuum.xiaomi_vacuum_cleaner
+          image: false
+          name: 'Шурик'
+          vendor: xiaomi
+          labels:
+            status: Статус
+            battery: Батарея
+            mode: Режим
+            main_brush: Основная щётка
+            side_brush: Боковая щётка
+            filter: Фильтр
+            sensor: Сенсоры
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - input_select.vacuum_room
+            - input_select.vacuum_fan_speed_list
+            - sensor.vacuum_status
+            - sensor.vacuum_battery
+            - sensor.vacuum_cleaning_time
+            - sensor.vacuum_cleaned_area

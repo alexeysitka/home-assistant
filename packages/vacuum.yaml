@@ -1,0 +1,263 @@
+vacuum:
+  - platform: xiaomi_miio
+    host: !secret xiaomi_vacuum_ip
+    token: !secret xiaomi_vacuum_token
+
+input_boolean:
+  daily_vacuum_first_run:
+    name: Daily Vacuum First Run
+    initial: off
+  disable_daily_vacuum:
+    name: 'Выключить автоматизацию ежедневной уборки'
+    initial: on
+  disable_dustbin_notification:
+    name: 'Отключить уведомление об очистке мусорного контейнера'
+    initial: off
+
+input_select:
+  vacuum_room:
+    name: Выберите комнату
+    options:
+      - Ничего не выбрано
+      - Вся квартира
+      - Коридор
+      - Кухня
+      - Гостиная
+      - Детская
+      - Спальня
+      - Туалет
+      - Кабинет
+  vacuum_fan_speed_list:
+    name: Мощность всасывания
+    options:
+      - Silent
+      - Standard
+      - Medium
+      - Turbo
+
+sensor:
+  - platform: template
+    sensors:
+      vacuum_status:
+        friendly_name: 'Статус'
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        value_template: '{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.status }}'
+        icon_template: >
+          {% set val =  states.vacuum.xiaomi_vacuum_cleaner.attributes.status  %}
+          {% if val == 'Charging' %}
+            mdi:battery-charging
+          {% elif val == 'Cleaning' %}
+            mdi:move-resize
+          {% elif val == 'Returning home' %}
+            mdi:keyboard-return
+          {% elif val == 'Idle' %}
+            mdi:dots-horizontal
+          {% elif val == 'Paused' %}
+            mdi:pause-circle
+          {% else %}
+            mdi:help-circle
+          {% endif %}
+      vacuum_battery:
+        friendly_name: 'Заряд батареи'
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        value_template: '{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.battery_level }}'
+        unit_of_measurement: '%'
+        icon_template: '{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.battery_icon }}'
+      vacuum_cleaning_time:
+        friendly_name: 'Последняя уборка'
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        value_template: '{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.cleaning_time }}'
+        icon_template: 'mdi:timer'
+      vacuum_cleaned_area:
+        friendly_name: 'Площадь'
+        unit_of_measurement: 'м²'
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        value_template: '{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.cleaned_area }}'
+        icon_template: 'mdi:ruler'
+
+
+script:
+  be_vacuum_clean:
+    description: 'Пропылесосить спальню'
+    sequence:
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          command: app_zoned_clean
+          params: [ [ 22504,18211,25554,25111,1 ] ]
+  #    - service: notify.android
+  #      data:
+  #        title: Событие дома
+  #        message: Пылесос приступил к уборке в Спальне
+
+  ch_vacuum_clean:
+    description: 'Пропылесосить детскую'
+    sequence:
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          command: app_zoned_clean
+          params: [ [ 22528,27088,26328,31088,1 ] ]
+  #    - service: notify.android
+  #      data:
+  #        title: Событие дома
+  #        message: Пылесос приступил к уборке в Спальне
+
+  li_vacuum_clean:
+    description: 'Пропылесосить гостиную'
+    sequence:
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          command: app_zoned_clean
+          params: [ [ 26431,26949,32031,31349,1 ] ]
+  #    - service: notify.android
+  #      data:
+  #        title: Событие дома
+  #        message: Пылесос приступил к уборке в Зале
+
+  ki_vacuum_clean:
+    description: 'Пропылесосить кухню'
+    sequence:
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          command: app_zoned_clean
+          params: [ [ 32663,27125,37363,30325,1 ] ]
+  #    - service: notify.android
+  #      data:
+  #        title: Событие дома
+  #        message: Пылесос приступил к уборке в Кухне
+
+  co_vacuum_clean:
+    description: 'Пропылесосить коридор'
+    sequence:
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          command: app_zoned_clean
+          params: [ [ 25578,23783,35628,27083,1 ],[ 24647,25083,25847,27133,1 ] ]
+  #    - service: notify.android
+  #      data:
+  #        title: Событие дома
+  #        message: Пылесос приступил к уборке в Коридоре
+
+  to_vacuum_clean:
+    description: 'Пропылесосить туалет'
+    sequence:
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          command: app_zoned_clean
+          params: [ [ 34023,25341,35573,26991,1 ] ]
+  #    - service: notify.android
+  #      data:
+  #        title: Событие дома
+  #        message: Пылесос приступил к уборке в Коридоре
+
+  ca_vacuum_clean:
+    description: 'Пропылесосить кабинет'
+    sequence:
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          command: app_zoned_clean
+          params: [ [ 22554,18248,25354,20048,1 ] ]
+  #    - service: notify.android
+  #      data:
+  #        title: Событие дома
+  #        message: Пылесос приступил к уборке в Коридоре
+
+automation:
+  - id: 'Выставление режима всасывания пылесоса'
+    alias: vacuum_set_fan_mode
+    trigger:
+      platform: state
+      entity_id: input_select.vacuum_fan_speed_list
+    action:
+      - service: vacuum.set_fan_speed
+        data_template:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          fan_speed: "{{ states('input_select.vacuum_fan_speed_list') }}"
+
+  - id: 'Обновление состояния для селекта режима всасывания пылесоса'
+    alias: vacuum_update_input_select_fan_mode
+    initial_state: true
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id: sensor.vacuum_fan_speed
+    condition:
+      condition: template
+      value_template: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'fan_speed') != states('input_select.vacuum_fan_speed_list') }}"
+    action:
+      - service: input_select.select_option
+        entity_id: input_select.vacuum_fan_speed_list
+        data_template:
+          option: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'fan_speed') }}"
+
+  - id: 'Начать уборку комнаты'
+    alias: vacuum_start_cleaning_room
+    trigger:
+      - platform: state
+        entity_id: input_select.vacuum_room
+        from: 'Ничего не выбрано'
+    action:
+      - service: script.turn_on
+        data_template:
+          entity_id: >
+            {% if is_state('input_select.vacuum_room', 'Коридор') %}
+              script.co_vacuum_clean
+            {% elif is_state('input_select.vacuum_room', 'Кухня') %}
+              script.kn_vacuum_clean
+            {% elif is_state('input_select.vacuum_room', 'Гостиная') %}
+              script.li_vacuum_clean
+            {% elif is_state('input_select.vacuum_room', 'Детская') %}
+              script.ch_vacuum_clean
+            {% elif is_state('input_select.vacuum_room', 'Спальня') %}
+              script.be_vacuum_clean
+            {% elif is_state('input_select.vacuum_room', 'Туалет') %}
+              script.to_vacuum_clean
+            {% elif is_state('input_select.vacuum_room', 'Кабинет') %}
+              script.ca_vacuum_clean
+            {% else %}
+            {% endif %}
+      - service: vacuum.set_fan_speed
+        data_template:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          fan_speed: Max
+      - service: input_select.select_option
+        entity_id: input_select.vacuum_room
+        data_template:
+          option: 'Ничего не выбрано'
+
+  - id: 'Робот пылесос закончил уборку'
+    alias: vacuum_finished_cleaning
+    initial_state: false
+    trigger:
+      - platform: state
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        from: 'cleaning'
+        to: 'returning'
+    action:
+      - service: vacuum.set_fan_speed
+        data_template:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          fan_speed: Quiet
+#      - service: notify.android
+#        data:
+#          title: Событие дома
+#          message: Пылесос закончил уборку
+
+#  - alias: Робот пылесос ошибка
+#    trigger:
+#      - platform: state
+#        entity_id: vacuum.xiaomi_vacuum_cleaner
+#        to: 'error'
+##    action:
+##      - service: notify.android
+##        data:
+##          title: Событие дома
+##          message: Робот пылесос ошибка {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.error }}
+##          target: Galaxy_S6

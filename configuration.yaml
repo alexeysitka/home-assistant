@@ -5,6 +5,7 @@ homeassistant:
   elevation: !secret elevation_coord
   unit_system: metric
   time_zone: Europe/Kaliningrad
+  packages: !include_dir_named packages
 
 # customize: !include customize.yaml
 
@@ -51,9 +52,6 @@ scene: !include conf.d/scenes.yaml
 
 input_number: !include conf.d/input_number.yaml
 input_select: !include_dir_merge_named conf.d/input-select
-
-#Подразделы устройств
-vacuum: !include conf.d/vacuum.yaml
 
 #Вынос во внешние папки
 timer: !include_dir_merge_named conf.d/timer
