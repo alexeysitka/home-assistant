@@ -16,7 +16,7 @@
       value_template: "{{ state_attr('sun.sun', 'elevation') < 1 }}"
     - condition: numeric_state
       entity_id: sensor.co_motionbathroom_illuminance
-      below: 5
+      below: 10
     - condition: state
       entity_id: switch.co_light_switch
       state: 'off'
@@ -38,7 +38,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.co_motionbathroom_illuminance
-      above: 5
+      above: 10
     - platform: state
       entity_id: switch.co_light_switch
       to: 'on'

@@ -9,7 +9,7 @@
       value_template: "{{ state_attr('sun.sun', 'elevation') < 1 }}"
     - condition: numeric_state
       entity_id: sensor.be_motion_illuminance
-      below: 5
+      below: 10
   action:
     - service: light.turn_on
       data:
@@ -26,7 +26,7 @@
       for: '00:01:00'
     - platform: numeric_state
       entity_id: sensor.be_motion_illuminance
-      above: 5
+      above: 10
   action:
     - service: light.turn_off
       entity_id: light.be_slshub
