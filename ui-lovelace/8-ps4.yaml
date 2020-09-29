@@ -1,0 +1,4 @@
+- icon: mdi:sony-playstation
+  cards:
+    - type: media-control
+      entity: media_player.playstation_4
