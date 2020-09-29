@@ -1,7 +1,7 @@
 - platform: template
   sensors:
     ba_normal_humidity:
-      friendly_name: 'Высокая влажность в ванной, не более, чем на 5% выше, чем в спальне'
+      friendly_name: 'Нормальная влажность в ванной, не более, чем на 5% выше, чем в спальне'
       value_template: >-
         {{ (states("sensor.ba_humidity")|int - states("sensor.be_humidity")|int) <= 5 }}
     ba_high_humidity:
