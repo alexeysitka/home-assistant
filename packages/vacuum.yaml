@@ -40,10 +40,9 @@ sensor:
     sensors:
       vacuum_status:
         friendly_name: 'Статус'
-        entity_id: vacuum.xiaomi_vacuum_cleaner
-        value_template: '{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.status }}'
+        value_template: '{{ state_attr("vacuum.xiaomi_vacuum_cleaner", "status") }}'
         icon_template: >
-          {% set val =  states.vacuum.xiaomi_vacuum_cleaner.attributes.status  %}
+          {% set val =  state_attr('vacuum.xiaomi_vacuum_cleaner', 'status')  %}
           {% if val == 'Charging' %}
             mdi:battery-charging
           {% elif val == 'Cleaning' %}
@@ -59,24 +58,41 @@ sensor:
           {% endif %}
       vacuum_battery:
         friendly_name: 'Заряд батареи'
-        entity_id: vacuum.xiaomi_vacuum_cleaner
-        value_template: '{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.battery_level }}'
+        value_template: '{{ state_attr("vacuum.xiaomi_vacuum_cleaner", "battery_level") }}'
         unit_of_measurement: '%'
-        icon_template: '{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.battery_icon }}'
+        icon_template: '{{ state_attr("vacuum.xiaomi_vacuum_cleaner", "battery_icon") }}'
       vacuum_cleaning_time:
         friendly_name: 'Последняя уборка'
-        entity_id: vacuum.xiaomi_vacuum_cleaner
-        value_template: '{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.cleaning_time }}'
+        value_template: '{{ state_attr("vacuum.xiaomi_vacuum_cleaner", "cleaning_time") }}'
         icon_template: 'mdi:timer'
       vacuum_cleaned_area:
         friendly_name: 'Площадь'
         unit_of_measurement: 'м²'
-        entity_id: vacuum.xiaomi_vacuum_cleaner
-        value_template: '{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.cleaned_area }}'
+        value_template: '{{ state_attr("vacuum.xiaomi_vacuum_cleaner", "cleaned_area") }}'
         icon_template: 'mdi:ruler'
 
 
 script:
+  vacuum_start:
+    description: 'Пропылесосить квартиру'
+    sequence:
+      - service: vacuum.start
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+      - service: script.notify_all
+        data:
+          message: |
+            Пылесос приступил к уборке всей квартиры
+
+  vacuum_start_notify_door:
+    description: 'Уведомление о начале уборки квартиры'
+    sequence:
+      - service: script.notify_all
+        data:
+          message: |
+            Пылесос начнёт убираться через 10 минут.
+            Откройте двери и уберите барахло с пола.
+
   be_vacuum_clean:
     description: 'Пропылесосить спальню'
     sequence:
@@ -85,10 +101,10 @@ script:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           command: app_zoned_clean
           params: [ [ 22504,18211,25554,25111,1 ] ]
-  #    - service: notify.android
-  #      data:
-  #        title: Событие дома
-  #        message: Пылесос приступил к уборке в Спальне
+      - service: script.notify_all
+        data:
+          message: |
+            Пылесос приступил к уборке в cпальне
 
   ch_vacuum_clean:
     description: 'Пропылесосить детскую'
@@ -98,10 +114,10 @@ script:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           command: app_zoned_clean
           params: [ [ 22528,27088,26328,31088,1 ] ]
-  #    - service: notify.android
-  #      data:
-  #        title: Событие дома
-  #        message: Пылесос приступил к уборке в Спальне
+      - service: script.notify_all
+        data:
+          message: |
+            Пылесос приступил к уборке в детской
 
   li_vacuum_clean:
     description: 'Пропылесосить гостиную'
@@ -111,10 +127,10 @@ script:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           command: app_zoned_clean
           params: [ [ 26431,26949,32031,31349,1 ] ]
-  #    - service: notify.android
-  #      data:
-  #        title: Событие дома
-  #        message: Пылесос приступил к уборке в Зале
+      - service: script.notify_all
+        data:
+          message: |
+            Пылесос приступил к уборке в гостиной
 
   ki_vacuum_clean:
     description: 'Пропылесосить кухню'
@@ -124,10 +140,10 @@ script:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           command: app_zoned_clean
           params: [ [ 32663,27125,37363,30325,1 ] ]
-  #    - service: notify.android
-  #      data:
-  #        title: Событие дома
-  #        message: Пылесос приступил к уборке в Кухне
+      - service: script.notify_all
+        data:
+          message: |
+            Пылесос приступил к уборке на кухне
 
   co_vacuum_clean:
     description: 'Пропылесосить коридор'
@@ -137,10 +153,10 @@ script:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           command: app_zoned_clean
           params: [ [ 25578,23783,35628,27083,1 ],[ 24647,25083,25847,27133,1 ] ]
-  #    - service: notify.android
-  #      data:
-  #        title: Событие дома
-  #        message: Пылесос приступил к уборке в Коридоре
+      - service: script.notify_all
+        data:
+          message: |
+            Пылесос приступил к уборке в коридоре
 
   to_vacuum_clean:
     description: 'Пропылесосить туалет'
@@ -150,10 +166,10 @@ script:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           command: app_zoned_clean
           params: [ [ 34023,25341,35573,26991,1 ] ]
-  #    - service: notify.android
-  #      data:
-  #        title: Событие дома
-  #        message: Пылесос приступил к уборке в Коридоре
+      - service: script.notify_all
+        data:
+          message: |
+            Пылесос приступил к уборке в туалете
 
   ca_vacuum_clean:
     description: 'Пропылесосить кабинет'
@@ -163,10 +179,10 @@ script:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           command: app_zoned_clean
           params: [ [ 22554,18248,25354,20048,1 ] ]
-  #    - service: notify.android
-  #      data:
-  #        title: Событие дома
-  #        message: Пылесос приступил к уборке в Коридоре
+      - service: script.notify_all
+        data:
+          message: |
+            Пылесос приступил к уборке в кабинете
 
 automation:
   - id: 'Выставление режима всасывания пылесоса'
@@ -207,7 +223,9 @@ automation:
       - service: script.turn_on
         data_template:
           entity_id: >
-            {% if is_state('input_select.vacuum_room', 'Коридор') %}
+            {% if is_state('input_select.vacuum_room', 'Вся квартира') %}
+              script.vacuum_start
+            {% elif is_state('input_select.vacuum_room', 'Коридор') %}
               script.co_vacuum_clean
             {% elif is_state('input_select.vacuum_room', 'Кухня') %}
               script.kn_vacuum_clean
@@ -234,7 +252,6 @@ automation:
 
   - id: 'Робот пылесос закончил уборку'
     alias: vacuum_finished_cleaning
-    initial_state: false
     trigger:
       - platform: state
         entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -245,19 +262,76 @@ automation:
         data_template:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           fan_speed: Quiet
-#      - service: notify.android
-#        data:
-#          title: Событие дома
-#          message: Пылесос закончил уборку
+      - service: script.notify_all
+        data:
+          message: |
+            Пылесос закончил уборку
+      - service: notify.dana
+        data:
+          message: |
+            Вытряхни Шурика... ну пазязя... {{'\U0001F64F'}}
 
-#  - alias: Робот пылесос ошибка
-#    trigger:
-#      - platform: state
-#        entity_id: vacuum.xiaomi_vacuum_cleaner
-#        to: 'error'
-##    action:
-##      - service: notify.android
-##        data:
-##          title: Событие дома
-##          message: Робот пылесос ошибка {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.error }}
-##          target: Galaxy_S6
+  - id: 'Робот пылесос ошибка'
+    alias: vacuum_finished_cleaning
+    trigger:
+      - platform: state
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        to: 'error'
+    action:
+      - service: script.notify_all
+        data:
+          message: |
+            Робот пылесос ошибка {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'error') }}
+
+  - id: 'Уведомление об уборке'
+    alias: vacuum_scheduled_start_notification
+    trigger:
+      - platform: time_pattern
+        hours: 21
+        minutes: 50
+    action:
+      - service: script.notify_all
+        data:
+          message: |
+            Пылесос начнёт убираться через 10 минут.
+            Откройте двери и уберите барахло с пола.
+
+  - id: 'Уведомление о закрытых дверях'
+    alias: vacuum_scheduled_start_notification_door
+    trigger:
+      - platform: time_pattern
+        hours: 21
+        minutes: 55
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.be_door_contact
+          state: 'off'
+        - condition: state
+          entity_id: binary_sensor.ch_door_contact
+          state: 'off'
+        - condition: state
+          entity_id: binary_sensor.li_door_contact
+          state: 'off'
+        - condition: state
+          entity_id: binary_sensor.kn_door_contact
+          state: 'off'
+    action:
+      - service: notify.alexey
+        data:
+          message: >
+            Всё ещё закрыты двери:
+              {% if is_state('binary_sensor.be_door_contact', 'off') %}- спальня {% endif %}
+              {% if is_state('binary_sensor.ch_door_contact', 'off') %}- детская {% endif %}
+              {% if is_state('binary_sensor.li_door_contact', 'off') %}- гостиная {% endif %}
+              {% if is_state('binary_sensor.kn_door_contact', 'off') %}- кухня{% endif %}
+            Откройте пазязя, ну пазязя... {{'\U0001F64F'}}
+
+  - id: 'Старт уборки по расписанию'
+    alias: vacuum_scheduled_start
+    trigger:
+      - platform: time_pattern
+        hours: 22
+    action:
+      - service: script.vacuum_start
