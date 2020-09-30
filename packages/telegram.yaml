@@ -1,0 +1,89 @@
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_token
+    allowed_chat_ids:
+      - !secret telegram_alexey
+      - !secret telegram_julia
+      - !secret telegram_dana
+
+notify:
+  - name: julia
+    platform: telegram
+    chat_id: !secret telegram_julia
+  - name: alexey
+    platform: telegram
+    chat_id: !secret telegram_alexey
+  - name: dana
+    platform: telegram
+    chat_id: !secret telegram_dana
+
+sensor:
+  - platform: template
+    sensors:
+      unavailable_now_light:
+        friendly_name: 'Всего недоступных светильников - '
+        value_template: '{{states.light | selectattr ("state", "equalto", "unavailable") | list | length}}'
+        icon_template: mdi:counter
+
+      unavailable_now_switch:
+        friendly_name: 'Всего недоступных реле - '
+        value_template: '{{states.switch | selectattr ("state", "equalto", "unavailable") | list | length}}'
+        icon_template: mdi:counter
+
+      unavailable_now_sensor:
+        friendly_name: 'Всего недоступных сенсоров - '
+        value_template: '{{states.sensor | selectattr ("state", "equalto", "unavailable") | list | length}}'
+        icon_template: mdi:counter
+
+      unavailable_now_binary_sensor:
+        friendly_name: 'Всего недоступных бинарных сенсоров - '
+        value_template: '{{states.binary_sensor | selectattr ("state", "equalto", "unavailable") | list | length}}'
+        icon_template: mdi:counter
+
+script:
+  system_report:
+    description: 'Отправка отчета о состоянии системы'
+    sequence:
+      - service: notify.alexey
+        data:
+          message: |
+            {{'\U0001F6C0'}} Состояние системы
+            {{'\U0001F567'}} Отчет за {{ states('sensor.time_date') }}
+            {{'\U0001F4A1'}} Светильников недоступно - {{ states('sensor.unavailable_now_light') }}
+            {{'\U0001F50C'}} Свичей недоступно - {{ states('sensor.unavailable_now_switch') }}
+            {{'\U0001F321'}} Сенсоров недоступно - {{ states('sensor.unavailable_now_sensor') }}
+            {{'\U0001F51F'}} Бинарных сенсоров недоступно - {{ states('sensor.unavailable_now_binary_sensor') }}
+
+  notify_all:
+    description: 'Уведомление всем'
+    fields:
+      message:
+        description: 'Сообщение'
+        example: 'Сообщение'
+    sequence:
+      - service: notify.alexey
+        data:
+          message: '{{ message }}'
+      - service: notify.julia
+        data:
+          message: '{{ message }}'
+      - service: notify.dana
+        data:
+          message: '{{ message }}'
+
+automation:
+  - id: 'Отчет при запуске системы'
+    alias: system_start_message
+    initial_state: true
+    trigger:
+      - platform: homeassistant
+        event: start
+    action:
+      - service: notify.alexey
+        data:
+          message: |
+            {{'\U0001F4AC'}} Основной сервер Raspberry Pi
+            {{'\U0001F567'}} Запуск в {{ states('sensor.time_date') }}
+            {{'\U0001F4C3'}} Отчет о состоянии будет через 2 минуты
+      - delay: '00:02:00'
+      - service: script.system_report
