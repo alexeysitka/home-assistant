@@ -18,10 +18,10 @@
       entity_id: sensor.co_motionbathroom_illuminance
       below: 10
     - condition: state
-      entity_id: switch.co_light_switch
+      entity_id: light.co_light
       state: 'off'
     - condition: state
-      entity_id: switch.co_mirror_light
+      entity_id: light.co_mirror_light
       state: 'off'
   action:
     - service: light.turn_on
@@ -40,10 +40,10 @@
       entity_id: sensor.co_motionbathroom_illuminance
       above: 10
     - platform: state
-      entity_id: switch.co_light_switch
+      entity_id: light.co_light
       to: 'on'
     - platform: state
-      entity_id: switch.co_mirror_light
+      entity_id: light.co_mirror_light
       to: 'on'
   action:
     - service: light.turn_off
