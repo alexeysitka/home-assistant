@@ -318,7 +318,7 @@ automation:
           entity_id: binary_sensor.kn_door_contact
           state: 'off'
     action:
-      - service: notify.alexey
+      - service: script.notify_all
         data:
           message: >
             Всё ещё закрыты двери:
