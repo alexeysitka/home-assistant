@@ -22,9 +22,9 @@ input_select:
       - Вся квартира
       - Коридор
       - Кухня
-      - Гостиная
-      - Детская
       - Спальня
+      - Детская
+      - Гостиная
       - Туалет
       - Кабинет
   vacuum_fan_speed_list:
@@ -261,7 +261,7 @@ automation:
       - service: vacuum.set_fan_speed
         data_template:
           entity_id: vacuum.xiaomi_vacuum_cleaner
-          fan_speed: Quiet
+          fan_speed: 'Silent'
       - service: script.notify_all
         data:
           message: |

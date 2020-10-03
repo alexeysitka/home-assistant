@@ -12,7 +12,7 @@ homeassistant:
 lovelace:
   mode: yaml
   resources:
-    - url: /local/xiaomi-vacuum-card.js?v=3.0.1
+    - url: /local/vacuum-card.js?v=1
       type: module
     - url: /local/lovelace-custom/stack-in-card.js?v=1.0
       type: module
