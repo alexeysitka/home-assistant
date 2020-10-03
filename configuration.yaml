@@ -48,7 +48,7 @@ mqtt:
 input_boolean: !include conf.d/input_boolean.yaml
 group: !include conf.d/groups.yaml
 scene: !include conf.d/scenes.yaml
-# recorder: !include conf.d/recorder.yaml
+recorder: !include conf.d/recorder.yaml
 
 input_number: !include conf.d/input_number.yaml
 input_select: !include_dir_merge_named conf.d/input-select

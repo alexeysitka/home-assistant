@@ -35,7 +35,7 @@
         - type: entities
           show_header_toggle: false
           entities:
-            - entity: sensor.maria_db_size
+            - entity: sensor.db_size
               name: 'Объём БД'
               icon: mdi:database
 
@@ -80,5 +80,5 @@
 
         - type: history-graph
           entities:
-            - entity: sensor.maria_db_size
-              name: 'Maria DB'
+            - entity: sensor.db_size
+              name: 'SQLite DB'
