@@ -10,6 +10,7 @@
   hot_tolerance: 0.2
   away_temp: 19
   precision: 0.5
+  initial_hvac_mode: 'off'
 
 - platform: generic_thermostat
   name: ch_radiator
@@ -23,6 +24,7 @@
   hot_tolerance: 0.2
   away_temp: 19
   precision: 0.5
+  initial_hvac_mode: 'off'
 
 - platform: generic_thermostat
   name: li_radiator
@@ -36,3 +38,4 @@
   hot_tolerance: 0.2
   away_temp: 19
   precision: 0.5
+  initial_hvac_mode: 'off'
