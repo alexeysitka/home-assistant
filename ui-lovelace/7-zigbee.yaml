@@ -1,0 +1,93 @@
+- title: 'Zigbee batteries'
+  icon: mdi:battery-charging
+  cards:
+
+    - type: vertical-stack
+      cards:
+        - type: markdown
+          content: >
+            **Уровень заряда**
+
+        - type: entity-filter
+          state_filter:
+            - operator: "<"
+              value: 90
+          entities:
+            - entity: sensor.ba_temperature_battery
+              name: 'Температура в ванной'
+            - entity: sensor.be_bedlightcubeone_battery
+              name: 'Кубик один в спальне'
+            - entity: sensor.be_bedlightcubetwo_battery
+              name: 'Кубик два в спальне'
+            - entity: sensor.be_controlone_battery
+              name: 'Пульт один в спальне'
+            - entity: sensor.be_controltwo_battery
+              name: 'Пульт два в спальне'
+            - entity: sensor.be_door_battery
+              name: 'Дверь в спальню'
+            - entity: sensor.be_motion_battery
+              name: 'Движение в спальне'
+            - entity: sensor.be_temperature_battery
+              name: 'Температура в спальне'
+            - entity: sensor.be_thermostat_battery
+              name: 'Термостат в спальне'
+            - entity: sensor.ch_door_battery
+              name: 'Дверь в детскую'
+            - entity: sensor.ch_motion_battery
+              name: 'Движение в детской'
+            - entity: sensor.ch_temperature_battery
+              name: 'Температура в детской'
+            - entity: sensor.ch_thermostat_battery
+              name: 'Термостат в детской'
+            - entity: sensor.co_lightremote_battery
+              name: 'Проходной в коридоре'
+            - entity: sensor.co_motionbathroom_battery
+              name: 'Движение в коридоре (у ванной)'
+            - entity: sensor.co_motionkitchen_battery
+              name: 'Движение в коридоре (у кухни)'
+            - entity: sensor.co_motionmirror_battery
+              name: 'Движение в коридоре (у зеркала)'
+            - entity: sensor.ha_door_battery
+              name: 'Дверь в прихожей (входная)'
+            - entity: sensor.ha_motion_battery
+              name: 'Движение в прихожей'
+            - entity: sensor.kn_door_battery
+              name: 'Дверь на кухню'
+            - entity: sensor.kn_motion_battery
+              name: 'Движение на кухне'
+            - entity: sensor.kn_smoke_battery
+              name: 'Дым на кухне'
+            - entity: sensor.kn_temperature_battery
+              name: 'Температура на кухне'
+            - entity: sensor.li_door_battery
+              name: 'Дверь в гостиную'
+            - entity: sensor.li_temperature_battery
+              name: 'Температура в гостиной'
+            - entity: sensor.li_thermostat_battery
+              name: 'Термостат в гостиной'
+            - entity: sensor.lo_temperature_battery
+              name: 'Температура на лоджии'
+            - entity: sensor.to_door_battery
+              name: 'Дверь в туалет'
+            - entity: sensor.to_motion_battery
+              name: 'Движение в туалете'
+
+#        - type: 'custom:zigbee-status-card'
+#          entity: sensor.ba_temperature_battery
+#          name: 'Датчик темпeратуры в ванной'
+#
+#        - type: 'custom:zigbee-status-card'
+#          header: 'Датчик темпаратуры'
+#          entities:
+#            - entity: sensor.ba_temperature_battery
+#              name: 'Датчик темпаратуры'
+#            - entity: sensor.ba_temperature_linkquality
+#              name: 'Датчик темпаратуры'
+#
+#        - type: zigbee-status-card
+#          show_header_toggle: true
+#          entities:
+#            - entity: sensor.ba_temperature_battery
+#              name: 'Датчик темпаратуры'
+#            - entity: sensor.ba_temperature_linkquality
+#              name: 'Датчик темпаратуры'
