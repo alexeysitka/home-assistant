@@ -244,7 +244,7 @@ automation:
       - service: vacuum.set_fan_speed
         data_template:
           entity_id: vacuum.xiaomi_vacuum_cleaner
-          fan_speed: Max
+          fan_speed: 'Turbo'
       - service: input_select.select_option
         entity_id: input_select.vacuum_room
         data_template:
@@ -334,4 +334,8 @@ automation:
       - platform: time_pattern
         hours: 22
     action:
+      - service: vacuum.set_fan_speed
+        data_template:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          fan_speed: 'Turbo'
       - service: script.vacuum_start
