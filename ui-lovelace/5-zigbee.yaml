@@ -1,9 +1,0 @@
-- title: 'Zigbee'
-  icon: mdi:zigbee
-  cards:
-
-    - type: vertical-stack
-      cards:
-      - type: markdown
-        content: >
-           **Уровень заряда**
