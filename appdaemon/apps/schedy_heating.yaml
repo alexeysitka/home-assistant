@@ -5,8 +5,8 @@ schedy_heating:  # This is our app instance name.
   actor_type: thermostat
 
   schedule_append:
-    - v: "OFF"
-#    - v: 20
+#    - v: "off"
+    - v: 15
 
   rooms:
     bedroom:
