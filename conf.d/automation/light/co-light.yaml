@@ -7,9 +7,11 @@
   action:
     - service: timer.start
       entity_id: timer.co_light
+    - service: automation.turn_on
+      entity_id: automation.co_start_timer_on_light_switched_on_and_no_motion_detected
 
-- id: 'Перезапустить таймер при включённом свете и движении на одном из датчиков коридора'
-  alias: co_restart_timer_on_light_switched_on_and_motion_detected
+- id: 'Отменять таймер при включённом свете и появлении движения на датчиках коридора'
+  alias: co_stop_timer_on_light_switched_on_and_motion_detected
   trigger:
     - platform: state
       entity_id: binary_sensor.co_motionbathroom_occupancy
@@ -24,6 +26,35 @@
     - condition: state
       entity_id: light.co_light
       state: 'on'
+  action:
+    - service: timer.cancel
+      entity_id: timer.co_light
+
+- id: 'Запускать таймер при включённом свете и отсутствии движения на всех датчиках коридора'
+  alias: co_start_timer_on_light_switched_on_and_no_motion_detected
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.co_motionbathroom_occupancy
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.co_motionkitchen_occupancy
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.co_motionmirror_occupancy
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: light.co_light
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.co_motionbathroom_occupancy
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.co_motionkitchen_occupancy
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.co_motionmirror_occupancy
+      state: 'off'
   action:
     - service: timer.start
       entity_id: timer.co_light
@@ -71,6 +102,19 @@
   action:
     - service: light.toggle
       entity_id: light.co_light
+
+- id: 'Убрать таймер для света в коридоре с ремоута возле спальни'
+  alias: co_disable_timer_using_remote
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: sensor.co_lightremote_action
+      to: 'double'
+  action:
+    - service: timer.cancel
+      entity_id: timer.co_light
+    - service: automation.turn_off
+      entity_id: automation.co_start_timer_on_light_switched_on_and_no_motion_detected
 
 - id: 'Выключить весь свет в коридоре'
   alias: co_disable_all_light

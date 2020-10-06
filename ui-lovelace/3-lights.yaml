@@ -21,12 +21,20 @@
             name: 'Прикроватная лампа Юлии'
           - entity: light.be_slshub
             name: 'Шлюз в спальне'
+          - entity: timer.be_night_light
+            name: 'Таймер ночника в спальне'
           - entity: light.kn_slshub
             name: 'Шлюз на кухне'
+          - entity: timer.kn_night_light
+            name: 'Таймер ночника на кухне'
           - entity: light.ch_slshub
             name: 'Шлюз в детской'
+          - entity: timer.ch_night_light
+            name: 'Таймер ночника в детской'
           - entity: light.to_slshub
             name: 'Шлюз в коридоре'
+          - entity: timer.co_night_light
+            name: 'Таймер ночника в коридоре'
           - entity: light.ha_light
             name: 'Свет в прихожей'
           - entity: timer.ha_light
@@ -35,6 +43,8 @@
             name: 'Свет в коридоре'
           - entity: timer.co_light
             name: 'Таймер света в коридоре'
+          - entity: automation.co_start_timer_on_light_switched_on_and_no_motion_detected
+            name: 'Автоматизация датчиков движения в коридоре'
           - entity: light.co_mirror_light
             name: 'Подсветка зеркала в коридоре'
           - entity: light.to_light
