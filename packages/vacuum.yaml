@@ -271,8 +271,8 @@ automation:
           message: |
             Вытряхни Шурика... ну пазязя... {{'\U0001F64F'}}
 
-  - id: 'Робот пылесос ошибка'
-    alias: vacuum_finished_cleaning
+  - id: 'Уведомление об ошибке'
+    alias: vacuum_error_notification
     trigger:
       - platform: state
         entity_id: vacuum.xiaomi_vacuum_cleaner
