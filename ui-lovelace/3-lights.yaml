@@ -31,7 +31,7 @@
             name: 'Шлюз в детской'
           - entity: timer.ch_night_light
             name: 'Таймер ночника в детской'
-          - entity: light.to_slshub
+          - entity: light.co_slshub
             name: 'Шлюз в коридоре'
           - entity: timer.co_night_light
             name: 'Таймер ночника в коридоре'
@@ -47,6 +47,8 @@
             name: 'Автоматизация датчиков движения в коридоре'
           - entity: light.co_mirror_light
             name: 'Подсветка зеркала в коридоре'
+          - entity: timer.co_mirror_light
+            name: 'Таймер подсветки зеркала в коридоре'
           - entity: light.to_light
             name: 'Свет в туалете'
           - entity: timer.to_light

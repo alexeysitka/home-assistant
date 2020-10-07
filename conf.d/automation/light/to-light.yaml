@@ -4,6 +4,10 @@
     - platform: state
       entity_id: light.to_light
       to: 'on'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.to_motion_occupancy
+      state: 'off'
   action:
     - service: timer.start
       entity_id: timer.to_light
@@ -19,13 +23,11 @@
       entity_id: binary_sensor.to_door_contact
       state: 'on'
     - condition: time
-      after: '08:00:00'
+      after: '09:00:00'
       before: '23:00:00'
   action:
     - service: light.turn_on
       entity_id: light.to_light
-    - service: timer.start
-      entity_id: timer.to_light
 
 - id: 'Остановить таймер при закрытии двери в туалет'
   alias: to_cancel_timer_on_door_close
@@ -37,19 +39,45 @@
     - service: timer.cancel
       entity_id: timer.to_light
     - service: automation.turn_off
-      entity_id: automation.to_disable_light_on_timer_finished
+      entity_id: automation.to_start_timer_on_occupancy_finish_and_light_on
 
-- id: 'Запустить таймер при открытии двери в туалет'
-  alias: to_start_timer_on_door_open
+- id: 'Включить автоматизацию при открытии двери в туалет'
+  alias: to_enable_automatization_on_door_open
   trigger:
     - platform: state
       entity_id: binary_sensor.to_door_contact
       to: 'on'
   action:
+    - service: automation.turn_on
+      entity_id: automation.to_start_timer_on_occupancy_finish_and_light_on
+
+- id: 'Запустить таймер при отсутствии движения и включенном свете'
+  alias: to_start_timer_on_occupancy_finish_and_light_on
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.to_motion_occupancy
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: light.to_light
+      state: 'on'
+  action:
     - service: timer.start
       entity_id: timer.to_light
-    - service: automation.turn_on
-      entity_id: automation.to_disable_light_on_timer_finished
+
+- id: 'Остановить таймер при движении и включенном свете'
+  alias: to_stop_timer_on_occupancy_start_and_light_on
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.to_motion_occupancy
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: light.to_light
+      state: 'on'
+  action:
+    - service: timer.cancel
+      entity_id: timer.to_light
 
 - id: 'Остановить таймер при выключении света в туалете'
   alias: to_cancel_timer_on_light_switched_off

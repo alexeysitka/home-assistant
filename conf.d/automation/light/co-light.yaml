@@ -4,6 +4,16 @@
     - platform: state
       entity_id: light.co_light
       to: 'on'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.co_motionbathroom_occupancy
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.co_motionkitchen_occupancy
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.co_motionmirror_occupancy
+      state: 'off'
   action:
     - service: timer.start
       entity_id: timer.co_light
@@ -80,17 +90,6 @@
   action:
     - service: light.turn_off
       entity_id: light.co_light
-
-- id: 'Выключить свет возле зеркала через 2 минуты после последнего движения'
-  alias: co_disable_light_in_2_minute_after_occupancy
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.co_motionmirror_occupancy
-      to: 'off'
-      for: '00:02:00'
-  action:
-    - service: light.turn_off
-      entity_id: light.co_mirror_light
 
 - id: 'Переключить свет в коридоре с ремоута возле спальни'
   alias: co_enable_light_using_remote
