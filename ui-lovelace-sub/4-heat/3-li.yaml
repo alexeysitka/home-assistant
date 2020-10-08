@@ -50,6 +50,5 @@
               name: 'До отключения обогрева'
             - entity: binary_sensor.li_thermostat_valve
               name: 'Клапан термостата'
-            - entity: lock.li_thermostat_child_lock
-              name: 'Блокировка термостата'
-
+#            - entity: lock.li_thermostat_child_lock
+#              name: 'Блокировка термостата'
