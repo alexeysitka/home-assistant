@@ -132,7 +132,7 @@ script:
           message: |
             Пылесос приступил к уборке в гостиной
 
-  ki_vacuum_clean:
+  kn_vacuum_clean:
     description: 'Пропылесосить кухню'
     sequence:
       - service: vacuum.send_command
@@ -158,8 +158,8 @@ script:
           message: |
             Пылесос приступил к уборке в коридоре
 
-  to_vacuum_clean:
-    description: 'Пропылесосить туалет'
+  ha_vacuum_clean:
+    description: 'Пропылесосить прихожую'
     sequence:
       - service: vacuum.send_command
         data:

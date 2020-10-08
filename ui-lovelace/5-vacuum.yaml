@@ -23,13 +23,13 @@
             subtitle: 'Всего убрано'
           - attribute: cleaning_time
             unit: мин.
-            subtitle: 'Времени убирался'
+            subtitle: 'Время уборки'
       actions:
         - name: 'Убраться в коридоре'
-          service: script.ki_vacuum_clean
+          service: script.co_vacuum_clean
           icon: 'mdi:door'
         - name: 'Убраться на кухне'
-          service: script.ki_vacuum_clean
+          service: script.kn_vacuum_clean
           icon: 'mdi:silverware-fork-knife'
         - name: 'Убраться в спальне'
           service: script.be_vacuum_clean
@@ -40,9 +40,6 @@
         - name: 'Убраться в гостиной'
           service: script.li_vacuum_clean
           icon: 'mdi:sofa'
-        - name: 'Убраться в туалете'
-          service: script.to_vacuum_clean
-          icon: 'mdi:toilet'
         - name: 'Убраться в кабинете'
           service: script.ca_vacuum_clean
           icon: 'mdi:file-cabinet'
