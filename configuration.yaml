@@ -9,6 +9,9 @@ homeassistant:
 
 # customize: !include customize.yaml
 
+http:
+  server_port: 80
+
 lovelace:
   mode: yaml
   resources:
