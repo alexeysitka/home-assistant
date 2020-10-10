@@ -1,0 +1,39 @@
+switch:
+  - platform: mqtt
+    name: be_slshub_join
+    state_topic: 'SLSHubBE/bridge/config/permit_join'
+    command_topic: 'SLSHubBE/bridge/config/permit_join'
+    payload_on: 'true'
+    payload_off: 'false'
+
+sensor:
+  - platform: mqtt
+    name: be_slshub_uptimestr
+    state_topic: 'SLSHubBE/bridge/config'
+    value_template: '{{ value_json.UptimeStr }}'
+  - platform: mqtt
+    name: be_slshub_ip
+    state_topic: 'SLSHubBE/bridge/config'
+    value_template: '{{ value_json.IP }}'
+  - platform: mqtt
+    name: be_slshub_rssi
+    state_topic: 'SLSHubBE/bridge/config'
+    unit_of_measurement: 'dB'
+    value_template: '{{ value_json.RSSI }}'
+  - platform: mqtt
+    name: be_slshub_version
+    state_topic: 'SLSHubBE/bridge/config'
+    value_template: '{{ value_json.Version }}'
+
+binary_sensor:
+  - platform: mqtt
+    name: be_slshub_pairing
+    state_topic: 'SLSHubBE/bridge/config'
+    payload_on: 'True'
+    payload_off: 'False'
+    value_template: '{{ value_json.permit_join }}'
+  - platform: mqtt
+    name: be_slshub_state
+    state_topic: 'SLSHubBE/bridge/state'
+    payload_on: 'online'
+    payload_off: 'offline'

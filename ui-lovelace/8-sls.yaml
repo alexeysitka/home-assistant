@@ -1,0 +1,102 @@
+- title: 'SLS'
+  icon: mdi:router
+  cards:
+#
+#    - type: vertical-stack
+#      cards:
+
+    - type: entities
+      title: 'SLS Спальня'
+      show_header_toggle: false
+      state_color: true
+      entities:
+        - entity: binary_sensor.be_slshub_state
+          state_color: true
+          name: 'Состояние'
+        - entity: light.be_slshub
+          name: 'Подсветка'
+        - entity: sensor.be_slshub_uptimestr
+          name: 'В работе'
+        - entity: sensor.be_slshub_rssi
+          name: 'Сигнал WiFi'
+        - entity: sensor.be_slshub_ip
+          name: 'IP'
+        - entity: sensor.be_slshub_version
+          name: 'Прошивка'
+        - entity: binary_sensor.be_slshub_pairing
+          name: 'Режим подключения'
+        - entity: switch.be_slshub_join
+          state_color: true
+          name: 'Подключение'
+
+    - type: entities
+      title: 'SLS Детская'
+      show_header_toggle: false
+      state_color: true
+      entities:
+        - entity: binary_sensor.ch_slshub_state
+          state_color: true
+          name: 'Состояние'
+        - entity: light.ch_slshub
+          name: 'Подсветка'
+        - entity: sensor.ch_slshub_uptimestr
+          name: 'В работе'
+        - entity: sensor.ch_slshub_rssi
+          name: 'Сигнал WiFi'
+        - entity: sensor.ch_slshub_ip
+          name: 'IP'
+        - entity: sensor.ch_slshub_version
+          name: 'Прошивка'
+        - entity: binary_sensor.ch_slshub_pairing
+          name: 'Режим подключения'
+        - entity: switch.ch_slshub_join
+          state_color: true
+          name: 'Подключение'
+
+    - type: entities
+      title: 'SLS Кухня'
+      show_header_toggle: false
+      state_color: true
+      entities:
+        - entity: binary_sensor.kn_slshub_state
+          state_color: true
+          name: 'Состояние'
+        - entity: light.kn_slshub
+          name: 'Подсветка'
+        - entity: sensor.kn_slshub_uptimestr
+          name: 'В работе'
+        - entity: sensor.kn_slshub_rssi
+          name: 'Сигнал WiFi'
+        - entity: sensor.kn_slshub_ip
+          name: 'IP'
+        - entity: sensor.kn_slshub_version
+          name: 'Прошивка'
+        - entity: binary_sensor.kn_slshub_pairing
+          name: 'Режим подключения'
+        - entity: switch.kn_slshub_join
+          state_color: true
+          name: 'Подключение'
+
+    - type: entities
+      title: 'SLS Коридор'
+      show_header_toggle: false
+      state_color: true
+      entities:
+        - entity: binary_sensor.co_slshub_state
+          state_color: true
+          name: 'Состояние'
+        - entity: light.co_slshub
+          name: 'Подсветка'
+        - entity: sensor.co_slshub_uptimestr
+          name: 'В работе'
+        - entity: sensor.co_slshub_rssi
+          name: 'Сигнал WiFi'
+        - entity: sensor.co_slshub_ip
+          name: 'IP'
+        - entity: sensor.co_slshub_version
+          name: 'Прошивка'
+        - entity: binary_sensor.co_slshub_pairing
+          name: 'Режим подключения'
+        - entity: switch.co_slshub_join
+          state_color: true
+          name: 'Подключение'
