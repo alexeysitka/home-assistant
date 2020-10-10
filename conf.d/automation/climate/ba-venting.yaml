@@ -1,26 +1,26 @@
 - id: 'Включить вытяжку в ванной при высокой влажности и выключенном свете'
   alias: ba_enable_venting_on_high_humidity
   trigger:
-    - platform: state
-      entity_id: binary_sensor.ba_high_humidity
-      to: 'on'
+    - platform: numeric_state
+      entity_id: sensor.ba_humidity
+      above: 70
   condition:
     - condition: state
       entity_id: light.ba_light
       state: 'off'
   action:
     - service: switch.turn_on
-      entity_id: switch.ba_venting
+      entity_id: switch.ba_venting_switch
 
 - id: 'Выключить вытяжку в ванной при нормальной влажности (на 5% выше, чем в спальне)'
   alias: ba_disable_venting_on_normal_humidity
   trigger:
-    - platform: state
-      entity_id: binary_sensor.ba_normal_humidity
-      to: 'on'
+    - platform: numeric_state
+      entity_id: sensor.ba_humidity
+      below: 60
   action:
     - service: switch.turn_off
-      entity_id: switch.ba_venting
+      entity_id: switch.ba_venting_switch
 
 - id: 'Включить вытяжку в ванной при высокой влажности вместе с выключением света'
   alias: ba_enable_venting_on_high_humidity_with_light_off
@@ -29,35 +29,34 @@
       entity_id: light.ba_light
       to: 'off'
   condition:
-    - condition: state
-      entity_id: binary_sensor.ba_high_humidity
-      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.ba_humidity
+      above: 70
   action:
     - service: switch.turn_on
-      entity_id: switch.ba_venting
+      entity_id: switch.ba_venting_switch
 
 - id: 'Включить вытяжку в ванной при очень высокой влажности'
   alias: ba_enable_venting_on_very_high_humidity
   trigger:
-    - platform: state
-      entity_id: binary_sensor.ba_very_high_humidity
-      to: 'on'
+    - platform: numeric_state
+      entity_id: sensor.ba_humidity
+      above: 85
   action:
     - service: switch.turn_on
-      entity_id: switch.ba_venting
+      entity_id: switch.ba_venting_switch
 
-- id: 'Сбросить сенсоры влажности при ошибочном выключении вытяжки'
-  alias: ba_reset_humidity_sensors_on_erroneous_venting_disable
+- id: 'После выключения вытяжки через минуту проверить значение влажности'
+  alias: ba_check_humidity_in_on_minute_after_venting_disable
   trigger:
     - platform: state
-      entity_id: switch.ba_venting
+      entity_id: switch.ba_venting_switch
       to: 'off'
+      for: '00:01:00'
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.ba_humidity
+      above: 70
   action:
-    - service: python_script.set_state
-      data_template:
-        entity_id: binary_sensor.ba_high_humidity
-        state: 'off'
-    - service: python_script.set_state
-      data_template:
-        entity_id: binary_sensor.ba_very_high_humidity
-        state: 'off'
+    - service: switch.turn_on
+      entity_id: switch.ba_venting_switch
