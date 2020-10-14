@@ -5,48 +5,48 @@ schedy_heating:  # This is app instance name.
   actor_type: thermostat
 
   schedule_append:
-    - v: 'off'
-#    - v: 19
+#    - v: 'off'
+    - v: 22
 
-#  rooms:
-#    bedroom:
-#      rescheduling_delay: 60
-#      actors:
-#        climate.be_radiator:
-#      schedule:
-#        - v: 24
-#          rules:
-#            - weekdays: 1-5
-#              rules:
-#                - { start: '08:00', end: '23:00' }
-#            - weekdays: 6-7
-#              rules:
-#                - { start: '10:00', end: '23:00' }
-#
-#    children_room:
-#      rescheduling_delay: 60
-#      actors:
-#        climate.ch_radiator:
-#      schedule:
-#        - v: 24
-#          rules:
-#            - weekdays: 1-5
-#              rules:
-#                - { start: '07:00', end: '23:00' }
-#            - weekdays: 6-7
-#              rules:
-#                - { start: '10:00', end: '23:00' }
-#
-#    living_room:
-#      rescheduling_delay: 60
-#      actors:
-#        climate.li_radiator:
-#      schedule:
-#        - v: 24
-#          rules:
-#            - weekdays: 1-5
-#              rules:
-#                - { start: '12:00', end: '23:00' }
-#            - weekdays: 6-7
-#              rules:
-#                - { start: '12:00', end: '23:00' }
+  rooms:
+    bedroom:
+      rescheduling_delay: 60
+      actors:
+        climate.be_radiator:
+      schedule:
+        - v: 24
+          rules:
+            - weekdays: 1-5
+              rules:
+                - { start: '08:00', end: '23:00' }
+            - weekdays: 6-7
+              rules:
+                - { start: '10:00', end: '23:00' }
+
+    children_room:
+      rescheduling_delay: 60
+      actors:
+        climate.ch_radiator:
+      schedule:
+        - v: 24
+          rules:
+            - weekdays: 1-5
+              rules:
+                - { start: '07:00', end: '23:00' }
+            - weekdays: 6-7
+              rules:
+                - { start: '10:00', end: '23:00' }
+
+    living_room:
+      rescheduling_delay: 60
+      actors:
+        climate.li_radiator:
+      schedule:
+        - v: 24
+          rules:
+            - weekdays: 1-5
+              rules:
+                - { start: '12:00', end: '23:00' }
+            - weekdays: 6-7
+              rules:
+                - { start: '10:00', end: '23:00' }
