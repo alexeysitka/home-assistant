@@ -4,21 +4,5 @@
 '0x00124b0018e300e2':
   friendly_name: BE_Router
   retain: true
-'0xbc33acfffe6d878e':
-  friendly_name: BE_Thermostat
-  retain: true
 '0x00124b001ee73a8f':
-  friendly_name: BE_BedLightAlexey
-  retain: true
-'0x00124b00210f6b9d':
-  friendly_name: BE_BedLightJulia
-  retain: true
-'0x00124b0018e2eeed':
-  friendly_name: CH_Router
-  retain: true
-'0xbc33acfffe6d7ffd':
-  friendly_name: CH_Thermostat
-  retain: true
-'0xbc33acfffe655649':
-  friendly_name: LI_Thermostat
-  retain: true
+  friendly_name: BE_BedLight_Alexey
