@@ -17,7 +17,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.ba_humidity
-      below: 60
+      below: 65
   action:
     - service: switch.turn_off
       entity_id: switch.ba_venting_switch
