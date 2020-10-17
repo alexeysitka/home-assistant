@@ -15,7 +15,7 @@
         - service: mqtt.publish
           data:
             topic: 'SLSHubCH/CH_Thermostat/set'
-            payload: '{"current_heating_setpoint": "25"}'
+            payload: '{"current_heating_setpoint": "28"}'
       turn_off:
         - service: switch.turn_off
           data:
