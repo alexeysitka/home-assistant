@@ -1,0 +1,13 @@
+- platform: generic_thermostat
+  name: ba_towel_dryer
+  heater: switch.ba_boiler_channel
+  target_sensor: sensor.ba_temperature
+  min_temp: 15
+  max_temp: 30
+  target_temp: 26
+  min_cycle_duration: '00:15:00'
+  cold_tolerance: 0.2
+  hot_tolerance: 0.2
+  away_temp: 19
+  precision: 0.5
+  initial_hvac_mode: 'off'

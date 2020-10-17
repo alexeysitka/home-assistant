@@ -50,3 +50,14 @@ schedy_heating:  # This is app instance name.
             - weekdays: 6-7
               rules:
                 - { start: '10:00', end: '23:00' }
+
+    bath_room:
+      rescheduling_delay: 60
+      actors:
+        climate.ba_towel_dryer:
+      schedule:
+        - v: 26
+          rules:
+            - weekdays: 1-7
+              rules:
+                - { start: '21:00', end: '08:00' }
