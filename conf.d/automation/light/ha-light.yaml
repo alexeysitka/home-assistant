@@ -1,9 +1,13 @@
-- id: 'Запустить таймер при включении света в прихожей'
-  alias: ha_start_timer_on_light_switched_on
+- id: 'Запустить таймер при включении света в прихожей, если не было движения'
+  alias: ha_start_timer_on_light_switched_on_and_no_motion_detected
   trigger:
     - platform: state
       entity_id: light.ha_light
       to: 'on'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.ha_motion_occupancy
+      state: 'off'
   action:
     - service: timer.start
       entity_id: timer.ha_light
@@ -21,8 +25,6 @@
   action:
     - service: light.turn_on
       entity_id: light.ha_light
-    - service: timer.start
-      entity_id: timer.ha_light
 
 - id: 'Включить свет и запустить таймер при открытии входной двери и отсутствии движения в прихожей'
   alias: ha_enable_light_and_restart_timer_on_opened_door_with_motion_detected
@@ -40,8 +42,22 @@
     - service: timer.start
       entity_id: timer.ha_light
 
-- id: 'Перезапустить таймер при включённом свете и движении на датчике прихожей'
-  alias: ha_restart_timer_on_light_switched_on_and_motion_detected
+- id: 'Перезапустить таймер при включённом свете и отсутствии движения на датчике прихожей'
+  alias: ha_restart_timer_on_light_switched_on_and_motion_not_detected
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ha_motion_occupancy
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: light.ha_light
+      state: 'on'
+  action:
+    - service: timer.start
+      entity_id: timer.ha_light
+
+- id: 'Остановить таймер при движении с включенным светом в прихожей'
+  alias: ha_cancel_timer_on_motion_detected_and_light_switched_on
   trigger:
     - platform: state
       entity_id: binary_sensor.ha_motion_occupancy
@@ -51,7 +67,7 @@
       entity_id: light.ha_light
       state: 'on'
   action:
-    - service: timer.start
+    - service: timer.cancel
       entity_id: timer.ha_light
 
 - id: 'Остановить таймер при выключении света в прихожей'
