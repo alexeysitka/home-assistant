@@ -3,12 +3,12 @@
     ba_light:
       friendly_name: 'Основной свет в ванной'
       value_template: >-
-        {{ is_state('switch.ba_light_switch', 'on') }}
+        {{ is_state('switch.ba_light', 'on') }}
       turn_on:
         - service: switch.turn_on
           data:
-            entity_id: switch.ba_light_switch
+            entity_id: switch.ba_light
       turn_off:
         - service: switch.turn_off
           data:
-            entity_id: switch.ba_light_switch
+            entity_id: switch.ba_light
