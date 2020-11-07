@@ -6,7 +6,7 @@ schedy_heating:  # This is app instance name.
 
   schedule_append:
 #    - v: 'off'
-    - v: 22
+    - v: 21
 
   rooms:
     bedroom:
@@ -60,4 +60,4 @@ schedy_heating:  # This is app instance name.
           rules:
             - weekdays: 1-7
               rules:
-                - { start: '21:00', end: '08:00' }
+                - { start: '22:00', end: '02:00' }
