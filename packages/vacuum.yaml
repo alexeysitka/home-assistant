@@ -288,7 +288,7 @@ automation:
     trigger:
       - platform: time_pattern
         hours: 21
-        minutes: 50
+        minutes: 20
     action:
       - service: script.notify_all
         data:
@@ -301,7 +301,7 @@ automation:
     trigger:
       - platform: time_pattern
         hours: 21
-        minutes: 55
+        minutes: 25
     condition:
       condition: or
       conditions:
@@ -332,7 +332,8 @@ automation:
     alias: vacuum_scheduled_start
     trigger:
       - platform: time_pattern
-        hours: 22
+        hours: 21
+        minutes: 30
     action:
       - service: vacuum.set_fan_speed
         data_template:
