@@ -15,9 +15,12 @@
 - id: 'Включение прикроватной лампы Юлии вечером, тёплый свет'
   alias: be_bedlight_julia_on_evening_warm
   trigger:
-    platform: state
-    entity_id: sensor.be_controlone_action
-    to: right_double
+    - platform: state
+      entity_id: sensor.be_controlone_action
+      to: right_double
+    - platform: state
+      entity_id: sensor.be_bedlightremote_julia_action
+      to: double
   action:
     - service: script.be_bedlight_on_evening_warm
       data:
@@ -26,9 +29,12 @@
 - id: 'Включение прикроватной лампы Юлии ночью, красный свет'
   alias: be_bedlight_julia_on_night_red
   trigger:
-    platform: state
-    entity_id: sensor.be_controlone_action
-    to: right_long
+    - platform: state
+      entity_id: sensor.be_controlone_action
+      to: right_long
+    - platform: state
+      entity_id: sensor.be_bedlightremote_julia_action
+      to: triple
   action:
     - service: script.be_bedlight_on_night_red
       data:
