@@ -1,7 +1,16 @@
 '0x00124b0018e300e2':
   friendly_name: BE_Router
   retain: true
+'0x00124b0018e2eeed':
+  friendly_name: BE_Router_2
+  retain: true
 '0x00124b001ee73a8f':
   friendly_name: BE_BedLight_Alexey
+  retain: true
 '0x00124b00210f6b9d':
   friendly_name: BE_BedLight_Julia
+  retain: true
+'0x000d6f001673c5f5':
+  friendly_name: BE_BedLightRemote_Julia
+  retain: true
+  legacy: false

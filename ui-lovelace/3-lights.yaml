@@ -15,9 +15,9 @@
             name: 'Настольная'
           - entity: light.philips_desklamp_ambient_light
             name: 'Настольная эмбиент'
-          - entity: light.be_bedlight_alexey
+          - entity: light.be_bedlight_alexey_light
             name: 'Прикроватная лампа Алексея'
-          - entity: light.be_bedlight_julia
+          - entity: light.be_bedlight_julia_light
             name: 'Прикроватная лампа Юлии'
           - entity: light.be_slshub
             name: 'Шлюз в спальне'

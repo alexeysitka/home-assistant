@@ -4,7 +4,7 @@ be_bedlight_toggle:
   fields:
     bed_light:
       description: 'Прикроватная лампа'
-      example: light.be_bedlight_alexey
+      example: light.be_bedlight_alexey_light
   sequence:
    - service: light.toggle
      data:
@@ -16,7 +16,7 @@ be_bedlight_on_day_cold:
   fields:
     bed_light:
       description: 'Прикроватная лампа'
-      example: light.be_bedlight_alexey
+      example: light.be_bedlight_alexey_light
   sequence:
     - service: light.turn_on
       data:
@@ -31,7 +31,7 @@ be_bedlight_on_evening_warm:
   fields:
     bed_light:
       description: 'Прикроватная лампа'
-      example: light.be_bedlight_alexey
+      example: light.be_bedlight_alexey_light
   sequence:
     - service: light.turn_on
       data:
@@ -46,7 +46,7 @@ be_bedlight_on_night_red:
   fields:
     bed_light:
       description: 'Прикроватная лампа'
-      example: light.be_bedlight_alexey
+      example: light.be_bedlight_alexey_light
   sequence:
     - service: light.turn_on
       data:
