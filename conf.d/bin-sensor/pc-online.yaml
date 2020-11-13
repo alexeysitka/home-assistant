@@ -1,0 +1,9 @@
+- platform: ping
+  name: alexey_pc_online
+  host: 192.168.31.101
+  scan_interval: 10
+
+- platform: ping
+  name: children_pc_online
+  host: 192.168.31.100
+  scan_interval: 10
