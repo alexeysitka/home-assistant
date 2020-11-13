@@ -25,12 +25,12 @@
           content: >
             **Резервное копирование**
 
-#        - type: entities
-#          show_header_toggle: false
-#          entities:
-#            - entity: sensor.last_google_backup_train
-#            - entity: sensor.snapshots_in_hassio_train
-#            - entity: sensor.snapshots_in_google_drive_train
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: sensor.last_google_backup_train
+            - entity: sensor.snapshots_in_hassio_train
+            - entity: sensor.snapshots_in_google_drive_train
 
         - type: entities
           show_header_toggle: false
