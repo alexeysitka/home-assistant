@@ -1,0 +1,3 @@
+- title: 'Air'
+  icon: mdi:air-humidifier
+  cards: !include_dir_merge_list ../ui-lovelace-sub/5-air

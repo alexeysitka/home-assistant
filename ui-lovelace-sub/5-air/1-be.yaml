@@ -1,0 +1,51 @@
+- type: custom:stack-in-card
+  title: 'Спальня'
+  mode: vertical
+  cards:
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.be_co2
+          name: 'Углекислый газ'
+      color_thresholds:
+        - value: 450
+          color: "#aee6b9"
+        - value: 600
+          color: "#20e337"
+        - value: 800
+          color: "#d3e320"
+        - value: 1000
+          color: "#e3af20"
+        - value: 1200
+          color: "#e34120"
+      animate: true
+      line_width: 2
+      hour24: true
+      points_per_hour: 1
+      group_by: hour
+      hours_to_show: 48
+
+    - type: custom:mini-graph-card
+      entities:
+        - entity: sensor.be_humidity
+          name: 'Влажность'
+      color_thresholds:
+        - value: 20
+          color: "#eb412a"
+        - value: 30
+          color: "#ebae2a"
+        - value: 40
+          color: "#abeb2a"
+        - value: 50
+          color: "#44eb2a"
+        - value: 60
+          color: "#2aeb81"
+        - value: 70
+          color: "#2a9beb"
+        - value: 80
+          color: "#2a3deb"
+      animate: true
+      line_width: 2
+      hour24: true
+      points_per_hour: 1
+      group_by: hour
+      hours_to_show: 48
