@@ -11,10 +11,8 @@
       - type: entities
         show_header_toggle: false
         entities:
-          - entity: light.philips_desklamp
-            name: 'Настольная'
-          - entity: light.philips_desklamp_ambient_light
-            name: 'Настольная эмбиент'
+          - entity: light.li_yolka_light
+            name: 'Ёлка в гостиной'
           - entity: light.be_bedlight_alexey_light
             name: 'Прикроватная лампа Алексея'
           - entity: light.be_bedlight_julia_light
@@ -57,3 +55,7 @@
             name: 'Автоматизация выключения света в туалете'
           - entity: light.ba_light
             name: 'Свет в ванной'
+          - entity: light.philips_desklamp
+            name: 'Настольная'
+          - entity: light.philips_desklamp_ambient_light
+            name: 'Настольная эмбиент'
