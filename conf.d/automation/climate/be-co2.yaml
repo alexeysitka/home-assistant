@@ -1,0 +1,29 @@
+- id: 'Отправить сообщение при превышении CO2 в кабинете'
+  alias: be_send_message_on_over_co2
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.be_co2
+      above: 1000
+    - platform: numeric_state
+      entity_id: sensor.be_co2
+      above: 1200
+  action:
+    - service: notify.alexey
+      data:
+        message: |
+          Превышение по CO2, {{ states.sensor.be_co2.attributes["co2"] }} ppm
+
+- id: 'Отправить сообщение при нормальизации CO2 в кабинете'
+  alias: be_send_message_on_under_co2
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.be_co2
+      below: 800
+    - platform: numeric_state
+      entity_id: sensor.be_co2
+      below: 600
+  action:
+    - service: notify.alexey
+      data:
+        message: |
+          Нормализация CO2, {{ states.sensor.be_co2.attributes["co2"] }} ppm
