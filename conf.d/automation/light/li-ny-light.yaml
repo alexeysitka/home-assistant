@@ -1,0 +1,23 @@
+- id: 'Включить гирлянды в гостиной за полчаса до заката'
+  alias: li_enable_ny_light_on_30_min_before_sunset
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: '-00:30:00'
+  action:
+    - service: light.turn_on
+      entity_id: light.li_yolka_light
+    - service: light.turn_on
+      entity_id: light.li_upper_light
+
+- id: 'Выключить гирлянды в гостиной в час ночи'
+  alias: li_disable_ny_light_on_time
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ha_door_contact
+      to: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: light.li_yolka_light
+    - service: light.turn_off
+      entity_id: light.li_upper_light

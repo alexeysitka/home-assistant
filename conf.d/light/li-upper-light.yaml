@@ -1,0 +1,14 @@
+- platform: template
+  lights:
+    li_upper_light:
+      friendly_name: 'Гирлянда на шторах в гостиной'
+      value_template: >-
+        {{ is_state('switch.li_upperlight_switch', 'on') }}
+      turn_on:
+        - service: switch.turn_on
+          data:
+            entity_id: switch.li_upperlight_switch
+      turn_off:
+        - service: switch.turn_off
+          data:
+            entity_id: switch.li_upperlight_switch

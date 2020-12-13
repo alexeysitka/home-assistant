@@ -12,7 +12,9 @@
         show_header_toggle: false
         entities:
           - entity: light.li_yolka_light
-            name: 'Ёлка в гостиной'
+            name: 'Гирлянда на Ёлке в гостиной'
+          - entity: light.li_upper_light
+            name: 'Гилянда на шторах в гостиной'
           - entity: light.be_bedlight_alexey_light
             name: 'Прикроватная лампа Алексея'
           - entity: light.be_bedlight_julia_light

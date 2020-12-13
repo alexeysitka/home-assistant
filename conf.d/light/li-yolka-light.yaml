@@ -1,7 +1,7 @@
 - platform: template
   lights:
     li_yolka_light:
-      friendly_name: 'Основной свет в ванной'
+      friendly_name: 'Гирлянда на Ёлке в гостиной'
       value_template: >-
         {{ is_state('switch.li_yolka_switch', 'on') }}
       turn_on:
