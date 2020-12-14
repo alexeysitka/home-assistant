@@ -1,0 +1,14 @@
+- platform: template
+  lights:
+    lo_ny_light:
+      friendly_name: 'Гирлянда на лоджии'
+      value_template: >-
+        {{ is_state('switch.lo_nylight_switch', 'on') }}
+      turn_on:
+        - service: switch.turn_on
+          data:
+            entity_id: switch.lo_nylight_switch
+      turn_off:
+        - service: switch.turn_off
+          data:
+            entity_id: switch.lo_nylight_switch
