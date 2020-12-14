@@ -13,9 +13,8 @@
 - id: 'Выключить гирлянды в гостиной в час ночи'
   alias: li_disable_ny_light_on_time
   trigger:
-    - platform: state
-      entity_id: binary_sensor.ha_door_contact
-      to: 'on'
+    - platform: time
+      at: '01:00:00'
   action:
     - service: light.turn_off
       entity_id: light.li_yolka_light
