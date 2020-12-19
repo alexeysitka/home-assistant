@@ -4,6 +4,15 @@
     - platform: numeric_state
       entity_id: sensor.be_co2
       above: 1000
+  action:
+    - service: notify.alexey
+      data:
+        message: |
+          Превышение по CO2, {{ states.sensor.be_co2.attributes["co2"] }} ppm
+
+- id: 'Отправить сообщение при критическом превышении CO2 в кабинете'
+  alias: be_send_message_on_critical_over_co2
+  trigger:
     - platform: numeric_state
       entity_id: sensor.be_co2
       above: 1200
@@ -11,14 +20,11 @@
     - service: notify.alexey
       data:
         message: |
-          Превышение по CO2, {{ states.sensor.be_co2.attributes["co2"] }} ppm
+          КРИТИЧЕСКОЕ превышение по CO2, {{ states.sensor.be_co2.attributes["co2"] }} ppm
 
 - id: 'Отправить сообщение при нормальизации CO2 в кабинете'
   alias: be_send_message_on_under_co2
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.be_co2
-      below: 800
     - platform: numeric_state
       entity_id: sensor.be_co2
       below: 600
