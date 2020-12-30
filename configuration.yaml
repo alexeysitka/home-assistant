@@ -1,5 +1,5 @@
 homeassistant:
-  name: "Калининград"
+  name: "Дом"
   latitude: !secret latitude_coord
   longitude: !secret longitude_coord
   elevation: !secret elevation_coord

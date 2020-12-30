@@ -22,7 +22,7 @@
         message: |
           КРИТИЧЕСКОЕ превышение по CO2, {{ states.sensor.be_co2.attributes["co2"] }} ppm
 
-- id: 'Отправить сообщение при нормальизации CO2 в кабинете'
+- id: 'Отправить сообщение при нормализации CO2 в кабинете'
   alias: be_send_message_on_under_co2
   trigger:
     - platform: numeric_state

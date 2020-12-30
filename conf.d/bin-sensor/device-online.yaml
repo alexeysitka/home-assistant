@@ -1,0 +1,19 @@
+- platform: ping
+  name: kn_tv_online
+  host: 192.168.31.112
+
+- platform: ping
+  name: be_tv_online
+  host: 192.168.31.113
+
+- platform: ping
+  name: li_tv_online
+  host: 192.168.31.115
+
+- platform: ping
+  name: li_ps4_online
+  host: 192.168.31.114
+
+- platform: ping
+  name: co_printer_online
+  host: 192.168.31.150
