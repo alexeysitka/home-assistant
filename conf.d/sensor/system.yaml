@@ -55,7 +55,6 @@
 
 - platform: uptime
   name: online
-  unit_of_measurement: minutes
 
 - platform: template
   sensors:

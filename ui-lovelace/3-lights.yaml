@@ -15,6 +15,12 @@
             name: 'Гирлянда на Ёлке в гостиной'
           - entity: light.li_upper_light
             name: 'Гилянда на шторах в гостиной'
+          - entity: light.be_green_light
+            name: 'Гилянда на картинах в спальне'
+          - entity: light.lo_ny_light
+            name: 'Гилянда на окне лоджии'
+          - entity: light.ch_upper_lights
+            name: 'Гилянда на шторах в детской'
           - entity: light.be_bedlight_alexey_light
             name: 'Прикроватная лампа Алексея'
           - entity: light.be_bedlight_julia_light

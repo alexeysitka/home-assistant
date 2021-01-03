@@ -9,6 +9,7 @@ be_bedlight_toggle:
    - service: light.toggle
      data:
        entity_id: '{{ bed_light }}'
+       transition: 0
 
 be_bedlight_on_day_cold:
   description: 'Максимум яркости, холодный свет'
@@ -21,9 +22,9 @@ be_bedlight_on_day_cold:
     - service: light.turn_on
       data:
         entity_id: '{{ bed_light }}'
-      data_template:
         brightness_pct: 100
         kelvin: 4000
+        transition: 0
 
 be_bedlight_on_evening_warm:
   description: 'Вечерний режим, тёплый свет'
@@ -36,9 +37,9 @@ be_bedlight_on_evening_warm:
     - service: light.turn_on
       data:
         entity_id: '{{ bed_light }}'
-      data_template:
         brightness_pct: 100
         kelvin: 500
+        transition: 0
 
 be_bedlight_on_night_red:
   description: 'Ночной режим, красный свет'
@@ -51,6 +52,6 @@ be_bedlight_on_night_red:
     - service: light.turn_on
       data:
         entity_id: '{{ bed_light }}'
-      data_template:
         brightness_pct: 80
         rgb_color: [255, 0, 0]
+        transition: 4

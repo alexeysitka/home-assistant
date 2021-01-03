@@ -1,4 +1,4 @@
-- id: 'Включить гирлянды в гостиной за полчаса до заката'
+- id: 'Включить гирлянды за полчаса до заката'
   alias: li_enable_ny_light_on_30_min_before_sunset
   trigger:
     - platform: sun
@@ -13,8 +13,10 @@
       entity_id: light.be_green_light
     - service: light.turn_on
       entity_id: light.lo_ny_light
+    - service: light.turn_on
+      entity_id: light.ch_upper_lights
 
-- id: 'Выключить гирлянды в гостиной в час ночи'
+- id: 'Выключить гирлянды в час ночи'
   alias: li_disable_ny_light_on_time
   trigger:
     - platform: time
@@ -30,3 +32,5 @@
       entity_id: light.be_green_light
     - service: light.turn_off
       entity_id: light.lo_ny_light
+    - service: light.turn_off
+      entity_id: light.ch_upper_lights
