@@ -1,12 +1,9 @@
 auto_purge: true
 purge_keep_days: 30
-commit_interval: 60
+commit_interval: 3600
 db_integrity_check: true
 
 include:
   domains:
-    - switch
-    - light
     - sensor
-    - binary_sensor
     - climate
