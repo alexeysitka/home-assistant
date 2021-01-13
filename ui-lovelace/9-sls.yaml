@@ -10,22 +10,22 @@
       show_header_toggle: false
       state_color: true
       entities:
-        - entity: binary_sensor.be_slshub_state
+        - entity: binary_sensor.be_sls_state
           state_color: true
           name: 'Состояние'
-        - entity: light.be_slshub
+        - entity: light.be_sls
           name: 'Подсветка'
-        - entity: sensor.be_slshub_uptimestr
+        - entity: sensor.be_sls_uptimestr
           name: 'В работе'
-        - entity: sensor.be_slshub_rssi
+        - entity: sensor.be_sls_rssi
           name: 'Сигнал WiFi'
-        - entity: sensor.be_slshub_ip
+        - entity: sensor.be_sls_ip
           name: 'IP'
-        - entity: sensor.be_slshub_version
+        - entity: sensor.be_sls_version
           name: 'Прошивка'
-        - entity: binary_sensor.be_slshub_pairing
+        - entity: binary_sensor.be_sls_pairing
           name: 'Режим подключения'
-        - entity: switch.be_slshub_join
+        - entity: switch.be_sls_join
           state_color: true
           name: 'Подключение'
 
@@ -34,22 +34,22 @@
       show_header_toggle: false
       state_color: true
       entities:
-        - entity: binary_sensor.ch_slshub_state
+        - entity: binary_sensor.ch_sls_state
           state_color: true
           name: 'Состояние'
-        - entity: light.ch_slshub
+        - entity: light.ch_sls
           name: 'Подсветка'
-        - entity: sensor.ch_slshub_uptimestr
+        - entity: sensor.ch_sls_uptimestr
           name: 'В работе'
-        - entity: sensor.ch_slshub_rssi
+        - entity: sensor.ch_sls_rssi
           name: 'Сигнал WiFi'
-        - entity: sensor.ch_slshub_ip
+        - entity: sensor.ch_sls_ip
           name: 'IP'
-        - entity: sensor.ch_slshub_version
+        - entity: sensor.ch_sls_version
           name: 'Прошивка'
-        - entity: binary_sensor.ch_slshub_pairing
+        - entity: binary_sensor.ch_sls_pairing
           name: 'Режим подключения'
-        - entity: switch.ch_slshub_join
+        - entity: switch.ch_sls_join
           state_color: true
           name: 'Подключение'
 
@@ -58,22 +58,22 @@
       show_header_toggle: false
       state_color: true
       entities:
-        - entity: binary_sensor.kn_slshub_state
+        - entity: binary_sensor.kn_sls_state
           state_color: true
           name: 'Состояние'
-        - entity: light.kn_slshub
+        - entity: light.kn_sls
           name: 'Подсветка'
-        - entity: sensor.kn_slshub_uptimestr
+        - entity: sensor.kn_sls_uptimestr
           name: 'В работе'
-        - entity: sensor.kn_slshub_rssi
+        - entity: sensor.kn_sls_rssi
           name: 'Сигнал WiFi'
-        - entity: sensor.kn_slshub_ip
+        - entity: sensor.kn_sls_ip
           name: 'IP'
-        - entity: sensor.kn_slshub_version
+        - entity: sensor.kn_sls_version
           name: 'Прошивка'
-        - entity: binary_sensor.kn_slshub_pairing
+        - entity: binary_sensor.kn_sls_pairing
           name: 'Режим подключения'
-        - entity: switch.kn_slshub_join
+        - entity: switch.kn_sls_join
           state_color: true
           name: 'Подключение'
 
@@ -82,21 +82,21 @@
       show_header_toggle: false
       state_color: true
       entities:
-        - entity: binary_sensor.co_slshub_state
+        - entity: binary_sensor.co_sls_state
           state_color: true
           name: 'Состояние'
-        - entity: light.co_slshub
+        - entity: light.co_sls
           name: 'Подсветка'
-        - entity: sensor.co_slshub_uptimestr
+        - entity: sensor.co_sls_uptimestr
           name: 'В работе'
-        - entity: sensor.co_slshub_rssi
+        - entity: sensor.co_sls_rssi
           name: 'Сигнал WiFi'
-        - entity: sensor.co_slshub_ip
+        - entity: sensor.co_sls_ip
           name: 'IP'
-        - entity: sensor.co_slshub_version
+        - entity: sensor.co_sls_version
           name: 'Прошивка'
-        - entity: binary_sensor.co_slshub_pairing
+        - entity: binary_sensor.co_sls_pairing
           name: 'Режим подключения'
-        - entity: switch.co_slshub_join
+        - entity: switch.co_sls_join
           state_color: true
           name: 'Подключение'

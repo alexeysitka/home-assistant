@@ -1,6 +1,6 @@
 switch:
   - platform: mqtt
-    name: co_slshub_join
+    name: co_sls_join
     state_topic: 'SLSHubCO/bridge/config/permit_join'
     command_topic: 'SLSHubCO/bridge/config/permit_join'
     payload_on: 'true'
@@ -8,32 +8,32 @@ switch:
 
 sensor:
   - platform: mqtt
-    name: co_slshub_uptimestr
+    name: co_sls_uptimestr
     state_topic: 'SLSHubCO/bridge/config'
     value_template: '{{ value_json.UptimeStr }}'
   - platform: mqtt
-    name: co_slshub_ip
+    name: co_sls_ip
     state_topic: 'SLSHubCO/bridge/config'
     value_template: '{{ value_json.IP }}'
   - platform: mqtt
-    name: co_slshub_rssi
+    name: co_sls_rssi
     state_topic: 'SLSHubCO/bridge/config'
     unit_of_measurement: 'dB'
     value_template: '{{ value_json.RSSI }}'
   - platform: mqtt
-    name: co_slshub_version
+    name: co_sls_version
     state_topic: 'SLSHubCO/bridge/config'
     value_template: '{{ value_json.Version }}'
 
 binary_sensor:
   - platform: mqtt
-    name: co_slshub_pairing
+    name: co_sls_pairing
     state_topic: 'SLSHubCO/bridge/config'
     payload_on: 'True'
     payload_off: 'False'
     value_template: '{{ value_json.permit_join }}'
   - platform: mqtt
-    name: co_slshub_state
+    name: co_sls_state
     state_topic: 'SLSHubCO/bridge/state'
     payload_on: 'online'
     payload_off: 'offline'

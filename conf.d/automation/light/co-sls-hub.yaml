@@ -3,7 +3,7 @@
   alias: co_start_timer_on_night_light_switched_on
   trigger:
     - platform: state
-      entity_id: light.co_slshub
+      entity_id: light.co_sls
       to: 'on'
   action:
     - service: timer.start
@@ -39,7 +39,7 @@
   action:
     - service: light.turn_on
       data:
-        entity_id: light.co_slshub
+        entity_id: light.co_sls
         brightness_pct: 70
         rgb_color: [255,0,0]
 
@@ -57,7 +57,7 @@
       to: 'on'
   condition:
     - condition: state
-      entity_id: light.co_slshub
+      entity_id: light.co_sls
       state: 'on'
   action:
     - service: timer.cancel
@@ -77,7 +77,7 @@
       to: 'off'
   condition:
     - condition: state
-      entity_id: light.co_slshub
+      entity_id: light.co_sls
       state: 'on'
     - condition: state
       entity_id: binary_sensor.co_motionbathroom_occupancy
@@ -106,7 +106,7 @@
       to: 'on'
   action:
     - service: light.turn_off
-      entity_id: light.co_slshub
+      entity_id: light.co_sls
 
 - id: 'Выключить ночник в коридоре по таймеру'
   alias: co_disable_night_light_on_timer_finished
@@ -117,4 +117,4 @@
         entity_id: timer.co_night_light
   action:
     - service: light.turn_off
-      entity_id: light.co_slshub
+      entity_id: light.co_sls
