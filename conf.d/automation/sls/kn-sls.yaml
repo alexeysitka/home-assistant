@@ -1,0 +1,21 @@
+- id: 'Перезагрузить SLS шлюз на кухне через MQTT при недоступности'
+  alias: kn_reboot_sls
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kn_sls_state
+      to: 'off'
+  action:
+    - service: script.reboot_sls
+      data:
+        name: 'SLSHubKN'
+
+- id: 'Уведомить о доступности SLS шлюза на кухне'
+  alias: kn_online_sls
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kn_sls_state
+      to: 'on'
+  action:
+    - service: script.online_sls
+      data:
+        name: 'SLSHubKN'

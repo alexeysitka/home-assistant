@@ -1,0 +1,21 @@
+- id: 'Перезагрузить SLS шлюз в детской через MQTT при недоступности'
+  alias: ch_reboot_sls
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ch_sls_state
+      to: 'off'
+  action:
+    - service: script.reboot_sls
+      data:
+        name: 'SLSHubCH'
+
+- id: 'Уведомить о доступности SLS шлюза в детской'
+  alias: ch_online_sls
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ch_sls_state
+      to: 'on'
+  action:
+    - service: script.online_sls
+      data:
+        name: 'SLSHubCH'

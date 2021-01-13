@@ -1,0 +1,29 @@
+reboot_sls:
+  description: 'Перезагрузить SLS шлюз'
+  mode: parallel
+  fields:
+    name:
+      description: 'Имя топика SLS'
+      example: SLSHubBE
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: '{{ name }}/reboot'
+        payload: '{}'
+    - service: notify.alexey
+      data:
+        message: |
+          Шлюз {{ name }} недоступен, запуск перезагрузки
+
+online_sls:
+  description: 'Доступность SLS шлюза'
+  mode: parallel
+  fields:
+    name:
+      description: 'Имя топика SLS'
+      example: SLSHubBE
+  sequence:
+    - service: notify.alexey
+      data:
+        message: |
+          Шлюз {{ name }} снова доступен
