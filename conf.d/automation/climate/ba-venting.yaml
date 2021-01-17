@@ -12,7 +12,7 @@
     - service: switch.turn_on
       entity_id: switch.ba_venting_switch
 
-- id: 'Выключить вытяжку в ванной при нормальной влажности (на 5% выше, чем в спальне)'
+- id: 'Выключить вытяжку в ванной при нормальной влажности'
   alias: ba_disable_venting_on_normal_humidity
   trigger:
     - platform: numeric_state
