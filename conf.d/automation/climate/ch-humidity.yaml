@@ -1,0 +1,43 @@
+- id: 'Включить увлажнитель в детской при значении ниже 40'
+  alias: ch_enable_humidifier_on_low_humidity
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ch_humidity
+      below: 45
+  action:
+    - service: switch.turn_on
+      entity_id: switch.ch_humidifiersocket_switch
+
+- id: 'Выключить увлажнитель в детской при значении выше 50'
+  alias: ch_disable_humidifier_on_normal_humidity
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ch_humidity
+      above: 50
+  action:
+    - service: switch.turn_off
+      entity_id: switch.ch_humidifiersocket_switch
+
+- id: 'Уведомить о нехватке воды в увлажнителе детской'
+  alias: ch_humidifier_out_of_water_notification
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ch_humidifiersocket_power
+      below: 5
+  condition:
+    - condition: state
+      entity_id: switch.ch_humidifiersocket_switch
+      state: 'on'
+  action:
+    - service: notify.alexey
+      data:
+        message: |
+          Закончилась вода в увлажнителе детской, {{ states.sensor.ch_humidifiersocket_power.attributes["power"] }} W, {{ states.sensor.ch_humidifiersocket_power.attributes["state"] }}
+    - service: notify.julia
+      data:
+        message: |
+          Закончилась вода в увлажнителе детской, {{ states.sensor.ch_humidifiersocket_power.attributes["power"] }} W, {{ states.sensor.ch_humidifiersocket_power.attributes["state"] }}
+    - service: notify.dana
+      data:
+        message: |
+          Закончилась вода в увлажнителе детской, {{ states.sensor.ch_humidifiersocket_power.attributes["power"] }} W, {{ states.sensor.ch_humidifiersocket_power.attributes["state"] }}
