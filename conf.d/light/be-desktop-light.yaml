@@ -1,5 +1,5 @@
 - platform: xiaomi_miio
   name: philips_desklamp
   host: 192.168.31.242
-  token: 01b809785feacf076864029955f23c42
+  token: cc78dd447509b26a15a0830f0b885669
   model: philips.light.sread1
