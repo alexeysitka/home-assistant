@@ -29,6 +29,8 @@
       entity_id: switch.kn_humidifiersocket_switch
       state: 'on'
   action:
+    - service: switch.turn_off
+      entity_id: switch.kn_humidifiersocket_switch
     - service: notify.alexey
       data:
         message: |
