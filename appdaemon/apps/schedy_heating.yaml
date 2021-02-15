@@ -46,10 +46,10 @@ schedy_heating:  # This is app instance name.
           rules:
             - weekdays: 1-5
               rules:
-                - { start: '9:00', end: '23:00' }
+                - { start: '12:00', end: '23:00' }
             - weekdays: 6-7
               rules:
-                - { start: '10:00', end: '23:00' }
+                - { start: '12:00', end: '23:00' }
 
     bath_room:
       rescheduling_delay: 60
@@ -60,7 +60,7 @@ schedy_heating:  # This is app instance name.
           rules:
             - weekdays: 1-7
               rules:
-                - { start: '22:00', end: '01:00' }
+                - { start: '22:00', end: '02:00' }
 
 
 
