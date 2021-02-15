@@ -1,3 +1,23 @@
+homeassistant:
+  customize:
+    light.ch_sls:
+      friendly_name: 'Ночник в детской'
+
+light:
+  - platform: mqtt
+    name: ch_sls
+    availability_topic: 'SLSHubCH/bridge/state'
+    command_topic: 'SLSHubCH/led'
+    rgb_command_topic: 'SLSHubCH/led'
+    rgb_command_template: >-
+      {
+        "mode": "manual",
+        "hex": "#{{ '%02x%02x%02x' | format(red, green, blue) }}"
+      }
+    on_command_type: 'brightness'
+    payload_off: '{"mode": "off"}'
+
+
 switch:
   - platform: mqtt
     name: ch_sls_join

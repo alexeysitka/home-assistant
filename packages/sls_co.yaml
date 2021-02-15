@@ -1,3 +1,22 @@
+homeassistant:
+  customize:
+    light.co_sls:
+      friendly_name: 'Ночник в коридоре'
+
+light:
+  - platform: mqtt
+    name: co_sls
+    availability_topic: 'SLSHubCO/bridge/state'
+    command_topic: 'SLSHubCO/led'
+    rgb_command_topic: 'SLSHubCO/led'
+    rgb_command_template: >-
+      {
+        "mode": "manual",
+        "hex": "#{{ '%02x%02x%02x' | format(red, green, blue) }}"
+      }
+    on_command_type: 'brightness'
+    payload_off: '{"mode": "off"}'
+
 switch:
   - platform: mqtt
     name: co_sls_join

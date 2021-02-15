@@ -1,3 +1,22 @@
+homeassistant:
+  customize:
+    light.be_sls:
+      friendly_name: 'Ночник в спальне'
+
+light:
+  - platform: mqtt
+    name: be_sls
+    availability_topic: 'SLSHubBE/bridge/state'
+    command_topic: 'SLSHubBE/led'
+    rgb_command_topic: 'SLSHubBE/led'
+    rgb_command_template: >-
+      {
+        "mode": "manual",
+        "hex": "#{{ '%02x%02x%02x' | format(red, green, blue) }}"
+      }
+    on_command_type: 'brightness'
+    payload_off: '{"mode": "off"}'
+
 switch:
   - platform: mqtt
     name: be_sls_join
