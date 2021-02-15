@@ -68,15 +68,15 @@
         - type: horizontal-stack
           cards:
             - type: entity
-              entity: sensor.disk_use_percent
-              name: 'Диск заполнен'
-              icon: 'mdi:chart-donut'
-              unit: '%'
-            - type: entity
               entity: sensor.disk_free
               name: 'Свободное место'
               icon: 'mdi:harddisk'
               unit: 'Гб'
+            - type: entity
+              entity: sensor.cpu_temperature_raspberry
+              name: 'Температура'
+              icon: 'mdi:chip'
+              unit: '°C'
 
         - type: history-graph
           entities:
