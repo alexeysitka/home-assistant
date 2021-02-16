@@ -71,7 +71,6 @@ sensor:
         value_template: '{{ state_attr("vacuum.xiaomi_vacuum_cleaner", "cleaned_area") }}'
         icon_template: 'mdi:ruler'
 
-
 script:
   vacuum_start:
     description: 'Пропылесосить квартиру'
@@ -79,7 +78,7 @@ script:
       - service: vacuum.start
         data:
           entity_id: vacuum.xiaomi_vacuum_cleaner
-      - service: script.notify_all
+      - service: notify.alexey
         data:
           message: |
             Пылесос приступил к уборке всей квартиры
@@ -87,7 +86,7 @@ script:
   vacuum_start_notify_door:
     description: 'Уведомление о начале уборки квартиры'
     sequence:
-      - service: script.notify_all
+      - service: notify.alexey
         data:
           message: |
             Пылесос начнёт убираться через 10 минут.
@@ -101,7 +100,7 @@ script:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           command: app_zoned_clean
           params: [ [ 22504,18211,25554,25111,1 ] ]
-      - service: script.notify_all
+      - service: notify.alexey
         data:
           message: |
             Пылесос приступил к уборке в cпальне
@@ -114,7 +113,7 @@ script:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           command: app_zoned_clean
           params: [ [ 22528,27088,26328,31088,1 ] ]
-      - service: script.notify_all
+      - service: notify.alexey
         data:
           message: |
             Пылесос приступил к уборке в детской
@@ -127,7 +126,7 @@ script:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           command: app_zoned_clean
           params: [ [ 26431,26949,32031,31349,1 ] ]
-      - service: script.notify_all
+      - service: notify.alexey
         data:
           message: |
             Пылесос приступил к уборке в гостиной
@@ -140,7 +139,7 @@ script:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           command: app_zoned_clean
           params: [ [ 32663,27125,37363,30325,1 ] ]
-      - service: script.notify_all
+      - service: notify.alexey
         data:
           message: |
             Пылесос приступил к уборке на кухне
@@ -153,7 +152,7 @@ script:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           command: app_zoned_clean
           params: [ [ 25578,23783,35628,27083,1 ],[ 24647,25083,25847,27133,1 ] ]
-      - service: script.notify_all
+      - service: notify.alexey
         data:
           message: |
             Пылесос приступил к уборке в коридоре
@@ -166,7 +165,7 @@ script:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           command: app_zoned_clean
           params: [ [ 34023,25341,35573,26991,1 ] ]
-      - service: script.notify_all
+      - service: notify.alexey
         data:
           message: |
             Пылесос приступил к уборке в туалете
@@ -179,7 +178,7 @@ script:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           command: app_zoned_clean
           params: [ [ 22554,18248,25354,20048,1 ] ]
-      - service: script.notify_all
+      - service: notify.alexey
         data:
           message: |
             Пылесос приступил к уборке в кабинете
@@ -262,14 +261,14 @@ automation:
         data_template:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           fan_speed: 'Silent'
-      - service: script.notify_all
+      - service: notify.alexey
         data:
           message: |
             Пылесос закончил уборку
-      - service: notify.dana
+      - service: notify.alexey
         data:
           message: |
-            Вытряхни Шурика... ну пазязя... {{'\U0001F64F'}}
+            Надо вытряхнуть контейнер
 
   - id: 'Уведомление об ошибке'
     alias: vacuum_error_notification
@@ -278,7 +277,7 @@ automation:
         entity_id: vacuum.xiaomi_vacuum_cleaner
         to: 'error'
     action:
-      - service: script.notify_all
+      - service: notify.alexey
         data:
           message: |
             Робот пылесос ошибка {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'error') }}
@@ -290,7 +289,7 @@ automation:
         hours: 21
         minutes: 20
     action:
-      - service: script.notify_all
+      - service: notify.alexey
         data:
           message: |
             Пылесос начнёт убираться через 10 минут.
@@ -318,7 +317,7 @@ automation:
           entity_id: binary_sensor.kn_door_contact
           state: 'off'
     action:
-      - service: script.notify_all
+      - service: notify.alexey
         data:
           message: >
             Всё ещё закрыты двери:
@@ -326,7 +325,6 @@ automation:
               {% if is_state('binary_sensor.ch_door_contact', 'off') %}- детская {% endif %}
               {% if is_state('binary_sensor.li_door_contact', 'off') %}- гостиная {% endif %}
               {% if is_state('binary_sensor.kn_door_contact', 'off') %}- кухня{% endif %}
-            Откройте пазязя, ну пазязя... {{'\U0001F64F'}}
 
   - id: 'Старт уборки по расписанию'
     alias: vacuum_scheduled_start
