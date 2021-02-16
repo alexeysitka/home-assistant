@@ -1,0 +1,47 @@
+yandex_smart_home:
+  filter:
+    include_entities:
+      - climate.ba_towel_dryer
+      - climate.be_radiator
+      - climate.ch_radiator
+      - climate.li_radiator
+
+      - sensor.ba_humidity
+      - sensor.be_humidity
+      - sensor.ch_humidity
+      - sensor.kn_humidity
+      - sensor.li_humidity
+      - sensor.lo_humidity
+
+  entity_config:
+    climate.ba_towel_dryer:
+      name: "Полотенцесушитель"
+      room: "Ванная"
+    climate.be_radiator:
+      name: "Термостат"
+      room: "Спальня"
+    climate.ch_radiator:
+      name: "Термостат"
+      room: "Детская"
+    climate.li_radiator:
+      name: "Термостат"
+      room: "Гостиная"
+
+    sensor.ba_humidity:
+      name: "Влажность"
+      room: "Ванная"
+    sensor.be_humidity:
+      name: "Влажность"
+      room: "Спальня"
+    sensor.ch_humidity:
+      name: "Влажность"
+      room: "Детская"
+    sensor.kn_humidity:
+      name: "Влажность"
+      room: "Кухня"
+    sensor.li_humidity:
+      name: "Влажность"
+      room: "Гостиная"
+    sensor.lo_humidity:
+      name: "Влажность"
+      room: "Лоджия"
