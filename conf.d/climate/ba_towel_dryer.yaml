@@ -5,7 +5,7 @@
   min_temp: 15
   max_temp: 30
   target_temp: 26
-  min_cycle_duration: '00:15:00'
+  min_cycle_duration: '00:30:00'
   cold_tolerance: 0.2
   hot_tolerance: 0.2
   away_temp: 19
