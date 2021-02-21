@@ -1,0 +1,3 @@
+be_sls_reboot:
+  name: Недоступность шлюза в спальне
+  duration: 300

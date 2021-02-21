@@ -1,21 +1,31 @@
-- id: 'Перезагрузить SLS шлюз в спальне через MQTT при недоступности'
-  alias: be_reboot_sls
+- id: 'Шлюз в спальне оффлайн, запустить таймер недоступности'
+  alias: be_offline_sls
   trigger:
     - platform: state
       entity_id: binary_sensor.be_sls_state
       to: 'off'
   action:
-    - service: script.reboot_sls
-      data:
-        name: 'SLSHubBE'
+    - service: timer.start
+      entity_id: timer.be_sls_reboot
 
-- id: 'Уведомить о доступности SLS шлюза в спальне'
+- id: 'Шлюз в спальне онлайн, запустить таймер недоступности'
   alias: be_online_sls
   trigger:
     - platform: state
       entity_id: binary_sensor.be_sls_state
       to: 'on'
   action:
-    - service: script.online_sls
+    - service: timer.cancel
+      entity_id: timer.be_sls_reboot
+
+- id: 'Уведомить о недоступности SLS шлюза в спальне и запустить перезагрузку'
+  alias: be_reboot_sls
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.be_sls_reboot
+  action:
+    - service: script.reboot_sls
       data:
         name: 'SLSHubBE'

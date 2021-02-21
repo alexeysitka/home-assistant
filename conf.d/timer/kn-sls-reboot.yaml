@@ -1,0 +1,3 @@
+kn_sls_reboot:
+  name: Недоступность шлюза на кухне
+  duration: 300
