@@ -27,16 +27,10 @@
             name: 'Прикроватная лампа Юлии'
           - entity: light.be_sls
             name: 'Шлюз в спальне'
-          - entity: timer.be_night_light
-            name: 'Таймер ночника в спальне'
           - entity: light.kn_sls
             name: 'Шлюз на кухне'
-          - entity: timer.kn_night_light
-            name: 'Таймер ночника на кухне'
           - entity: light.ch_sls
             name: 'Шлюз в детской'
-          - entity: timer.ch_night_light
-            name: 'Таймер ночника в детской'
           - entity: light.co_sls
             name: 'Шлюз в коридоре'
           - entity: timer.co_night_light
