@@ -100,3 +100,51 @@
         - entity: switch.co_sls_join
           state_color: true
           name: 'Подключение'
+
+    - type: entities
+      title: 'SLS Гостиная'
+      show_header_toggle: false
+      state_color: true
+      entities:
+        - entity: binary_sensor.li_sls_state
+          state_color: true
+          name: 'Состояние'
+        - entity: light.li_sls
+          name: 'Подсветка'
+        - entity: sensor.li_sls_uptimestr
+          name: 'В работе'
+        - entity: sensor.li_sls_rssi
+          name: 'Сигнал WiFi'
+        - entity: sensor.li_sls_ip
+          name: 'IP'
+        - entity: sensor.li_sls_version
+          name: 'Прошивка'
+        - entity: binary_sensor.li_sls_pairing
+          name: 'Режим подключения'
+        - entity: switch.li_sls_join
+          state_color: true
+          name: 'Подключение'
+
+    - type: entities
+      title: 'SLS Прихожая'
+      show_header_toggle: false
+      state_color: true
+      entities:
+        - entity: binary_sensor.ha_sls_state
+          state_color: true
+          name: 'Состояние'
+        - entity: light.ha_sls
+          name: 'Подсветка'
+        - entity: sensor.ha_sls_uptimestr
+          name: 'В работе'
+        - entity: sensor.ha_sls_rssi
+          name: 'Сигнал WiFi'
+        - entity: sensor.ha_sls_ip
+          name: 'IP'
+        - entity: sensor.ha_sls_version
+          name: 'Прошивка'
+        - entity: binary_sensor.ha_sls_pairing
+          name: 'Режим подключения'
+        - entity: switch.ha_sls_join
+          state_color: true
+          name: 'Подключение'

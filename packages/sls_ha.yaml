@@ -1,0 +1,58 @@
+homeassistant:
+  customize:
+    light.ha_sls:
+      friendly_name: 'Ночник в прихожей'
+
+light:
+  - platform: mqtt
+    name: ha_sls
+    availability_topic: 'SLSHubHA/bridge/state'
+    command_topic: 'SLSHubHA/led'
+    rgb_command_topic: 'SLSHubHA/led'
+    rgb_command_template: >-
+      {
+        "mode": "manual",
+        "hex": "#{{ '%02x%02x%02x' | format(red, green, blue) }}"
+      }
+    on_command_type: 'brightness'
+    payload_off: '{"mode": "off"}'
+
+switch:
+  - platform: mqtt
+    name: ha_sls_join
+    state_topic: 'SLSHubHA/bridge/config/permit_join'
+    command_topic: 'SLSHubHA/bridge/config/permit_join'
+    payload_on: 'true'
+    payload_off: 'false'
+
+sensor:
+  - platform: mqtt
+    name: ha_sls_uptimestr
+    state_topic: 'SLSHubHA/bridge/config'
+    value_template: '{{ value_json.UptimeStr }}'
+  - platform: mqtt
+    name: ha_sls_ip
+    state_topic: 'SLSHubHA/bridge/config'
+    value_template: '{{ value_json.IP }}'
+  - platform: mqtt
+    name: ha_sls_rssi
+    state_topic: 'SLSHubHA/bridge/config'
+    unit_of_measurement: 'dB'
+    value_template: '{{ value_json.RSSI }}'
+  - platform: mqtt
+    name: ha_sls_version
+    state_topic: 'SLSHubHA/bridge/config'
+    value_template: '{{ value_json.Version }}'
+
+binary_sensor:
+  - platform: mqtt
+    name: ha_sls_pairing
+    state_topic: 'SLSHubHA/bridge/config'
+    payload_on: 'True'
+    payload_off: 'False'
+    value_template: '{{ value_json.permit_join }}'
+  - platform: mqtt
+    name: ha_sls_state
+    state_topic: 'SLSHubHA/bridge/state'
+    payload_on: 'online'
+    payload_off: 'offline'
