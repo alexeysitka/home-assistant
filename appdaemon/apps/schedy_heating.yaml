@@ -28,7 +28,7 @@ schedy_heating:  # This is app instance name.
       actors:
         climate.ch_radiator:
       schedule:
-        - v: 24
+        - v: 23
           rules:
             - weekdays: 1-5
               rules:
@@ -42,7 +42,7 @@ schedy_heating:  # This is app instance name.
       actors:
         climate.li_radiator:
       schedule:
-        - v: 24
+        - v: 23
           rules:
             - weekdays: 1-5
               rules:
@@ -56,7 +56,7 @@ schedy_heating:  # This is app instance name.
       actors:
         climate.ba_towel_dryer:
       schedule:
-        - v: 26
+        - v: 25
           rules:
             - weekdays: 1-7
               rules:
