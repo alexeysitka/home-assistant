@@ -30,6 +30,30 @@
           name: 'Подключение'
 
     - type: entities
+      title: 'SLS Кухня'
+      show_header_toggle: false
+      state_color: true
+      entities:
+        - entity: binary_sensor.kn_sls_state
+          state_color: true
+          name: 'Состояние'
+        - entity: light.kn_sls
+          name: 'Подсветка'
+        - entity: sensor.kn_sls_uptimestr
+          name: 'В работе'
+        - entity: sensor.kn_sls_rssi
+          name: 'Сигнал WiFi'
+        - entity: sensor.kn_sls_ip
+          name: 'IP'
+        - entity: sensor.kn_sls_version
+          name: 'Прошивка'
+        - entity: binary_sensor.kn_sls_pairing
+          name: 'Режим подключения'
+        - entity: switch.kn_sls_join
+          state_color: true
+          name: 'Подключение'
+
+    - type: entities
       title: 'SLS Детская'
       show_header_toggle: false
       state_color: true
@@ -53,29 +77,6 @@
           state_color: true
           name: 'Подключение'
 
-    - type: entities
-      title: 'SLS Кухня'
-      show_header_toggle: false
-      state_color: true
-      entities:
-        - entity: binary_sensor.kn_sls_state
-          state_color: true
-          name: 'Состояние'
-        - entity: light.kn_sls
-          name: 'Подсветка'
-        - entity: sensor.kn_sls_uptimestr
-          name: 'В работе'
-        - entity: sensor.kn_sls_rssi
-          name: 'Сигнал WiFi'
-        - entity: sensor.kn_sls_ip
-          name: 'IP'
-        - entity: sensor.kn_sls_version
-          name: 'Прошивка'
-        - entity: binary_sensor.kn_sls_pairing
-          name: 'Режим подключения'
-        - entity: switch.kn_sls_join
-          state_color: true
-          name: 'Подключение'
 
     - type: entities
       title: 'SLS Коридор'
