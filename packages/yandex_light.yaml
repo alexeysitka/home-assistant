@@ -7,6 +7,7 @@ yandex_smart_home:
       - light.ch_sls
       - light.ch_upper_lights
 
+      - light.li_sls
       - light.li_upper_light
 
       - light.kn_sls
@@ -15,6 +16,7 @@ yandex_smart_home:
       - light.co_mirror_light
       - light.co_sls
 
+      - light.ha_sls
       - light.ha_light
 
       - light.to_light
@@ -39,6 +41,9 @@ yandex_smart_home:
       name: "Гирлянда"
       room: "Детская"
 
+    light.li_sls:
+      name: "Ночник"
+      room: "Гостиная"
     light.li_upper_light:
       name: "Гирлянда"
       room: "Гостиная"
@@ -57,6 +62,9 @@ yandex_smart_home:
       name: "Ночник"
       room: "Коридор"
 
+    light.ha_sls:
+      name: "Ночник"
+      room: "Прихожая"
     light.ha_light:
       name: "Свет"
       room: "Прихожая"
