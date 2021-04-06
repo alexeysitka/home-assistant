@@ -15,7 +15,7 @@
             name: 'Гирлянда на Ёлке в гостиной'
           - entity: light.li_upper_light
             name: 'Гилянда на шторах в гостиной'
-          - entity: light.be_green_light
+          - entity: light.be_wall_light
             name: 'Гилянда на картинах в спальне'
           - entity: light.lo_ny_light
             name: 'Гилянда на окне лоджии'
@@ -26,13 +26,17 @@
           - entity: light.be_bedlight_julia_light
             name: 'Прикроватная лампа Юлии'
           - entity: light.be_sls
-            name: 'Шлюз в спальне'
+            name: 'Ночник в спальне'
           - entity: light.kn_sls
-            name: 'Шлюз на кухне'
+            name: 'Ночник на кухне'
           - entity: light.ch_sls
-            name: 'Шлюз в детской'
+            name: 'Ночник в детской'
+          - entity: light.li_sls
+            name: 'Ночник в гостиной'
+          - entity: light.ha_sls
+            name: 'Ночник в прихожей'
           - entity: light.co_sls
-            name: 'Шлюз в коридоре'
+            name: 'Ночник в коридоре'
           - entity: timer.co_night_light
             name: 'Таймер ночника в коридоре'
           - entity: light.ha_light
