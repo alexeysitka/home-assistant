@@ -286,7 +286,7 @@ automation:
     alias: vacuum_scheduled_start_notification
     trigger:
       - platform: time_pattern
-        hours: 21
+        hours: 10
         minutes: 20
     action:
       - service: notify.alexey
@@ -299,7 +299,7 @@ automation:
     alias: vacuum_scheduled_start_notification_door
     trigger:
       - platform: time_pattern
-        hours: 21
+        hours: 10
         minutes: 25
     condition:
       condition: or
@@ -330,7 +330,7 @@ automation:
     alias: vacuum_scheduled_start
     trigger:
       - platform: time_pattern
-        hours: 21
+        hours: 10
         minutes: 30
     action:
       - service: vacuum.set_fan_speed
@@ -338,3 +338,16 @@ automation:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           fan_speed: 'Turbo'
       - service: script.vacuum_start
+
+  - id: 'Старт вечерней уборки в коридоре'
+    alias: vacuum_coridor_start
+    trigger:
+      - platform: time_pattern
+        hours: 21
+        minutes: 50
+    action:
+      - service: vacuum.set_fan_speed
+        data_template:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          fan_speed: 'Turbo'
+      - service: script.co_vacuum_clean
