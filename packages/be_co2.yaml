@@ -7,7 +7,7 @@ automation:
         above: 1000
     condition:
       - condition: state
-        entity_id: input_boolean.be_notify_high
+        entity_id: input_boolean.be_notify_co2_high
         state: "on"
     action:
       - service: notify.alexey
