@@ -286,7 +286,7 @@ automation:
     alias: vacuum_scheduled_start_notification
     trigger:
       - platform: time_pattern
-        hours: 10
+        hours: 21
         minutes: 20
     action:
       - service: notify.alexey
@@ -299,7 +299,7 @@ automation:
     alias: vacuum_scheduled_start_notification_door
     trigger:
       - platform: time_pattern
-        hours: 10
+        hours: 21
         minutes: 25
     condition:
       condition: or
