@@ -39,5 +39,3 @@
       entities:
         - entity: switch.ba_boiler_channel
           name: 'Полотенцесушитель ванной'
-        - entity: timer.ba_boiler_channel
-          name: 'До отключения обогрева'

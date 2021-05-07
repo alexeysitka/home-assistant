@@ -39,8 +39,6 @@
       entities:
         - entity: switch.ch_boiler_channel
           name: 'Обогрев детской'
-        - entity: timer.ch_boiler_channel
-          name: 'До отключения обогрева'
         - entity: binary_sensor.ch_thermostat_valve
           name: 'Клапан термостата'
 #            - entity: lock.ch_thermostat_child_lock
