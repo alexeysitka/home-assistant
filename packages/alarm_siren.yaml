@@ -1,0 +1,59 @@
+automation:
+  - id: 'Проиграть уведомление при открытой входной двери'
+    alias: be_play_siren_on_opened_entrance
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.ha_door_contact
+        from: 'off'
+        to: 'on'
+    action:
+      - service: script.be_alarm_siren
+        data:
+          sls_name: 'SLSHubBE'
+          device_name: 'BE_AlarmSiren'
+          melody: 16
+          duration: 3
+      - service: notify.alexey
+        data:
+          message: 'Открылась входная дверь'
+
+  - id: 'Уведомление о закрытой входной двери'
+    alias: be_play_siren_on_closed_entrance
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.ha_door_contact
+        from: 'on'
+        to: 'off'
+    action:
+      - service: script.be_alarm_siren
+        data:
+          sls_name: 'SLSHubBE'
+          device_name: 'BE_AlarmSiren'
+          melody: 16
+          duration: 1
+      - service: notify.alexey
+        data:
+          message: 'Закрылась входная дверь'
+
+script:
+  be_alarm_siren:
+    description: 'Уведомление об открытой входной двери'
+    mode: parallel
+    fields:
+      sls_name:
+        description: 'Имя хаба SLS'
+        example: SLSHubBE
+      device_name:
+        description: 'Имя устройства'
+        example: BE_AlarmSiren
+      melody:
+        description: 'Номер мелодии'
+        example: 16
+      duration:
+        description: 'Длительность'
+        example: 3
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: '{{ sls_name }}/{{ device_name }}/set'
+          payload: '{ "melody": {{ melody }}, "duration": {{ duration }}, "alarm": 1 }'
