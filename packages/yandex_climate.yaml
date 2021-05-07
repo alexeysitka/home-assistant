@@ -6,6 +6,9 @@ yandex_smart_home:
       - climate.ch_radiator
       - climate.li_radiator
 
+      - sensor.kn_temperature
+      - sensor.lo_temperature
+
       - sensor.ba_humidity
       - sensor.be_humidity
       - sensor.ch_humidity
@@ -26,6 +29,13 @@ yandex_smart_home:
     climate.li_radiator:
       name: "Термостат"
       room: "Гостиная"
+
+    sensor.kn_temperature:
+      name: "Температура"
+      room: "Кухня"
+    sensor.lo_temperature:
+      name: "Температура"
+      room: "Лоджия"
 
     sensor.ba_humidity:
       name: "Влажность"

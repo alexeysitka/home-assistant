@@ -3,6 +3,8 @@ yandex_smart_home:
     include_entities:
       - light.be_sls
       - light.be_wall_light
+      - light.be_bedlight_alexey_light
+      - light.be_bedlight_julia_light
 
       - light.ch_sls
       - light.ch_upper_lights
@@ -32,6 +34,12 @@ yandex_smart_home:
       room: "Спальня"
     light.be_wall_light:
       name: "Гирлянда"
+      room: "Спальня"
+    light.be_bedlight_alexey_light:
+      name: "Моя лампа"
+      room: "Спальня"
+    light.be_bedlight_julia_light:
+      name: "Юлина лампа"
       room: "Спальня"
 
     light.ch_sls:
