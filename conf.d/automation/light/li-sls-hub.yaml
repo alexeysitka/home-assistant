@@ -1,0 +1,32 @@
+- id: 'Включить ночник в гостиной при движении после захода'
+  alias: li_enable_nightlight_after_sunset
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.li_motion_occupancy
+      to: 'on'
+  condition:
+    - condition: template  # from sunset until sunrise
+      value_template: "{{ state_attr('sun.sun', 'elevation') < 1 }}"
+    - condition: numeric_state
+      entity_id: sensor.li_motion_illuminance
+      below: 10
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.li_sls
+        brightness_pct: 5
+        rgb_color: [255,0,0]
+
+- id: 'Выключить ночник в гостиной через 1 минуту после последнего движения'
+  alias: li_disable_nightlight_in_1_minute_after_occupancy
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.li_motion_occupancy
+      to: 'off'
+      for: '00:01:00'
+    - platform: numeric_state
+      entity_id: sensor.li_motion_illuminance
+      above: 10
+  action:
+    - service: light.turn_off
+      entity_id: light.li_sls
