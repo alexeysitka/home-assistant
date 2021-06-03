@@ -1,0 +1,77 @@
+#yandex_smart_home:
+#  filter:
+#    include_entities:
+#      - light.be_sls
+#      - light.be_wall_light
+#
+#      - light.ch_sls
+#      - light.ch_upper_lights
+#
+#      - light.li_upper_light
+#
+#      - light.kn_sls
+#
+#      - light.co_light
+#      - light.co_mirror_light
+#      - light.co_sls
+#
+#      - light.ha_light
+#
+#      - light.to_light
+#
+#      - light.ba_light
+#
+#      - light.lo_light
+#      - light.lo_ny_light
+#
+#  entity_config:
+#    light.be_sls:
+#      name: "Ночник"
+#      room: "Спальня"
+#    light.be_wall_light:
+#      name: "Гирлянда"
+#      room: "Спальня"
+#
+#    light.ch_sls:
+#      name: "Ночник"
+#      room: "Детская"
+#    light.ch_upper_lights:
+#      name: "Гирлянда"
+#      room: "Детская"
+#
+#    light.li_upper_light:
+#      name: "Гирлянда"
+#      room: "Гостиная"
+#
+#    light.kn_sls:
+#      name: "Ночник"
+#      room: "Кухня"
+#
+#    light.co_light:
+#      name: "Свет"
+#      room: "Коридор"
+#    light.co_mirror_light:
+#      name: "Подсветка зеркала"
+#      room: "Коридор"
+#    light.co_sls:
+#      name: "Ночник"
+#      room: "Коридор"
+#
+#    light.ha_light:
+#      name: "Свет"
+#      room: "Прихожая"
+#
+#    light.to_light:
+#      name: "Свет"
+#      room: "Туалет"
+#
+#    light.ba_light:
+#      name: "Основной свет"
+#      room: "Ванная"
+#
+#    light.lo_light:
+#      name: "Свет"
+#      room: "Лоджия"
+#    light.lo_ny_light:
+#      name: "Гирлянда"
+#      room: "Лоджия"

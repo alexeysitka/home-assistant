@@ -10,11 +10,11 @@
             entity_id: switch.kn_boilertwo_switch_l1
         - service: mqtt.publish
           data:
-            topic: 'SLSHubKN/LI_Thermostat/set'
+            topic: 'SLSHubLI/LI_Thermostat/set'
             payload: '{"force": "normal"}'
         - service: mqtt.publish
           data:
-            topic: 'SLSHubKN/LI_Thermostat/set'
+            topic: 'SLSHubLI/LI_Thermostat/set'
             payload: '{"current_heating_setpoint": "25"}'
       turn_off:
         - service: switch.turn_off
@@ -22,7 +22,7 @@
             entity_id: switch.kn_boilertwo_switch_l1
         - service: mqtt.publish
           data:
-            topic: 'SLSHubKN/LI_Thermostat/set'
+            topic: 'SLSHubLI/LI_Thermostat/set'
             payload: '{"force": "close"}'
       icon_template: >-
         {% if is_state('switch.kn_boilertwo_switch_l1', 'on') %}
