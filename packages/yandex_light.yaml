@@ -82,7 +82,7 @@ yandex_smart_home:
       room: "Туалет"
 
     light.ba_light:
-      name: "Основной свет"
+      name: "Свет"
       room: "Ванная"
 
     light.lo_light:

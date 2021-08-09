@@ -9,6 +9,8 @@ yandex_smart_home:
       - sensor.kn_temperature
       - sensor.lo_temperature
 
+      - sensor.be_co2
+
       - sensor.ba_humidity
       - sensor.be_humidity
       - sensor.ch_humidity
@@ -36,6 +38,13 @@ yandex_smart_home:
     sensor.lo_temperature:
       name: "Температура"
       room: "Лоджия"
+
+    sensor.be_co2:
+      name: "Диоксид углерода"
+      room: "Спальня"
+      properties:
+        - type: co2_level
+          entity: sensor.be_co2
 
     sensor.ba_humidity:
       name: "Влажность"
