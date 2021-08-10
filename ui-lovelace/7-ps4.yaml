@@ -2,3 +2,9 @@
   cards:
     - type: media-control
       entity: media_player.playstation_4
+
+    - type: media-control
+      entity: media_player.lg_webos_tv_9067
+
+    - type: media-control
+      entity: media_player.samsung_5
