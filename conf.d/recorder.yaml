@@ -1,9 +1,9 @@
 auto_purge: true
-purge_keep_days: 30
+purge_keep_days: 14
 commit_interval: 3600
-db_integrity_check: true
 
 include:
   domains:
     - sensor
     - climate
+    - media_player
