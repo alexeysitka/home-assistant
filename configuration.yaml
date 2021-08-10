@@ -10,7 +10,6 @@ homeassistant:
 # customize: !include customize.yaml
 
 http:
-  base_url: alexeysitka.duckdns.org
   server_port: 443
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
