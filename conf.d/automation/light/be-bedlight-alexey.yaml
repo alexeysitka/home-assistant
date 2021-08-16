@@ -1,9 +1,18 @@
 - id: 'Переключение прикроватной лампы Алексея'
   alias: be_bedlight_alexey_toggle
   trigger:
-    platform: state
-    entity_id: sensor.be_controlone_action
-    to: left
+    - platform: state
+      entity_id: sensor.be_controlone_action
+      to: left
+    - platform: state
+      entity_id: sensor.be_controltwo_action
+      to: left
+    - platform: state
+      entity_id: sensor.be_controlone_action
+      to: both
+    - platform: state
+      entity_id: sensor.be_controltwo_action
+      to: both
   action:
     - service: script.be_bedlight_toggle
       data:
@@ -12,9 +21,18 @@
 - id: 'Включение прикроватной лампы Алексея вечером, тёплый свет'
   alias: be_bedlight_alexey_on_evening_warm
   trigger:
-    platform: state
-    entity_id: sensor.be_controlone_action
-    to: left_double
+    - platform: state
+      entity_id: sensor.be_controlone_action
+      to: left_double
+    - platform: state
+      entity_id: sensor.be_controltwo_action
+      to: left_double
+    - platform: state
+      entity_id: sensor.be_controlone_action
+      to: both_double
+    - platform: state
+      entity_id: sensor.be_controltwo_action
+      to: both_double
   action:
     - service: script.be_bedlight_on_evening_warm
       data:
@@ -23,9 +41,18 @@
 - id: 'Включение прикроватной лампы Алексея ночью, красный свет'
   alias: be_bedlight_alexey_on_night_red
   trigger:
-    platform: state
-    entity_id: sensor.be_controlone_action
-    to: left_long
+    - platform: state
+      entity_id: sensor.be_controlone_action
+      to: left_long
+    - platform: state
+      entity_id: sensor.be_controltwo_action
+      to: left_long
+    - platform: state
+      entity_id: sensor.be_controlone_action
+      to: both_long
+    - platform: state
+      entity_id: sensor.be_controltwo_action
+      to: both_long
   action:
     - service: script.be_bedlight_on_night_red
       data:

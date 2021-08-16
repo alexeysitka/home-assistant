@@ -5,8 +5,14 @@
       entity_id: sensor.be_controlone_action
       to: right
     - platform: state
-      entity_id: sensor.be_bedlightremote_julia_action
-      to: single
+      entity_id: sensor.be_controltwo_action
+      to: right
+    - platform: state
+      entity_id: sensor.be_controlone_action
+      to: both
+    - platform: state
+      entity_id: sensor.be_controltwo_action
+      to: both
   action:
     - service: script.be_bedlight_toggle
       data:
@@ -19,8 +25,14 @@
       entity_id: sensor.be_controlone_action
       to: right_double
     - platform: state
-      entity_id: sensor.be_bedlightremote_julia_action
-      to: double
+      entity_id: sensor.be_controltwo_action
+      to: right_double
+    - platform: state
+      entity_id: sensor.be_controlone_action
+      to: both_double
+    - platform: state
+      entity_id: sensor.be_controltwo_action
+      to: both_double
   action:
     - service: script.be_bedlight_on_evening_warm
       data:
@@ -33,8 +45,14 @@
       entity_id: sensor.be_controlone_action
       to: right_long
     - platform: state
-      entity_id: sensor.be_bedlightremote_julia_action
-      to: triple
+      entity_id: sensor.be_controltwo_action
+      to: right_long
+    - platform: state
+      entity_id: sensor.be_controlone_action
+      to: both_long
+    - platform: state
+      entity_id: sensor.be_controltwo_action
+      to: both_long
   action:
     - service: script.be_bedlight_on_night_red
       data:
