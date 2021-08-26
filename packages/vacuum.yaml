@@ -1,12 +1,12 @@
 input_boolean:
-  daily_vacuum_first_run:
-    name: Daily Vacuum First Run
+  daily_vacuum_done:
+    name: Ежедневная уборка выполнена
     initial: off
   disable_daily_vacuum:
-    name: 'Выключить автоматизацию ежедневной уборки'
-    initial: on
+    name: Выключить автоматизацию ежедневной уборки
+    initial: off
   disable_dustbin_notification:
-    name: 'Отключить уведомление об очистке мусорного контейнера'
+    name: Отключить уведомление об очистке мусорного контейнера
     initial: off
 
 input_select:
@@ -98,15 +98,11 @@ script:
       - service: vacuum.start
         data:
           entity_id: vacuum.xiaomi_vacuum_cleaner
-      - service: notify.alexey
-        data:
-          message: |
-            Пылесос приступил к уборке всей квартиры
 
   vacuum_start_notify_door:
     description: 'Уведомление о начале уборки квартиры'
     sequence:
-      - service: notify.alexey
+      - service: script.notify_all
         data:
           message: |
             Пылесос начнёт убираться через 10 минут.
@@ -238,6 +234,10 @@ automation:
       - platform: state
         entity_id: input_select.vacuum_room
         from: 'Ничего не выбрано'
+    condition:
+      - condition: state
+        entity_id: input_boolean.daily_vacuum_done
+        state: 'off'
     action:
       - service: script.turn_on
         data_template:
@@ -281,13 +281,12 @@ automation:
         data_template:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           fan_speed: 'Silent'
-      - service: notify.alexey
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.daily_vacuum_done
+      - service: script.notify_all
         data:
           message: |
             Пылесос закончил уборку
-      - service: notify.alexey
-        data:
-          message: |
             Надо вытряхнуть контейнер
 
   - id: 'Уведомление об ошибке'
@@ -297,7 +296,7 @@ automation:
         entity_id: vacuum.xiaomi_vacuum_cleaner
         to: 'error'
     action:
-      - service: notify.alexey
+      - service: script.notify_all
         data:
           message: |
             Робот пылесос ошибка {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'error') }}
@@ -308,8 +307,12 @@ automation:
       - platform: time_pattern
         hours: 21
         minutes: 20
+    condition:
+      - condition: state
+        entity_id: input_boolean.daily_vacuum_done
+        state: 'off'
     action:
-      - service: notify.alexey
+      - service: script.notify_all
         data:
           message: |
             Пылесос начнёт убираться через 10 минут.
@@ -337,7 +340,7 @@ automation:
           entity_id: binary_sensor.kn_door_contact
           state: 'off'
     action:
-      - service: notify.alexey
+      - service: script.notify_all
         data:
           message: >
             Всё ещё закрыты двери:
@@ -352,9 +355,37 @@ automation:
       - platform: time_pattern
         hours: 21
         minutes: 30
+    condition:
+      - condition: state
+        entity_id: input_boolean.daily_vacuum_done
+        state: 'off'
     action:
+      - service: script.vacuum_start
       - service: vacuum.set_fan_speed
         data_template:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           fan_speed: 'Turbo'
-      - service: script.vacuum_start
+
+  - id: 'Уведомление о начале уборки'
+    alias: vacuum_started_cleaning_notify
+    trigger:
+      - platform: state
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        from: 'docked'
+        to: 'cleaning'
+    action:
+      - service: script.notify_all
+        data:
+          message: |
+            Пылесос начал уборку
+
+  - id: 'Сброс факта суточной уборки'
+    alias: daily_vacuum_done_reset
+    initial_state: true
+    trigger:
+      - platform: time_pattern
+        hours: 03
+        minutes: 00
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.daily_vacuum_done
