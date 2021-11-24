@@ -301,8 +301,8 @@ automation:
           message: |
             Робот пылесос ошибка {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'error') }}
 
-  - id: 'Уведомление об уборке'
-    alias: vacuum_scheduled_start_notification
+  - id: 'Предварительное уведомление об уборке'
+    alias: vacuum_scheduled_pre_start_notification
     trigger:
       - platform: time_pattern
         hours: 21
@@ -318,27 +318,32 @@ automation:
             Пылесос начнёт убираться через 10 минут.
             Откройте двери и уберите барахло с пола.
 
-  - id: 'Уведомление о закрытых дверях'
-    alias: vacuum_scheduled_start_notification_door
+  - id: 'Предварительное уведомление о закрытых дверях'
+    alias: vacuum_scheduled_pre_start_notification_door
     trigger:
       - platform: time_pattern
         hours: 21
         minutes: 25
     condition:
-      condition: or
+      condition: and
       conditions:
         - condition: state
-          entity_id: binary_sensor.be_door_contact
+          entity_id: input_boolean.daily_vacuum_done
           state: 'off'
-        - condition: state
-          entity_id: binary_sensor.ch_door_contact
-          state: 'off'
-        - condition: state
-          entity_id: binary_sensor.li_door_contact
-          state: 'off'
-        - condition: state
-          entity_id: binary_sensor.kn_door_contact
-          state: 'off'
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: binary_sensor.be_door_contact
+              state: 'off'
+            - condition: state
+              entity_id: binary_sensor.ch_door_contact
+              state: 'off'
+            - condition: state
+              entity_id: binary_sensor.li_door_contact
+              state: 'off'
+            - condition: state
+              entity_id: binary_sensor.kn_door_contact
+              state: 'off'
     action:
       - service: script.notify_all
         data:
@@ -361,10 +366,6 @@ automation:
         state: 'off'
     action:
       - service: script.vacuum_start
-      - service: vacuum.set_fan_speed
-        data_template:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
-          fan_speed: 'Turbo'
 
   - id: 'Уведомление о начале уборки'
     alias: vacuum_started_cleaning_notify
@@ -378,6 +379,19 @@ automation:
         data:
           message: |
             Пылесос начал уборку
+
+  - id: 'Выставить скорость при старте уборки'
+    alias: vacuum_started_cleaning_setup_turbo
+    trigger:
+      - platform: state
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        from: 'docked'
+        to: 'cleaning'
+    action:
+      - service: vacuum.set_fan_speed
+        data_template:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          fan_speed: 'Turbo'
 
   - id: 'Сброс факта суточной уборки'
     alias: daily_vacuum_done_reset
