@@ -1,189 +1,189 @@
-automation:
-  - id: 'Уведомление о влажности почвы Алоэ на кухне'
-    alias: kn_aloe_moisture_below
-    initial_state: true
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.kn_aloe_soil_moisture
-        below: 50
-    action:
-      - service: notify.alexey
-        data:
-          message: |
-            Нужно полить Алоэ на кухне
-      - service: notify.julia
-        data:
-          message: |
-            Нужно полить Алоэ на кухне
-
-  - id: 'Уведомление о влажности почвы Алоэ на кухне, проверка'
-    alias: kn_aloe_moisture_below_check
-    initial_state: true
-    trigger:
-      - platform: time
-        at: '12:00:00'
-    condition:
-      - platform: numeric_state
-        entity_id: sensor.kn_aloe_soil_moisture
-        below: 50
-    action:
-      - service: notify.alexey
-        data:
-          message: |
-            Нужно полить Алоэ на кухне
-      - service: notify.julia
-        data:
-          message: |
-            Нужно полить Алоэ на кухне
-
-
-  - id: 'Уведомление о влажности почвы Толстянки в детской'
-    alias: ch_crassula_moisture_below
-    initial_state: true
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.ch_crassula_soil_moisture
-        below: 50
-    action:
-      - service: notify.alexey
-        data:
-          message: |
-            Нужно полить Толстянку в детской
-      - service: notify.julia
-        data:
-          message: |
-            Нужно полить Толстянку в детской
-
-  - id: 'Уведомление о влажности почвы Толстянки в детской, проверка'
-    alias: ch_crassula_moisture_below_check
-    initial_state: true
-    trigger:
-      - platform: time
-        at: '12:00:00'
-    condition:
-      - platform: numeric_state
-        entity_id: sensor.ch_crassula_soil_moisture
-        below: 50
-    action:
-      - service: notify.alexey
-        data:
-          message: |
-            Нужно полить Толстянку в детской
-      - service: notify.julia
-        data:
-          message: |
-            Нужно полить Толстянку в детской
-
-
-  - id: 'Уведомление о влажности почвы Толстянки на кухне'
-    alias: kn_crassula_moisture_below
-    initial_state: true
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.kn_crassula_soil_moisture
-        below: 50
-    action:
-      - service: notify.alexey
-        data:
-          message: |
-            Нужно полить Толстянку на кухне
-      - service: notify.julia
-        data:
-          message: |
-            Нужно полить Толстянку на кухне
-
-  - id: 'Уведомление о влажности почвы Толстянки на кухне, проверка'
-    alias: kn_crassula_moisture_below_check
-    initial_state: true
-    trigger:
-      - platform: time
-        at: '12:00:00'
-    condition:
-      - platform: numeric_state
-        entity_id: sensor.kn_crassula_soil_moisture
-        below: 50
-    action:
-      - service: notify.alexey
-        data:
-          message: |
-            Нужно полить Толстянку на кухне
-      - service: notify.julia
-        data:
-          message: |
-            Нужно полить Толстянку на кухне
-
-
-  - id: 'Уведомление о влажности почвы Драцены в гостиной'
-    alias: li_dracaena_moisture_below
-    initial_state: true
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.li_dracaena_soil_moisture
-        below: 50
-    action:
-      - service: notify.alexey
-        data:
-          message: |
-            Нужно полить Драцену в гостиной
-      - service: notify.julia
-        data:
-          message: |
-            Нужно полить Драцену в гостиной
-
-  - id: 'Уведомление о влажности почвы Драцены в гостиной, проверка'
-    alias: li_dracaena_moisture_below_check
-    initial_state: true
-    trigger:
-      - platform: time
-        at: '12:00:00'
-    condition:
-      - platform: numeric_state
-        entity_id: sensor.li_dracaena_soil_moisture
-        below: 50
-    action:
-      - service: notify.alexey
-        data:
-          message: |
-            Нужно полить Драцену в гостиной
-      - service: notify.julia
-        data:
-          message: |
-            Нужно полить Драцену в гостиной
-
-
-  - id: 'Уведомление о влажности почвы Юкки на лоджии'
-    alias: lo_yukka_moisture_below
-    initial_state: true
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.lo_yukka_soil_moisture
-        below: 50
-    action:
-      - service: notify.alexey
-        data:
-          message: |
-            Нужно полить Юкку на лоджии
-      - service: notify.julia
-        data:
-          message: |
-            Нужно полить Юкку на лоджии
-
-  - id: 'Уведомление о влажности почвы Юкки на лоджии, проверка'
-    alias: lo_yukka_moisture_below_check
-    initial_state: true
-    trigger:
-      - platform: time
-        at: '12:00:00'
-    condition:
-      - platform: numeric_state
-        entity_id: sensor.lo_yukka_soil_moisture
-        below: 50
-    action:
-      - service: notify.alexey
-        data:
-          message: |
-            Нужно полить Юкку на лоджии
-      - service: notify.julia
-        data:
-          message: |
-            Нужно полить Юкку на лоджии
+#automation:
+#  - id: 'Уведомление о влажности почвы Алоэ на кухне'
+#    alias: kn_aloe_moisture_below
+#    initial_state: true
+#    trigger:
+#      - platform: numeric_state
+#        entity_id: sensor.kn_aloe_soil_moisture
+#        below: 50
+#    action:
+#      - service: notify.alexey
+#        data:
+#          message: |
+#            Нужно полить Алоэ на кухне
+#      - service: notify.julia
+#        data:
+#          message: |
+#            Нужно полить Алоэ на кухне
+#
+#  - id: 'Уведомление о влажности почвы Алоэ на кухне, проверка'
+#    alias: kn_aloe_moisture_below_check
+#    initial_state: true
+#    trigger:
+#      - platform: time
+#        at: '12:00:00'
+#    condition:
+#      - platform: numeric_state
+#        entity_id: sensor.kn_aloe_soil_moisture
+#        below: 50
+#    action:
+#      - service: notify.alexey
+#        data:
+#          message: |
+#            Нужно полить Алоэ на кухне
+#      - service: notify.julia
+#        data:
+#          message: |
+#            Нужно полить Алоэ на кухне
+#
+#
+#  - id: 'Уведомление о влажности почвы Толстянки в детской'
+#    alias: ch_crassula_moisture_below
+#    initial_state: true
+#    trigger:
+#      - platform: numeric_state
+#        entity_id: sensor.ch_crassula_soil_moisture
+#        below: 50
+#    action:
+#      - service: notify.alexey
+#        data:
+#          message: |
+#            Нужно полить Толстянку в детской
+#      - service: notify.julia
+#        data:
+#          message: |
+#            Нужно полить Толстянку в детской
+#
+#  - id: 'Уведомление о влажности почвы Толстянки в детской, проверка'
+#    alias: ch_crassula_moisture_below_check
+#    initial_state: true
+#    trigger:
+#      - platform: time
+#        at: '12:00:00'
+#    condition:
+#      - platform: numeric_state
+#        entity_id: sensor.ch_crassula_soil_moisture
+#        below: 50
+#    action:
+#      - service: notify.alexey
+#        data:
+#          message: |
+#            Нужно полить Толстянку в детской
+#      - service: notify.julia
+#        data:
+#          message: |
+#            Нужно полить Толстянку в детской
+#
+#
+#  - id: 'Уведомление о влажности почвы Толстянки на кухне'
+#    alias: kn_crassula_moisture_below
+#    initial_state: true
+#    trigger:
+#      - platform: numeric_state
+#        entity_id: sensor.kn_crassula_soil_moisture
+#        below: 50
+#    action:
+#      - service: notify.alexey
+#        data:
+#          message: |
+#            Нужно полить Толстянку на кухне
+#      - service: notify.julia
+#        data:
+#          message: |
+#            Нужно полить Толстянку на кухне
+#
+#  - id: 'Уведомление о влажности почвы Толстянки на кухне, проверка'
+#    alias: kn_crassula_moisture_below_check
+#    initial_state: true
+#    trigger:
+#      - platform: time
+#        at: '12:00:00'
+#    condition:
+#      - platform: numeric_state
+#        entity_id: sensor.kn_crassula_soil_moisture
+#        below: 50
+#    action:
+#      - service: notify.alexey
+#        data:
+#          message: |
+#            Нужно полить Толстянку на кухне
+#      - service: notify.julia
+#        data:
+#          message: |
+#            Нужно полить Толстянку на кухне
+#
+#
+#  - id: 'Уведомление о влажности почвы Драцены в гостиной'
+#    alias: li_dracaena_moisture_below
+#    initial_state: true
+#    trigger:
+#      - platform: numeric_state
+#        entity_id: sensor.li_dracaena_soil_moisture
+#        below: 50
+#    action:
+#      - service: notify.alexey
+#        data:
+#          message: |
+#            Нужно полить Драцену в гостиной
+#      - service: notify.julia
+#        data:
+#          message: |
+#            Нужно полить Драцену в гостиной
+#
+#  - id: 'Уведомление о влажности почвы Драцены в гостиной, проверка'
+#    alias: li_dracaena_moisture_below_check
+#    initial_state: true
+#    trigger:
+#      - platform: time
+#        at: '12:00:00'
+#    condition:
+#      - platform: numeric_state
+#        entity_id: sensor.li_dracaena_soil_moisture
+#        below: 50
+#    action:
+#      - service: notify.alexey
+#        data:
+#          message: |
+#            Нужно полить Драцену в гостиной
+#      - service: notify.julia
+#        data:
+#          message: |
+#            Нужно полить Драцену в гостиной
+#
+#
+#  - id: 'Уведомление о влажности почвы Юкки на лоджии'
+#    alias: lo_yukka_moisture_below
+#    initial_state: true
+#    trigger:
+#      - platform: numeric_state
+#        entity_id: sensor.lo_yukka_soil_moisture
+#        below: 50
+#    action:
+#      - service: notify.alexey
+#        data:
+#          message: |
+#            Нужно полить Юкку на лоджии
+#      - service: notify.julia
+#        data:
+#          message: |
+#            Нужно полить Юкку на лоджии
+#
+#  - id: 'Уведомление о влажности почвы Юкки на лоджии, проверка'
+#    alias: lo_yukka_moisture_below_check
+#    initial_state: true
+#    trigger:
+#      - platform: time
+#        at: '12:00:00'
+#    condition:
+#      - platform: numeric_state
+#        entity_id: sensor.lo_yukka_soil_moisture
+#        below: 50
+#    action:
+#      - service: notify.alexey
+#        data:
+#          message: |
+#            Нужно полить Юкку на лоджии
+#      - service: notify.julia
+#        data:
+#          message: |
+#            Нужно полить Юкку на лоджии
