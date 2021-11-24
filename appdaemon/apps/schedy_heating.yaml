@@ -6,7 +6,7 @@ schedy_heating:  # This is app instance name.
 
   schedule_append:
 #    - v: 'off'
-    - v: 22
+    - v: 21
 
   rooms:
     bath_room:
@@ -18,7 +18,7 @@ schedy_heating:  # This is app instance name.
           rules:
             - weekdays: 1-7
               rules:
-                - { start: '21:00', end: '02:00' }
+                - { start: '21:00', end: '03:00' }
         - v: 24
           rules:
             - weekdays: 1-7
@@ -30,42 +30,42 @@ schedy_heating:  # This is app instance name.
       actors:
         climate.be_radiator:
       schedule:
-        - v: 'off'
-#        - v: 25
-#          rules:
-#            - weekdays: 1-5
-#              rules:
-#                - { start: '9:00', end: '23:00' }
-#            - weekdays: 6-7
-#              rules:
-#                - { start: '10:00', end: '23:00' }
+#        - v: 'off'
+        - v: 23.5
+          rules:
+            - weekdays: 1-5
+              rules:
+                - { start: '9:00', end: '23:00' }
+            - weekdays: 6-7
+              rules:
+                - { start: '10:00', end: '23:00' }
 
     children_room:
       rescheduling_delay: 60
       actors:
         climate.ch_radiator:
       schedule:
-        - v: 'off'
-#        - v: 23
-#          rules:
-#            - weekdays: 1-5
-#              rules:
-#                - { start: '07:00', end: '23:00' }
-#            - weekdays: 6-7
-#              rules:
-#                - { start: '10:00', end: '23:00' }
+#        - v: 'off'
+        - v: 23.5
+          rules:
+            - weekdays: 1-5
+              rules:
+                - { start: '07:00', end: '23:00' }
+            - weekdays: 6-7
+              rules:
+                - { start: '10:00', end: '23:00' }
 
     living_room:
       rescheduling_delay: 60
       actors:
         climate.li_radiator:
       schedule:
-        - v: 'off'
-#        - v: 23
-#          rules:
-#            - weekdays: 1-5
-#              rules:
-#                - { start: '12:00', end: '23:00' }
-#            - weekdays: 6-7
-#              rules:
-#                - { start: '12:00', end: '23:00' }
+#        - v: 'off'
+        - v: 23.5
+          rules:
+            - weekdays: 1-5
+              rules:
+                - { start: '12:00', end: '23:00' }
+            - weekdays: 6-7
+              rules:
+                - { start: '12:00', end: '23:00' }
