@@ -1,6 +1,7 @@
 yandex_smart_home:
   filter:
     include_entities:
+      - light.be_light
       - light.be_sls
       - light.be_wall_light
       - light.be_bedlight_alexey_light
@@ -9,6 +10,7 @@ yandex_smart_home:
       - light.ch_sls
       - light.ch_upper_lights
 
+      - light.li_light
       - light.li_sls
       - light.li_upper_light
 
@@ -29,6 +31,9 @@ yandex_smart_home:
       - light.lo_ny_light
 
   entity_config:
+    light.be_light:
+      name: "Свет"
+      room: "Спальня"
     light.be_sls:
       name: "Ночник"
       room: "Спальня"
@@ -49,6 +54,9 @@ yandex_smart_home:
       name: "Гирлянда"
       room: "Детская"
 
+    light.li_light:
+      name: "Свет"
+      room: "Гостиная"
     light.li_sls:
       name: "Ночник"
       room: "Гостиная"
