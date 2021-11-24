@@ -8,6 +8,7 @@ yandex_smart_home:
       - light.be_bedlight_julia_light
 
       - light.ch_sls
+      - light.ch_dana_desktop_light
       - light.ch_upper_lights
 
       - light.li_light
@@ -47,6 +48,9 @@ yandex_smart_home:
       name: "Юлина лампа"
       room: "Спальня"
 
+    light.ch_dana_desktop_light:
+      name: "Настольная лампа Даны"
+      room: "Детская"
     light.ch_sls:
       name: "Ночник"
       room: "Детская"
