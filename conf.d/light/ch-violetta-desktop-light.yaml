@@ -1,0 +1,5 @@
+- platform: xiaomi_miio_philipslight
+  name: ch_violetta_desktop_light
+  host: 192.168.31.243
+  token: 9b1d4e646b841cce803c1d7596e27e92
+  model: philips.light.sread2
