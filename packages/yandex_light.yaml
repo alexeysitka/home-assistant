@@ -1,3 +1,5 @@
+# https://yandex.ru/dev/dialogs/smart-home/doc/concepts/device-type-sensor.html
+
 yandex_smart_home:
   filter:
     include_entities:
@@ -6,6 +8,9 @@ yandex_smart_home:
       - light.be_wall_light
       - light.be_bedlight_alexey_light
       - light.be_bedlight_julia_light
+      - light.be_cabinet_light
+
+      - sensor.be_cabinetilluminance_illuminance
 
       - light.ch_sls
       - light.ch_dana_desktop_light
@@ -48,6 +53,16 @@ yandex_smart_home:
     light.be_bedlight_julia_light:
       name: "Юлина лампа"
       room: "Спальня"
+    light.be_cabinet_light:
+      name: "Свет в кабинете"
+      room: "Спальня"
+
+    sensor.be_cabinetilluminance_illuminance:
+      name: "Освещённость кабинета"
+      room: "Спальня"
+      properties:
+        - type: illumination
+          entity: sensor.be_cabinetilluminance_illuminance
 
     light.ch_dana_desktop_light:
       name: "Настольная лампа Даны"

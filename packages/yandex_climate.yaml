@@ -1,3 +1,5 @@
+# https://yandex.ru/dev/dialogs/smart-home/doc/concepts/device-type-sensor.html
+
 yandex_smart_home:
   filter:
     include_entities:
