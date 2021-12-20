@@ -6,6 +6,10 @@ automation:
         entity_id: binary_sensor.ha_door_contact
         from: 'off'
         to: 'on'
+    condition:
+      - condition: time
+        after: '09:00:00'
+        before: '05:00:00'
     action:
       - service: script.be_alarm_siren
         data:
@@ -24,6 +28,10 @@ automation:
         entity_id: binary_sensor.ha_door_contact
         from: 'on'
         to: 'off'
+    condition:
+      - condition: time
+        after: '10:00:00'
+        before: '06:00:00'
     action:
       - service: script.be_alarm_siren
         data:
