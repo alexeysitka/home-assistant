@@ -25,6 +25,7 @@ input_select:
   vacuum_fan_speed_list:
     name: Мощность всасывания
     options:
+      - Gentle
       - Silent
       - Standard
       - Medium
@@ -90,6 +91,30 @@ sensor:
             {{ state_attr("vacuum.xiaomi_vacuum_cleaner", "cleaned_area") }}
           {% endif %}
         icon_template: 'mdi:ruler'
+      vacuum_cleaner_filter_left_hours:
+        friendly_name: 'Фильтр'
+        unit_of_measurement: 'ч'
+        value_template: >
+          {{ (states('sensor.xiaomi_vacuum_cleaner_filter_left') | float / 3600) | round }}
+        icon_template: 'mdi:air-filter'
+      vacuum_cleaner_side_brush_left_hours:
+        friendly_name: 'Боковая щётка'
+        unit_of_measurement: 'ч'
+        value_template: >
+          {{ (states('sensor.xiaomi_vacuum_cleaner_side_brush_left') | float / 3600) | round }}
+        icon_template: 'mdi:star-three-points-outline'
+      vacuum_cleaner_main_brush_left_hours:
+        friendly_name: 'Основная щётка'
+        unit_of_measurement: 'ч'
+        value_template: >
+          {{ (states('sensor.xiaomi_vacuum_cleaner_main_brush_left') | float / 3600) | round }}
+        icon_template: 'mdi:robot-vacuum-variant'
+      vacuum_cleaner_sensor_dirty_left_hours:
+        friendly_name: 'Сенсоры'
+        unit_of_measurement: 'ч'
+        value_template: >
+          {{ (states('sensor.xiaomi_vacuum_cleaner_sensor_dirty_left') | float / 3600) | round }}
+        icon_template: 'mdi:leak'
 
 script:
   vacuum_start:
@@ -199,6 +224,7 @@ script:
           message: |
             Пылесос приступил к уборке в кабинете
 
+
 automation:
   - id: 'Выставление режима всасывания пылесоса'
     alias: vacuum_set_fan_mode
@@ -263,7 +289,7 @@ automation:
       - service: vacuum.set_fan_speed
         data_template:
           entity_id: vacuum.xiaomi_vacuum_cleaner
-          fan_speed: 'Turbo'
+          fan_speed: 'Medium'
       - service: input_select.select_option
         entity_id: input_select.vacuum_room
         data_template:
@@ -280,7 +306,7 @@ automation:
       - service: vacuum.set_fan_speed
         data_template:
           entity_id: vacuum.xiaomi_vacuum_cleaner
-          fan_speed: 'Silent'
+          fan_speed: 'Gentle'
       - service: input_boolean.turn_on
         entity_id: input_boolean.daily_vacuum_done
       - service: script.notify_all
