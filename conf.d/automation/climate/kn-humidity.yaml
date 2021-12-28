@@ -1,41 +1,41 @@
-- id: 'Включить увлажнитель на кухне при значении ниже 40'
-  alias: kn_enable_humidifier_on_low_humidity
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.kn_humidity
-      below: 45
-  action:
-    - service: switch.turn_on
-      entity_id: switch.kn_humidifiersocket_switch
-
-- id: 'Выключить увлажнитель на кухне при значении выше 50'
-  alias: kn_disable_humidifier_on_normal_humidity
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.kn_humidity
-      above: 50
-  action:
-    - service: switch.turn_off
-      entity_id: switch.kn_humidifiersocket_switch
-
-- id: 'Уведомить о нехватке воды в увлажнителе кухни'
-  alias: kn_humidifier_out_of_water_notification
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.kn_humidifiersocket_power
-      below: 5
-  condition:
-    - condition: state
-      entity_id: switch.kn_humidifiersocket_switch
-      state: 'on'
-  action:
-    - service: switch.turn_off
-      entity_id: switch.kn_humidifiersocket_switch
-    - service: notify.alexey
-      data:
-        message: |
-          Закончилась вода в увлажнителе кухни, {{ states.sensor.kn_humidifiersocket_power.attributes["power"] }} W, {{ states.sensor.kn_humidifiersocket_power.attributes["state"] }}
-    - service: notify.julia
-      data:
-        message: |
-          Закончилась вода в увлажнителе кухни, {{ states.sensor.kn_humidifiersocket_power.attributes["power"] }} W, {{ states.sensor.kn_humidifiersocket_power.attributes["state"] }}
+#- id: 'Включить увлажнитель на кухне при значении ниже 40'
+#  alias: kn_enable_humidifier_on_low_humidity
+#  trigger:
+#    - platform: numeric_state
+#      entity_id: sensor.kn_humidity
+#      below: 45
+#  action:
+#    - service: switch.turn_on
+#      entity_id: switch.kn_humidifiersocket_switch
+#
+#- id: 'Выключить увлажнитель на кухне при значении выше 50'
+#  alias: kn_disable_humidifier_on_normal_humidity
+#  trigger:
+#    - platform: numeric_state
+#      entity_id: sensor.kn_humidity
+#      above: 50
+#  action:
+#    - service: switch.turn_off
+#      entity_id: switch.kn_humidifiersocket_switch
+#
+#- id: 'Уведомить о нехватке воды в увлажнителе кухни'
+#  alias: kn_humidifier_out_of_water_notification
+#  trigger:
+#    - platform: numeric_state
+#      entity_id: sensor.kn_humidifiersocket_power
+#      below: 5
+#  condition:
+#    - condition: state
+#      entity_id: switch.kn_humidifiersocket_switch
+#      state: 'on'
+#  action:
+#    - service: switch.turn_off
+#      entity_id: switch.kn_humidifiersocket_switch
+#    - service: notify.alexey
+#      data:
+#        message: |
+#          Закончилась вода в увлажнителе кухни, {{ states.sensor.kn_humidifiersocket_power.attributes["power"] }} W, {{ states.sensor.kn_humidifiersocket_power.attributes["state"] }}
+#    - service: notify.julia
+#      data:
+#        message: |
+#          Закончилась вода в увлажнителе кухни, {{ states.sensor.kn_humidifiersocket_power.attributes["power"] }} W, {{ states.sensor.kn_humidifiersocket_power.attributes["state"] }}
