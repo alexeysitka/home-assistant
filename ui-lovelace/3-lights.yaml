@@ -4,64 +4,82 @@
 
     - type: vertical-stack
       cards:
-      - type: markdown
-        content: >
-           **Панель светильников**
+        - title: 'Спальня'
+          type: entities
+          show_header_toggle: false
+          entities:
+            - entity: light.be_light
+              name: 'Свет в спальне'
+            - entity: light.be_cabinet_light
+              name: 'Свет в кабинете'
+            - entity: light.be_wall_light
+              name: 'Гилянда на картинах'
+            - entity: light.be_bedlight_alexey_light
+              name: 'Прикроватная лампа Алексея'
+            - entity: light.be_bedlight_julia_light
+              name: 'Прикроватная лампа Юлии'
+            - entity: light.be_sls
+              name: 'Ночник в спальне'
 
-      - type: entities
-        show_header_toggle: false
-        entities:
-          - entity: light.li_yolka_light
-            name: 'Гирлянда на Ёлке в гостиной'
-          - entity: light.li_upper_light
-            name: 'Гилянда на шторах в гостиной'
-          - entity: light.be_wall_light
-            name: 'Гилянда на картинах в спальне'
-          - entity: light.lo_ny_light
-            name: 'Гилянда на окне лоджии'
-          - entity: light.ch_upper_lights
-            name: 'Гилянда на шторах в детской'
-          - entity: light.be_bedlight_alexey_light
-            name: 'Прикроватная лампа Алексея'
-          - entity: light.be_bedlight_julia_light
-            name: 'Прикроватная лампа Юлии'
-          - entity: light.be_sls
-            name: 'Ночник в спальне'
-          - entity: light.kn_sls
-            name: 'Ночник на кухне'
-          - entity: light.ch_sls
-            name: 'Ночник в детской'
-          - entity: light.li_sls
-            name: 'Ночник в гостиной'
-          - entity: light.ha_sls
-            name: 'Ночник в прихожей'
-          - entity: light.co_sls
-            name: 'Ночник в коридоре'
-          - entity: timer.co_night_light
-            name: 'Таймер ночника в коридоре'
-          - entity: light.ha_light
-            name: 'Свет в прихожей'
-          - entity: timer.ha_light
-            name: 'Таймер света в прихожей'
-          - entity: light.co_light
-            name: 'Свет в коридоре'
-          - entity: timer.co_light
-            name: 'Таймер света в коридоре'
-          - entity: automation.co_start_timer_on_light_switched_on_and_no_motion_detected
-            name: 'Автоматизация датчиков движения в коридоре'
-          - entity: light.co_mirror_light
-            name: 'Подсветка зеркала в коридоре'
-          - entity: timer.co_mirror_light
-            name: 'Таймер подсветки зеркала в коридоре'
-          - entity: light.to_light
-            name: 'Свет в туалете'
-          - entity: timer.to_light
-            name: 'Таймер света в туалете'
-          - entity: automation.to_disable_light_on_timer_finished
-            name: 'Автоматизация выключения света в туалете'
-          - entity: light.ba_light
-            name: 'Свет в ванной'
-          - entity: light.philips_desklamp
-            name: 'Настольная'
-          - entity: light.philips_desklamp_ambient_light
-            name: 'Настольная эмбиент'
+        - title: 'Детская'
+          type: entities
+          show_header_toggle: false
+          entities:
+            - entity: light.ch_light
+              name: 'Свет в детской'
+            - entity: light.ch_dana_desktop_light
+              name: 'Лампа Даны'
+            - entity: light.ch_violetta_desktop_light
+              name: 'Лампа Виолетты'
+            - entity: light.ch_sls
+              name: 'Ночник в детской'
+
+        - title: 'Кухня'
+          type: entities
+          show_header_toggle: false
+          entities:
+            - entity: light.kn_light
+              name: 'Свет на кухне'
+            - entity: light.kn_ambient_light
+              name: 'Тихий свет на кухне'
+            - entity: light.lo_light
+              name: 'Свет на лоджии'
+            - entity: light.kn_sls
+              name: 'Ночник на кухне'
+
+    - type: vertical-stack
+      cards:
+        - title: 'Гостиная'
+          type: entities
+          show_header_toggle: false
+          entities:
+            - entity: light.li_light
+              name: 'Свет в гостиной'
+            - entity: light.li_sls
+              name: 'Ночник в гостиной'
+
+        - title: 'Коридор'
+          type: entities
+          show_header_toggle: false
+          entities:
+            - entity: light.co_light
+              name: 'Свет в коридоре'
+            - entity: light.co_mirror_light
+              name: 'Подсветка зеркала в коридоре'
+            - entity: light.ha_light
+              name: 'Свет в прихожей'
+            - entity: light.co_sls
+              name: 'Ночник в коридоре'
+            - entity: light.ha_sls
+              name: 'Ночник в прихожей'
+
+        - title: 'Санузлы'
+          type: entities
+          show_header_toggle: false
+          entities:
+            - entity: light.ba_light
+              name: 'Свет в ванной'
+            - entity: switch.ba_venting_switch
+              name: 'Вытяжка в ванной'
+            - entity: light.to_light
+              name: 'Свет в туалете'
