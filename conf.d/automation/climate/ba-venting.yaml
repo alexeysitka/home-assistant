@@ -60,3 +60,16 @@
   action:
     - service: switch.turn_on
       entity_id: switch.ba_venting_switch
+
+- id: 'Каждые полчаса проверять влажность и выключить вытяжку в ванной при нормальной влажности'
+  alias: ba_check_humidity_every_thirty_minutes
+  trigger:
+    - platform: time_pattern
+      minutes: /30
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.ba_humidity
+      below: 65
+  action:
+    - service: switch.turn_off
+      entity_id: switch.ba_venting_switch
