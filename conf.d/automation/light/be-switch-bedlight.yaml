@@ -25,3 +25,13 @@
     - service: script.gledopto_light_off
       data:
         bed_light: light.be_bedlight_julia_light
+
+- id: 'Принудительное выключение прикроватных ламп с основного выключателя'
+  alias: be_switch_force_bedlight_off
+  trigger:
+    - platform: state
+      entity_id: sensor.be_light_action
+      to: 'hold_right'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.be_light_switch_left
