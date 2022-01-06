@@ -6,8 +6,7 @@
         {{ is_state('switch.kn_boilerone_switch_l1', 'on') }}
       turn_on:
         - service: switch.turn_on
-          data:
-            entity_id: switch.kn_boilerone_switch_l1
+          entity_id: switch.kn_boilerone_switch_l1
         - service: mqtt.publish
           data:
             topic: 'SLSHubBE/BE_Thermostat/set'
@@ -18,8 +17,7 @@
             payload: '{"current_heating_setpoint": "25"}'
       turn_off:
         - service: switch.turn_off
-          data:
-            entity_id: switch.kn_boilerone_switch_l1
+          entity_id: switch.kn_boilerone_switch_l1
         - service: mqtt.publish
           data:
             topic: 'SLSHubBE/BE_Thermostat/set'

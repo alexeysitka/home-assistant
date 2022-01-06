@@ -6,12 +6,10 @@
         {{ is_state('switch.kn_boilertwo_switch_l2', 'on') }}
       turn_on:
         - service: switch.turn_on
-          data:
-            entity_id: switch.kn_boilertwo_switch_l2
+          entity_id: switch.kn_boilertwo_switch_l2
       turn_off:
         - service: switch.turn_off
-          data:
-            entity_id: switch.kn_boilertwo_switch_l2
+          entity_id: switch.kn_boilertwo_switch_l2
       icon_template: >-
         {% if is_state('switch.kn_boilertwo_switch_l2', 'on') %}
         mdi:radiator

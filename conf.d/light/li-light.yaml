@@ -6,9 +6,7 @@
         {{ is_state('switch.li_light_switch_left', 'on') }}
       turn_on:
         - service: switch.turn_on
-          data:
-            entity_id: switch.li_light_switch_left
+          entity_id: switch.li_light_switch_left
       turn_off:
         - service: switch.turn_off
-          data:
-            entity_id: switch.li_light_switch_left
+          entity_id: switch.li_light_switch_left
