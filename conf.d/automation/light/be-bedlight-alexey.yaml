@@ -14,7 +14,7 @@
       entity_id: sensor.be_controltwo_action
       to: both
   action:
-    - service: script.be_bedlight_toggle
+    - service: script.gledopto_light_toggle
       data:
         bed_light: light.be_bedlight_alexey_light
 
@@ -34,7 +34,7 @@
       entity_id: sensor.be_controltwo_action
       to: both_double
   action:
-    - service: script.be_bedlight_on_evening_warm
+    - service: script.gledopto_light_on_evening_warm
       data:
         bed_light: light.be_bedlight_alexey_light
 
@@ -54,6 +54,6 @@
       entity_id: sensor.be_controltwo_action
       to: both_long
   action:
-    - service: script.be_bedlight_on_night_red
+    - service: script.gledopto_light_on_night_red
       data:
         bed_light: light.be_bedlight_alexey_light
