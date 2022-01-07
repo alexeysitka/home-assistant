@@ -1,70 +1,55 @@
 - title: 'Пылесос'
   icon: mdi:robot-vacuum
   cards:
-    - type: 'custom:vacuum-card'
-      entity: vacuum.xiaomi_vacuum_cleaner
-      stats:
-        default:
-          - entity_id: sensor.vacuum_cleaner_filter_left_hours
-            unit: ч.
-            subtitle: 'Фильтр'
-          - entity_id: sensor.vacuum_cleaner_side_brush_left_hours
-            unit: ч.
-            subtitle: 'Боковая щётка'
-          - entity_id: sensor.vacuum_cleaner_main_brush_left_hours
-            unit: ч.
-            subtitle: 'Основная щётка'
-          - entity_id: sensor.vacuum_cleaner_sensor_dirty_left_hours
-            unit: ч.
-            subtitle: 'Сенсоры'
-        cleaning:
-          - entity_id: sensor.vacuum_cleaned_area
-            unit: м²
-            subtitle: 'Всего убрано'
-          - entity_id: sensor.vacuum_cleaning_time
-            unit: мин.
-            subtitle: 'Время уборки'
-      shortcuts:
-        - name: 'Убраться в коридоре'
-          service: script.co_vacuum_clean
-          icon: 'mdi:door'
-        - name: 'Убраться на кухне'
-          service: script.kn_vacuum_clean
-          icon: 'mdi:silverware-fork-knife'
-        - name: 'Убраться в спальне'
-          service: script.be_vacuum_clean
-          icon: 'mdi:bed-empty'
-        - name: 'Убраться в детской'
-          service: script.ch_vacuum_clean
-          icon: 'mdi:bunk-bed'
-        - name: 'Убраться в гостиной'
-          service: script.li_vacuum_clean
-          icon: 'mdi:sofa'
-        - name: 'Убраться в кабинете'
-          service: script.ca_vacuum_clean
-          icon: 'mdi:file-cabinet'
+    - type: vertical-stack
+      cards:
+        - type: 'custom:vacuum-card'
+          entity: vacuum.xiaomi_vacuum_cleaner
+          stats:
+            default:
+              - entity_id: sensor.vacuum_cleaner_filter_left_hours
+                unit: ч.
+                subtitle: 'Фильтр'
+              - entity_id: sensor.vacuum_cleaner_side_brush_left_hours
+                unit: ч.
+                subtitle: 'Боковая щётка'
+              - entity_id: sensor.vacuum_cleaner_main_brush_left_hours
+                unit: ч.
+                subtitle: 'Основная щётка'
+              - entity_id: sensor.vacuum_cleaner_sensor_dirty_left_hours
+                unit: ч.
+                subtitle: 'Сенсоры'
+            cleaning:
+              - entity_id: sensor.vacuum_cleaned_area
+                unit: м²
+                subtitle: 'Всего убрано'
+              - entity_id: sensor.vacuum_cleaning_time
+                unit: мин.
+                subtitle: 'Время уборки'
+          shortcuts:
+            - name: 'Убраться в коридоре'
+              service: script.co_vacuum_clean
+              icon: 'mdi:door'
+            - name: 'Убраться на кухне'
+              service: script.kn_vacuum_clean
+              icon: 'mdi:silverware-fork-knife'
+            - name: 'Убраться в спальне'
+              service: script.be_vacuum_clean
+              icon: 'mdi:bed-empty'
+            - name: 'Убраться в детской'
+              service: script.ch_vacuum_clean
+              icon: 'mdi:bunk-bed'
+            - name: 'Убраться в гостиной'
+              service: script.li_vacuum_clean
+              icon: 'mdi:sofa'
+            - name: 'Убраться в кабинете'
+              service: script.ca_vacuum_clean
+              icon: 'mdi:file-cabinet'
 
-#    - type: vertical-stack
-#      cards:
-#        - type: custom:xiaomi-vacuum-card
-#          entity: vacuum.xiaomi_vacuum_cleaner
-#          image: false
-#          name: 'Шурик'
-#          vendor: xiaomi
-#          labels:
-#            status: Статус
-#            battery: Батарея
-#            mode: Режим
-#            main_brush: Основная щётка
-#            side_brush: Боковая щётка
-#            filter: Фильтр
-#            sensor: Сенсоры
-#        - type: entities
-#          show_header_toggle: false
-#          entities:
-#            - input_select.vacuum_room
-#            - input_select.vacuum_fan_speed_list
-#            - sensor.vacuum_status
-#            - sensor.vacuum_battery
-#            - sensor.vacuum_cleaning_time
-#            - sensor.vacuum_cleaned_area
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: automation.vacuum_scheduled_start
+              name: 'Авто-уборка'
+            - entity: input_boolean.daily_vacuum_done
+              name: 'Уборка проведена'
