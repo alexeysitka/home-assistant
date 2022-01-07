@@ -1,30 +1,30 @@
 - platform: template
   sensors:
-    last_google_backup_train:
+    last_google_backup:
       friendly_name: 'Последний удачный бэкап'
       value_template: >
-        {% if states.sensor.snapshot_backup %}
-          {{ (as_timestamp(states.sensor.snapshot_backup.attributes.last_snapshot)) | timestamp_custom("%d.%m.%Y %H:%M") }}
+        {% if states.sensor.backup_state %}
+          {{ (as_timestamp(states.sensor.backup_state.attributes.last_backup)) | timestamp_custom("%d.%m.%Y %H:%M") }}
         {% else %}
           Not initialized yet
         {% endif %}
       icon_template: mdi:calendar-check-outline
 
-    snapshots_in_google_drive_train:
-      friendly_name: 'Снапшотов на Google Drive'
+    backups_in_google_drive:
+      friendly_name: 'Бэкапов на Google Drive'
       value_template: >
-        {% if states.sensor.snapshot_backup %}
-          {{ states.sensor.snapshot_backup.attributes.snapshots_in_google_drive }}
+        {% if states.sensor.backup_state %}
+          {{ states.sensor.backup_state.attributes.backups_in_google_drive }}
         {% else %}
           Not initialized yet
         {% endif %}
       icon_template: mdi:folder-google-drive
 
-    snapshots_in_hassio_train:
-      friendly_name: 'Снапшотов в Наssio'
+    backups_in_ha:
+      friendly_name: 'Бэкапов в Home Assistant'
       value_template: >
-        {% if states.sensor.snapshot_backup %}
-          {{ states.sensor.snapshot_backup.attributes.snapshots_in_hassio }}
+        {% if states.sensor.backup_state %}
+          {{ states.sensor.backup_state.attributes.backups_in_home_assistant }}
         {% else %}
           Not initialized yet
         {% endif %}

@@ -28,9 +28,9 @@
         - type: entities
           show_header_toggle: false
           entities:
-            - entity: sensor.last_google_backup_train
-            - entity: sensor.snapshots_in_hassio_train
-            - entity: sensor.snapshots_in_google_drive_train
+            - entity: sensor.last_google_backup
+            - entity: sensor.backups_in_ha
+            - entity: sensor.backups_in_google_drive
 
         - type: entities
           show_header_toggle: false
