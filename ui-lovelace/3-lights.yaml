@@ -77,9 +77,9 @@
           type: entities
           show_header_toggle: false
           entities:
+            - entity: light.to_light
+              name: 'Свет в туалете'
             - entity: light.ba_light
               name: 'Свет в ванной'
             - entity: switch.ba_venting_switch
               name: 'Вытяжка в ванной'
-            - entity: light.to_light
-              name: 'Свет в туалете'
