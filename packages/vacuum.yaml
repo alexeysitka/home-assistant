@@ -260,10 +260,6 @@ automation:
       - platform: state
         entity_id: input_select.vacuum_room
         from: 'Ничего не выбрано'
-    condition:
-      - condition: state
-        entity_id: input_boolean.daily_vacuum_done
-        state: 'off'
     action:
       - service: script.turn_on
         data_template:
@@ -334,9 +330,14 @@ automation:
         hours: 21
         minutes: 20
     condition:
-      - condition: state
-        entity_id: input_boolean.daily_vacuum_done
-        state: 'off'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: input_boolean.daily_vacuum_done
+            state: 'off'
+          - condition: state
+            entity_id: automation.vacuum_scheduled_start
+            state: 'on'
     action:
       - service: script.notify_all
         data:
@@ -351,25 +352,28 @@ automation:
         hours: 21
         minutes: 25
     condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_boolean.daily_vacuum_done
-          state: 'off'
-        - condition: or
-          conditions:
-            - condition: state
-              entity_id: binary_sensor.be_door_contact
-              state: 'off'
-            - condition: state
-              entity_id: binary_sensor.ch_door_contact
-              state: 'off'
-            - condition: state
-              entity_id: binary_sensor.li_door_contact
-              state: 'off'
-            - condition: state
-              entity_id: binary_sensor.kn_door_contact
-              state: 'off'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: input_boolean.daily_vacuum_done
+            state: 'off'
+          - condition: state
+            entity_id: automation.vacuum_scheduled_start
+            state: 'on'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: binary_sensor.be_door_contact
+            state: 'off'
+          - condition: state
+            entity_id: binary_sensor.ch_door_contact
+            state: 'off'
+          - condition: state
+            entity_id: binary_sensor.li_door_contact
+            state: 'off'
+          - condition: state
+            entity_id: binary_sensor.kn_door_contact
+            state: 'off'
     action:
       - service: script.notify_all
         data:
