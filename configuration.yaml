@@ -17,13 +17,13 @@ http:
 lovelace:
   mode: yaml
   resources:
-    - url: /local/vacuum-card.js?v=1.0
+    - url: /local/community/lovelace-valetudo-map-card/valetudo-map-card.js?v=1.0
       type: module
-    - url: /local/lovelace-custom/stack-in-card.js?v=1.0
+    - url: /local/community/stack-in-card/stack-in-card.js?v=1.0
       type: module
-    - url: /local/lovelace-custom/mini-graph-card-bundle.js?v=1.0
+    - url: /local/community/mini-graph-card/mini-graph-card-bundle.js?v=1.0
       type: module
-    - url: /local/lovelace-custom/simple-thermostat.js?v=1.0
+    - url: /local/community/simple-thermostat/simple-thermostat.js?v=1.0
       type: module
 
 # Configure a default setup of Home Assistant (frontend, api, etc)

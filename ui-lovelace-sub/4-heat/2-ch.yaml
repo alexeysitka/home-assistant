@@ -29,8 +29,7 @@
     - type: custom:simple-thermostat
       entity: climate.ch_radiator
       step_layout: row
-      name: false
-      icon: false
+      header: false
 
     - type: entities
       show_state: true
