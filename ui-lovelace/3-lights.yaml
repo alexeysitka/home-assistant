@@ -10,6 +10,8 @@
           entities:
             - entity: light.be_light
               name: 'Свет в спальне'
+            - entity: sensor.be_cabinetilluminance_illuminance
+              name: 'Освещённость в кабинете'
             - entity: light.be_cabinet_light
               name: 'Свет в кабинете'
             - entity: light.be_wall_light
