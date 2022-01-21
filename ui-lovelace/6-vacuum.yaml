@@ -4,7 +4,7 @@
     - type: vertical-stack
       cards:
         - type: 'custom:vacuum-card'
-          entity: vacuum.xiaomi_vacuum_cleaner
+          entity: vacuum.valetudo_roborocks5
           stats:
             default:
               - entity_id: sensor.vacuum_cleaner_filter_left_hours
@@ -45,6 +45,19 @@
             - name: 'Убраться в кабинете'
               service: script.ca_vacuum_clean
               icon: 'mdi:file-cabinet'
+
+        - type: 'custom:valetudo-map-card'
+          vacuum: 'valetudo_roborocks5'
+          title: ~
+          show_status: false
+          show_battery_level: false
+          show_start_button: false
+          show_pause_button: false
+          show_stop_button: false
+          show_home_button: false
+          show_locate_button: false
+          background_color: '#03a9f4'
+          crop: {top: -10, bottom: -10, left: 0, right: 0}
 
         - type: entities
           show_header_toggle: false

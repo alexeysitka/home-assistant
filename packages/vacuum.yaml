@@ -9,50 +9,28 @@ input_boolean:
     name: Отключить уведомление об очистке мусорного контейнера
     initial: off
 
-input_select:
-  vacuum_room:
-    name: Выберите комнату
-    options:
-      - Ничего не выбрано
-      - Вся квартира
-      - Коридор
-      - Кухня
-      - Спальня
-      - Детская
-      - Гостиная
-      - Туалет
-      - Кабинет
-  vacuum_fan_speed_list:
-    name: Мощность всасывания
-    options:
-      - Gentle
-      - Silent
-      - Standard
-      - Medium
-      - Turbo
-
 sensor:
   - platform: template
     sensors:
       vacuum_status:
         friendly_name: 'Статус'
         value_template: >
-          {% if state_attr("vacuum.xiaomi_vacuum_cleaner", "status") == None %}
+          {% if states("vacuum.valetudo_roborocks5") == None %}
             Unknown
           {% else %}
-            {{ state_attr("vacuum.xiaomi_vacuum_cleaner", "status") }}
+            {{ states("vacuum.valetudo_roborocks5") }}
           {% endif %}
         icon_template: >
-          {% set val =  state_attr('vacuum.xiaomi_vacuum_cleaner', 'status')  %}
-          {% if val == 'Charging' %}
+          {% set val =  states("vacuum.valetudo_roborocks5")  %}
+          {% if val == 'charging' %}
             mdi:battery-charging
-          {% elif val == 'Cleaning' %}
+          {% elif val == 'cleaning' %}
             mdi:move-resize
-          {% elif val == 'Returning home' %}
+          {% elif val == 'returning' %}
             mdi:keyboard-return
-          {% elif val == 'Idle' %}
+          {% elif val == 'idle' %}
             mdi:dots-horizontal
-          {% elif val == 'Paused' %}
+          {% elif val == 'paused' %}
             mdi:pause-circle
           {% else %}
             mdi:help-circle
@@ -60,61 +38,71 @@ sensor:
       vacuum_battery:
         friendly_name: 'Заряд батареи'
         value_template: >
-          {% if state_attr("vacuum.xiaomi_vacuum_cleaner", "battery_level") == None %}
+          {% if state_attr("vacuum.valetudo_roborocks5", "battery_level") == None %}
             0
           {% else %}
-            {{ state_attr("vacuum.xiaomi_vacuum_cleaner", "battery_level") }}
+            {{ state_attr("vacuum.valetudo_roborocks5", "battery_level") }}
           {% endif %}
         unit_of_measurement: '%'
         icon_template: >
-          {% if state_attr("vacuum.xiaomi_vacuum_cleaner", "battery_icon") == None %}
+          {% if state_attr("vacuum.valetudo_roborocks5", "battery_icon") == None %}
             mdi:battery-unknown
           {% else %}
-            {{ state_attr("vacuum.xiaomi_vacuum_cleaner", "battery_icon") }}
+            {{ state_attr("vacuum.valetudo_roborocks5", "battery_icon") }}
           {% endif %}
-      vacuum_cleaning_time:
-        friendly_name: 'Последняя уборка'
-        value_template: >
-          {% if state_attr("vacuum.xiaomi_vacuum_cleaner", "cleaning_time") == None %}
-            0
-          {% else %}
-            {{ state_attr("vacuum.xiaomi_vacuum_cleaner", "cleaning_time") }}
-          {% endif %}
-        icon_template: 'mdi:timer'
-      vacuum_cleaned_area:
-        friendly_name: 'Площадь'
-        unit_of_measurement: 'м²'
-        value_template: >
-          {% if state_attr("vacuum.xiaomi_vacuum_cleaner", "cleaned_area") == None %}
-            0
-          {% else %}
-            {{ state_attr("vacuum.xiaomi_vacuum_cleaner", "cleaned_area") }}
-          {% endif %}
-        icon_template: 'mdi:ruler'
-      vacuum_cleaner_filter_left_hours:
-        friendly_name: 'Фильтр'
-        unit_of_measurement: 'ч'
-        value_template: >
-          {{ (states('sensor.xiaomi_vacuum_cleaner_filter_left') | float / 3600) | round }}
-        icon_template: 'mdi:air-filter'
-      vacuum_cleaner_side_brush_left_hours:
-        friendly_name: 'Боковая щётка'
-        unit_of_measurement: 'ч'
-        value_template: >
-          {{ (states('sensor.xiaomi_vacuum_cleaner_side_brush_left') | float / 3600) | round }}
-        icon_template: 'mdi:star-three-points-outline'
-      vacuum_cleaner_main_brush_left_hours:
-        friendly_name: 'Основная щётка'
-        unit_of_measurement: 'ч'
-        value_template: >
-          {{ (states('sensor.xiaomi_vacuum_cleaner_main_brush_left') | float / 3600) | round }}
-        icon_template: 'mdi:robot-vacuum-variant'
-      vacuum_cleaner_sensor_dirty_left_hours:
-        friendly_name: 'Сенсоры'
-        unit_of_measurement: 'ч'
-        value_template: >
-          {{ (states('sensor.xiaomi_vacuum_cleaner_sensor_dirty_left') | float / 3600) | round }}
-        icon_template: 'mdi:leak'
+
+  - platform: mqtt
+    object_id: vacuum_cleaning_time
+    name: 'Последняя уборка'
+    state_topic: 'Valetudo/RoborockS5/CurrentStatisticsCapability/time'
+    value_template: >
+      {{ value }}
+    icon: 'mdi:timer'
+
+  - platform: mqtt
+    object_id: vacuum_cleaned_area
+    name: 'Площадь'
+    unit_of_measurement: 'м²'
+    state_topic: 'Valetudo/RoborockS5/CurrentStatisticsCapability/area'
+    value_template: >
+      {{ (value | float / 10000) | round }}
+    icon: 'mdi:ruler'
+
+  - platform: mqtt
+    object_id: vacuum_cleaner_filter_left_hours
+    name: 'Фильтр'
+    unit_of_measurement: 'ч'
+    state_topic: 'Valetudo/RoborockS5/ConsumableMonitoringCapability/filter-main'
+    value_template: >
+      {{ (value | float / 3600) | round }}
+    icon: 'mdi:air-filter'
+
+  - platform: mqtt
+    object_id: vacuum_cleaner_side_brush_left_hours
+    name: 'Боковая щётка'
+    unit_of_measurement: 'ч'
+    state_topic: 'Valetudo/RoborockS5/ConsumableMonitoringCapability/brush-side_right'
+    value_template: >
+      {{ (value | float / 3600) | round }}
+    icon: 'mdi:star-three-points-outline'
+
+  - platform: mqtt
+    object_id: vacuum_cleaner_main_brush_left_hours
+    name: 'Основная щётка'
+    unit_of_measurement: 'ч'
+    state_topic: 'Valetudo/RoborockS5/ConsumableMonitoringCapability/brush-main'
+    value_template: >
+      {{ (value | float / 3600) | round }}
+    icon: 'mdi:robot-vacuum-variant'
+
+  - platform: mqtt
+    object_id: vacuum_cleaner_sensor_dirty_left_hours
+    name: 'Сенсоры'
+    unit_of_measurement: 'ч'
+    state_topic: 'Valetudo/RoborockS5/ConsumableMonitoringCapability/sensor-all'
+    value_template: >
+      {{ (value | float / 3600) | round }}
+    icon: 'mdi:leak'
 
 script:
   vacuum_start:
@@ -122,7 +110,7 @@ script:
     sequence:
       - service: vacuum.start
         data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
+          entity_id: vacuum.valetudo_roborocks5
 
   vacuum_start_notify_door:
     description: 'Уведомление о начале уборки квартиры'
@@ -136,24 +124,37 @@ script:
   be_vacuum_clean:
     description: 'Пропылесосить спальню'
     sequence:
-      - service: vacuum.send_command
+      - service: mqtt.publish
         data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
-          command: app_zoned_clean
-          params: [ [ 22504,18211,25554,25111,1 ] ]
+          topic: 'Valetudo/RoborockS5/MapSegmentationCapability/clean/set'
+          payload: >
+            { "segment_ids": [ "22", "16" ]}
       - service: notify.alexey
         data:
           message: |
             Пылесос приступил к уборке в cпальне
 
+  ca_vacuum_clean:
+    description: 'Пропылесосить кабинет'
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: 'Valetudo/RoborockS5/MapSegmentationCapability/clean/set'
+          payload: >
+            { "segment_ids": [ "16" ]}
+      - service: notify.alexey
+        data:
+          message: |
+            Пылесос приступил к уборке в кабинете
+
   ch_vacuum_clean:
     description: 'Пропылесосить детскую'
     sequence:
-      - service: vacuum.send_command
+      - service: mqtt.publish
         data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
-          command: app_zoned_clean
-          params: [ [ 22528,27088,26328,31088,1 ] ]
+          topic: 'Valetudo/RoborockS5/MapSegmentationCapability/clean/set'
+          payload: >
+            { "segment_ids": [ "21" ]}
       - service: notify.alexey
         data:
           message: |
@@ -162,11 +163,11 @@ script:
   li_vacuum_clean:
     description: 'Пропылесосить гостиную'
     sequence:
-      - service: vacuum.send_command
+      - service: mqtt.publish
         data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
-          command: app_zoned_clean
-          params: [ [ 26431,26949,32031,31349,1 ] ]
+          topic: 'Valetudo/RoborockS5/MapSegmentationCapability/clean/set'
+          payload: >
+            { "segment_ids": [ "20" ]}
       - service: notify.alexey
         data:
           message: |
@@ -175,11 +176,11 @@ script:
   kn_vacuum_clean:
     description: 'Пропылесосить кухню'
     sequence:
-      - service: vacuum.send_command
+      - service: mqtt.publish
         data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
-          command: app_zoned_clean
-          params: [ [ 32663,27125,37363,30325,1 ] ]
+          topic: 'Valetudo/RoborockS5/MapSegmentationCapability/clean/set'
+          payload: >
+            { "segment_ids": [ "19" ]}
       - service: notify.alexey
         data:
           message: |
@@ -188,11 +189,11 @@ script:
   co_vacuum_clean:
     description: 'Пропылесосить коридор'
     sequence:
-      - service: vacuum.send_command
+      - service: mqtt.publish
         data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
-          command: app_zoned_clean
-          params: [ [ 25578,23783,35628,27083,1 ],[ 24647,25083,25847,27133,1 ] ]
+          topic: 'Valetudo/RoborockS5/MapSegmentationCapability/clean/set'
+          payload: >
+            { "segment_ids": [ "17", "18" ]}
       - service: notify.alexey
         data:
           message: |
@@ -201,128 +202,18 @@ script:
   ha_vacuum_clean:
     description: 'Пропылесосить прихожую'
     sequence:
-      - service: vacuum.send_command
+      - service: mqtt.publish
         data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
-          command: app_zoned_clean
-          params: [ [ 34023,25341,35573,26991,1 ] ]
+          topic: 'Valetudo/RoborockS5/MapSegmentationCapability/clean/set'
+          payload: >
+            { "segment_ids": [ "18" ]}
       - service: notify.alexey
         data:
           message: |
             Пылесос приступил к уборке в туалете
 
-  ca_vacuum_clean:
-    description: 'Пропылесосить кабинет'
-    sequence:
-      - service: vacuum.send_command
-        data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
-          command: app_zoned_clean
-          params: [ [ 22554,18248,25354,20048,1 ] ]
-      - service: notify.alexey
-        data:
-          message: |
-            Пылесос приступил к уборке в кабинете
-
 
 automation:
-  - id: 'Выставление режима всасывания пылесоса'
-    alias: vacuum_set_fan_mode
-    trigger:
-      platform: state
-      entity_id: input_select.vacuum_fan_speed_list
-    action:
-      - service: vacuum.set_fan_speed
-        data_template:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
-          fan_speed: "{{ states('input_select.vacuum_fan_speed_list') }}"
-
-  - id: 'Обновление состояния для селекта режима всасывания пылесоса'
-    alias: vacuum_update_input_select_fan_mode
-    initial_state: true
-    trigger:
-      - platform: homeassistant
-        event: start
-      - platform: state
-        entity_id: sensor.vacuum_fan_speed
-    condition:
-      condition: template
-      value_template: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'fan_speed') != states('input_select.vacuum_fan_speed_list') }}"
-    action:
-      - service: input_select.select_option
-        entity_id: input_select.vacuum_fan_speed_list
-        data_template:
-          option: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'fan_speed') }}"
-
-  - id: 'Начать уборку комнаты'
-    alias: vacuum_start_cleaning_room
-    trigger:
-      - platform: state
-        entity_id: input_select.vacuum_room
-        from: 'Ничего не выбрано'
-    action:
-      - service: script.turn_on
-        data_template:
-          entity_id: >
-            {% if is_state('input_select.vacuum_room', 'Вся квартира') %}
-              script.vacuum_start
-            {% elif is_state('input_select.vacuum_room', 'Коридор') %}
-              script.co_vacuum_clean
-            {% elif is_state('input_select.vacuum_room', 'Кухня') %}
-              script.kn_vacuum_clean
-            {% elif is_state('input_select.vacuum_room', 'Гостиная') %}
-              script.li_vacuum_clean
-            {% elif is_state('input_select.vacuum_room', 'Детская') %}
-              script.ch_vacuum_clean
-            {% elif is_state('input_select.vacuum_room', 'Спальня') %}
-              script.be_vacuum_clean
-            {% elif is_state('input_select.vacuum_room', 'Туалет') %}
-              script.to_vacuum_clean
-            {% elif is_state('input_select.vacuum_room', 'Кабинет') %}
-              script.ca_vacuum_clean
-            {% else %}
-            {% endif %}
-      - service: vacuum.set_fan_speed
-        data_template:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
-          fan_speed: 'Medium'
-      - service: input_select.select_option
-        entity_id: input_select.vacuum_room
-        data_template:
-          option: 'Ничего не выбрано'
-
-  - id: 'Робот пылесос закончил уборку'
-    alias: vacuum_finished_cleaning
-    trigger:
-      - platform: state
-        entity_id: vacuum.xiaomi_vacuum_cleaner
-        from: 'cleaning'
-        to: 'returning'
-    action:
-      - service: vacuum.set_fan_speed
-        data_template:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
-          fan_speed: 'Gentle'
-      - service: input_boolean.turn_on
-        entity_id: input_boolean.daily_vacuum_done
-      - service: script.notify_all
-        data:
-          message: |
-            Пылесос закончил уборку
-            Надо вытряхнуть контейнер
-
-  - id: 'Уведомление об ошибке'
-    alias: vacuum_error_notification
-    trigger:
-      - platform: state
-        entity_id: vacuum.xiaomi_vacuum_cleaner
-        to: 'error'
-    action:
-      - service: script.notify_all
-        data:
-          message: |
-            Робот пылесос ошибка {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'error') }}
-
   - id: 'Предварительное уведомление об уборке'
     alias: vacuum_scheduled_pre_start_notification
     trigger:
@@ -401,7 +292,7 @@ automation:
     alias: vacuum_started_cleaning_notify
     trigger:
       - platform: state
-        entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.valetudo_roborocks5
         from: 'docked'
         to: 'cleaning'
     action:
@@ -414,14 +305,34 @@ automation:
     alias: vacuum_started_cleaning_setup_turbo
     trigger:
       - platform: state
-        entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.valetudo_roborocks5
         from: 'docked'
         to: 'cleaning'
     action:
       - service: vacuum.set_fan_speed
         data_template:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
-          fan_speed: 'Turbo'
+          entity_id: vacuum.valetudo_roborocks5
+          fan_speed: 'high'
+
+  - id: 'Робот пылесос закончил уборку'
+    alias: vacuum_finished_cleaning
+    trigger:
+      - platform: state
+        entity_id: vacuum.valetudo_roborocks5
+        from: 'cleaning'
+        to: 'returning'
+    action:
+      - service: vacuum.set_fan_speed
+        data_template:
+          entity_id: vacuum.valetudo_roborocks5
+          fan_speed: 'off'
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.daily_vacuum_done
+      - service: script.notify_all
+        data:
+          message: |
+            Пылесос закончил уборку
+            Надо вытряхнуть контейнер
 
   - id: 'Сброс факта суточной уборки'
     alias: daily_vacuum_done_reset
@@ -433,3 +344,16 @@ automation:
     action:
       - service: input_boolean.turn_off
         entity_id: input_boolean.daily_vacuum_done
+
+  - id: 'Уведомление об ошибке'
+    alias: vacuum_error_notification
+    trigger:
+      - platform: state
+        entity_id: vacuum.valetudo_roborocks5
+        to: 'error'
+    action:
+      - delay: 0:00:05
+      - service: script.notify_all
+        data:
+          message: |
+            У пылесоса ошибка "{{ states('sensor.valetudo_roborocks5_error_description') }}"

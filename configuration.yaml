@@ -25,6 +25,8 @@ lovelace:
       type: module
     - url: /local/community/simple-thermostat/simple-thermostat.js?v=1.0
       type: module
+    - url: /local/community/vacuum-card/vacuum-card.js?v=1.0
+      type: module
 
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
