@@ -1,0 +1,23 @@
+- platform: template
+  lights:
+    kn_light:
+      friendly_name: 'Свет на кухне'
+      value_template: >-
+        {{ is_state('switch.kn_light_switch_left', 'on') }}
+      turn_on:
+        - service: switch.turn_on
+          entity_id: switch.kn_light_switch_left
+      turn_off:
+        - service: switch.turn_off
+          entity_id: switch.kn_light_switch_left
+
+    kn_ambient_light:
+      friendly_name: 'Подсветка на кухне'
+      value_template: >-
+        {{ is_state('switch.kn_light_switch_right', 'on') }}
+      turn_on:
+        - service: switch.turn_on
+          entity_id: switch.kn_light_switch_right
+      turn_off:
+        - service: switch.turn_off
+          entity_id: switch.kn_light_switch_right

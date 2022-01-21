@@ -1,0 +1,12 @@
+- platform: template
+  lights:
+    ch_light:
+      friendly_name: 'Свет в детской'
+      value_template: >-
+        {{ is_state('switch.ch_light_switch', 'on') }}
+      turn_on:
+        - service: switch.turn_on
+          entity_id: switch.ch_light_switch
+      turn_off:
+        - service: switch.turn_off
+          entity_id: switch.ch_light_switch

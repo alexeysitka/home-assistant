@@ -43,7 +43,7 @@
             - entity: light.kn_light
               name: 'Свет на кухне'
             - entity: light.kn_ambient_light
-              name: 'Тихий свет на кухне'
+              name: 'Подсветка на кухне'
             - entity: light.lo_light
               name: 'Свет на лоджии'
             - entity: light.kn_sls
