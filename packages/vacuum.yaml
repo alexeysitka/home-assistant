@@ -9,6 +9,22 @@ input_boolean:
     name: Отключить уведомление об очистке мусорного контейнера
     initial: off
 
+binary_sensor:
+  - platform: template
+    sensors:
+      vacuum_bin_status:
+        friendly_name: 'Мусор в корзине'
+        device_class: problem
+        value_template: >-
+          {{ states('sensor.roborocks5bin') | default(0) | int > 30 }}
+        icon_template: >
+          {% set val = states("sensor.roborocks5bin") | int  %}
+          {% if val > 30 %}
+            mdi:delete-alert
+          {% else %}
+            mdi:delete-outline
+          {% endif %}
+
 sensor:
   - platform: template
     sensors:
@@ -21,7 +37,7 @@ sensor:
             {{ states("vacuum.valetudo_roborocks5") }}
           {% endif %}
         icon_template: >
-          {% set val =  states("vacuum.valetudo_roborocks5")  %}
+          {% set val = states("vacuum.valetudo_roborocks5")  %}
           {% if val == 'charging' %}
             mdi:battery-charging
           {% elif val == 'cleaning' %}
@@ -214,6 +230,61 @@ script:
 
 
 automation:
+  - id: 'Напоминание о корзине перед уборкой'
+    alias: vacuum_dust_bin_pre_start_notification
+    trigger:
+      - platform: time_pattern
+        hours: 21
+        minutes: 00
+      - platform: time_pattern
+        hours: 21
+        minutes: 10
+      - platform: time_pattern
+        hours: 21
+        minutes: 20
+      - platform: time_pattern
+        hours: 21
+        minutes: 25
+    condition:
+      - condition: state
+        entity_id: binary_sensor.vacuum_bin_status
+        state: 'on'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: input_boolean.daily_vacuum_done
+            state: 'off'
+          - condition: state
+            entity_id: automation.vacuum_scheduled_start
+            state: 'on'
+    action:
+      - service: script.notify_all
+        data:
+          message: |
+            У пылесоса не вытряхнули корзину!!!
+            Вытряхните, иначе уборки не будет.
+
+  - id: 'Авто-старт если корзину вытряхнули после не-старта уборки по расписанию'
+    alias: vacuum_auto_start_after_dust_bin_off_on_schedule_time
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.vacuum_bin_status
+        to: 'off'
+    condition:
+      - condition: time
+        after: '21:30:00'
+        before: '23:00:00'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: input_boolean.daily_vacuum_done
+            state: 'off'
+          - condition: state
+            entity_id: automation.vacuum_scheduled_start
+            state: 'on'
+    action:
+      - service: script.vacuum_start
+
   - id: 'Предварительное уведомление об уборке'
     alias: vacuum_scheduled_pre_start_notification
     trigger:
@@ -221,6 +292,9 @@ automation:
         hours: 21
         minutes: 20
     condition:
+      - condition: state
+        entity_id: binary_sensor.vacuum_bin_status
+        state: 'off'
       - condition: or
         conditions:
           - condition: state
@@ -243,6 +317,9 @@ automation:
         hours: 21
         minutes: 25
     condition:
+      - condition: state
+        entity_id: binary_sensor.vacuum_bin_status
+        state: 'off'
       - condition: or
         conditions:
           - condition: state
@@ -282,6 +359,9 @@ automation:
         hours: 21
         minutes: 30
     condition:
+      - condition: state
+        entity_id: binary_sensor.vacuum_bin_status
+        state: 'off'
       - condition: state
         entity_id: input_boolean.daily_vacuum_done
         state: 'off'
@@ -352,7 +432,7 @@ automation:
         entity_id: vacuum.valetudo_roborocks5
         to: 'error'
     action:
-      - delay: 0:00:05
+      - delay: 0:00:15
       - service: script.notify_all
         data:
           message: |
