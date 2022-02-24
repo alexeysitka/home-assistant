@@ -1,0 +1,39 @@
+- id: 'Включение настольных ламп с основного выключателя'
+  alias: ch_switch_table_lights_on
+  trigger:
+    - platform: state
+      entity_id: sensor.ch_light_action
+      to: 'double'
+  condition:
+    - condition: state
+      entity_id: light.ch_light
+      state: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.ch_dana_desktop_light
+    - service: light.turn_on
+      entity_id: light.ch_dana_desktop_light_ambient_light
+    - service: light.turn_on
+      entity_id: light.ch_violetta_desktop_light
+    - service: light.turn_on
+      entity_id: light.ch_violetta_desktop_light_ambient_light
+
+- id: 'Выключение настольных ламп с основного выключателя'
+  alias: ch_switch_table_lights_off
+  trigger:
+    - platform: state
+      entity_id: sensor.ch_light_action
+      to: 'double'
+  condition:
+    - condition: state
+      entity_id: light.ch_light
+      state: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: light.ch_dana_desktop_light
+    - service: light.turn_off
+      entity_id: light.ch_dana_desktop_light_ambient_light
+    - service: light.turn_off
+      entity_id: light.ch_violetta_desktop_light
+    - service: light.turn_off
+      entity_id: light.ch_violetta_desktop_light_ambient_light

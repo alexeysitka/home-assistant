@@ -35,3 +35,23 @@
   action:
     - service: switch.turn_off
       entity_id: switch.be_light_switch_left
+
+- id: 'Синхронизация основного выключателя с лампами, выключение'
+  alias: be_switch_sync_bedlight_off
+  trigger:
+    - platform: state
+      entity_id: light.be_bedlight_alexey_light
+      to: 'off'
+    - platform: state
+      entity_id: light.be_bedlight_julia_light
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: light.be_bedlight_alexey_light
+      state: 'off'
+    - condition: state
+      entity_id: light.be_bedlight_julia_light
+      state: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.be_light_switch_left
