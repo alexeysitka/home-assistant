@@ -1,0 +1,13 @@
+yandex_smart_home:
+  filter:
+    include_entities:
+      - media_player.lg_webos_tv_9067
+      - media_player.samsung_5
+
+  entity_config:
+    media_player.lg_webos_tv_9067:
+      name: "Телевизор"
+      room: "Гостиная"
+    media_player.samsung_5:
+      name: "Телевизор"
+      room: "Кухня"

@@ -1,0 +1,11 @@
+# https://yandex.ru/dev/dialogs/smart-home/doc/concepts/device-type-sensor.html
+
+yandex_smart_home:
+  filter:
+    include_entities:
+      - vacuum.valetudo_roborocks5
+
+  entity_config:
+    vacuum.valetudo_roborocks5:
+      name: "Пылесос"
+      room: "Коридор"

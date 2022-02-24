@@ -20,6 +20,8 @@ yandex_smart_home:
       - sensor.li_humidity
       - sensor.lo_humidity
 
+      - switch.ba_venting_switch
+
   entity_config:
     climate.ba_towel_dryer:
       name: "Полотенцесушитель"
@@ -66,3 +68,7 @@ yandex_smart_home:
     sensor.lo_humidity:
       name: "Влажность"
       room: "Лоджия"
+
+    switch.ba_venting_switch:
+      name: "Вытяжка"
+      room: "Ванная"
