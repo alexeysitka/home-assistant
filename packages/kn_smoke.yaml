@@ -1,0 +1,18 @@
+automation:
+  - id: 'Уведомить о задымлении на кухне'
+    alias: kn_alarm_on_smoke
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.kn_smoke_smoke
+        to: 'on'
+    action:
+      - service: script.be_alarm_siren
+        data:
+          sls_name: 'SLSHubBE'
+          device_name: 'BE_AlarmSiren'
+          melody: 11
+          duration: 5
+      - service: script.notify_all
+        data:
+          message: |
+            Задымление на кухне!!!

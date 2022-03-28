@@ -1,7 +1,7 @@
 - icon: mdi:play-network-outline
   cards:
     - type: media-control
-      entity: media_player.lg_webos_tv_9067
+      entity: media_player.lg_65cx
 
     - type: media-control
       entity: media_player.samsung_5
