@@ -1,0 +1,198 @@
+fan:
+  - platform: xiaomi_miio_airpurifier
+    name: be_breezer
+    host: 192.168.31.244
+    token: b728bc44289d0dfaf998cd76ec5af3f2
+    model: zhimi.airfresh.va4
+
+sensor:
+  - platform: template
+    sensors:
+      be_breezer_ntc_temperature:
+        friendly_name: Температура обогревателя у бризера в спальне
+        value_template: '{{ states.fan.be_breezer.attributes.ntc_temperature }}'
+        icon_template: mdi:temperature-low
+        unit_of_measurement: '°C'
+      be_breezer_co2:
+        friendly_name: Углекислый газ бризера спальни
+        value_template: '{{ states.fan.be_breezer.attributes.co2 }}'
+        icon_template: mdi:molecule-co2
+        unit_of_measurement: 'ppm'
+
+switch:
+  - platform: template
+    switches:
+      be_breezer_ptc:
+        friendly_name: Обогреватель бризера в спальне
+        value_template: "{{ is_state_attr('fan.be_breezer', 'ptc', True) }}"
+        turn_on:
+          service: xiaomi_miio_airpurifier.fan_set_ptc_on
+          data:
+            entity_id: fan.be_breezer
+        turn_off:
+          service: xiaomi_miio_airpurifier.fan_set_ptc_off
+          data:
+            entity_id: fan.be_breezer
+        icon_template: mdi:heater
+
+input_select:
+  be_breezer_mode:
+    name: Fan mode
+    options:
+      - Auto
+      - Silent
+      - Low
+      - Middle
+      - Strong
+      - Interval
+
+automation:
+  - id: 'Выставить режим бризера в спальне'
+    alias: be_breezer_set_preset_mode
+    trigger:
+      entity_id: input_select.be_breezer_mode
+      platform: state
+    action:
+      - service: fan.set_preset_mode
+        data_template:
+          entity_id: fan.be_breezer
+          preset_mode: '{{ states.input_select.be_breezer_mode.state }}'
+
+  - id: 'Отслеживать режим бризера в спальне'
+    alias: be_breezer_track_preset_mode_for_input
+    trigger:
+      platform: state
+      entity_id: fan.be_breezer
+    action:
+      - service: input_select.select_option
+        entity_id: input_select.be_breezer_mode
+        data_template:
+          option: '{{ states.fan.be_breezer.attributes.preset_mode }}'
+
+  - id: 'Авто-режим днём при нормальном CO₂'
+    alias: be_breezer_day_set_auto_mode_on_normal_co2
+    condition:
+      - condition: time
+        after: '10:00:00'
+        before: '00:00:00'
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.be_co2
+        below: 600
+    action:
+      - service: fan.set_preset_mode
+        data_template:
+          entity_id: fan.be_breezer
+          preset_mode: Auto
+
+  - id: 'Низкий режим днём при повышенном CO₂'
+    alias: be_breezer_day_set_low_mode_on_heightened_co2
+    condition:
+      - condition: time
+        after: '10:00:00'
+        before: '00:00:00'
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.be_co2
+        above: 600
+        below: 800
+    action:
+      - service: fan.set_preset_mode
+        data_template:
+          entity_id: fan.be_breezer
+          preset_mode: Low
+
+  - id: 'Средний режим днём при высоком CO₂'
+    alias: be_breezer_day_set_middle_mode_on_high_co2
+    condition:
+      - condition: time
+        after: '10:00:00'
+        before: '00:00:00'
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.be_co2
+        above: 800
+        below: 1200
+    action:
+      - service: fan.set_preset_mode
+        data_template:
+          entity_id: fan.be_breezer
+          preset_mode: Middle
+
+  - id: 'Сильный режим днём при очень высоком CO₂'
+    alias: be_breezer_day_set_strong_mode_on_highest_co2
+    condition:
+      - condition: time
+        after: '10:00:00'
+        before: '00:00:00'
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.be_co2
+        above: 1200
+    action:
+      - service: fan.set_preset_mode
+        data_template:
+          entity_id: fan.be_breezer
+          preset_mode: Strong
+
+  - id: 'Тихий режим ночью при нормальном CO₂'
+    alias: be_breezer_night_set_silent_mode_on_normal_co2
+    condition:
+      - condition: time
+        after: '00:00:00'
+        before: '10:00:00'
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.be_co2
+        below: 800
+    action:
+      - service: fan.set_preset_mode
+        data_template:
+          entity_id: fan.be_breezer
+          preset_mode: Silent
+
+  - id: 'Низкий режим ночью при повышенной CO₂'
+    alias: be_breezer_night_set_low_mode_on_heightened_co2
+    condition:
+      - condition: time
+        after: '00:00:00'
+        before: '10:00:00'
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.be_co2
+        above: 800
+    action:
+      - service: fan.set_preset_mode
+        data_template:
+          entity_id: fan.be_breezer
+          preset_mode: Low
+
+  - id: 'Средний режим ночью при очень высоком CO₂'
+    alias: be_breezer_night_set_middle_mode_on_high_co2
+    condition:
+      - condition: time
+        after: '00:00:00'
+        before: '10:00:00'
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.be_co2
+        above: 1200
+    action:
+      - service: fan.set_preset_mode
+        data_template:
+          entity_id: fan.be_breezer
+          preset_mode: Middle
+
+  - id: 'Включить обогрев при низкой температуре на обогревателе'
+    alias: be_breezer_set_ptc_on_on_low_temperature
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.be_breezer_ntc_temperature
+        below: 12
+    action:
+      - service: switch.turn_on
+        entity_id: switch.be_breezer_ptc
+
+
+
+#xiaomi_miio_airpurifier.fan_set_ptc_on:
