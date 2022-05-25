@@ -24,6 +24,26 @@ binary_sensor:
           {% else %}
             mdi:delete-outline
           {% endif %}
+      vacuum_able_to_clean:
+        friendly_name: Выполнены ли условия для уборки
+        value_template: >
+          {{ 
+            is_state('binary_sensor.vacuum_bin_status', 'off')
+              and is_state('input_boolean.daily_vacuum_done', 'off')
+              and is_state('automation.vacuum_scheduled_start', 'on')
+          }}
+        icon_template: >
+          {%
+            set val = is_state('binary_sensor.vacuum_bin_status', 'off')
+              and is_state('input_boolean.daily_vacuum_done', 'off')
+              and is_state('automation.vacuum_scheduled_start', 'on')
+          %}
+          {% if val %}
+            mdi:toggle-switch-variant
+          {% else %}
+            mdi:toggle-switch-variant-off
+          {% endif %}
+        
 
 sensor:
   - platform: template
@@ -234,29 +254,18 @@ automation:
     alias: vacuum_dust_bin_pre_start_notification
     trigger:
       - platform: time_pattern
-        hours: 21
-        minutes: 00
-      - platform: time_pattern
-        hours: 21
-        minutes: 10
-      - platform: time_pattern
-        hours: 21
-        minutes: 20
-      - platform: time_pattern
-        hours: 21
-        minutes: 25
+        hours: 18
+        minutes: /10
     condition:
       - condition: state
         entity_id: binary_sensor.vacuum_bin_status
         state: 'on'
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: input_boolean.daily_vacuum_done
-            state: 'off'
-          - condition: state
-            entity_id: automation.vacuum_scheduled_start
-            state: 'on'
+      - condition: state
+        entity_id: input_boolean.daily_vacuum_done
+        state: 'off'
+      - condition: state
+        entity_id: automation.vacuum_scheduled_start
+        state: 'on'
     action:
       - service: script.notify_all
         data:
@@ -272,15 +281,12 @@ automation:
         to: 'off'
     condition:
       - condition: time
-        after: '21:30:00'
-        before: '23:00:00'
+        after: '19:00:00'
+        before: '22:00:00'
       - condition: or
         conditions:
           - condition: state
-            entity_id: input_boolean.daily_vacuum_done
-            state: 'off'
-          - condition: state
-            entity_id: automation.vacuum_scheduled_start
+            entity_id: binary_sensor.vacuum_able_to_clean
             state: 'on'
     action:
       - service: script.vacuum_start
@@ -289,8 +295,8 @@ automation:
     alias: vacuum_scheduled_pre_start_notification
     trigger:
       - platform: time_pattern
-        hours: 21
-        minutes: 20
+        hours: 18
+        minutes: 45
     condition:
       - condition: state
         entity_id: binary_sensor.vacuum_bin_status
@@ -298,36 +304,25 @@ automation:
       - condition: or
         conditions:
           - condition: state
-            entity_id: input_boolean.daily_vacuum_done
-            state: 'off'
-          - condition: state
-            entity_id: automation.vacuum_scheduled_start
+            entity_id: binary_sensor.vacuum_able_to_clean
             state: 'on'
     action:
       - service: script.notify_all
         data:
           message: |
-            Пылесос начнёт убираться через 10 минут.
+            Пылесос начнёт убираться через 15 минут.
             Откройте двери и уберите барахло с пола.
 
   - id: 'Предварительное уведомление о закрытых дверях'
     alias: vacuum_scheduled_pre_start_notification_door
     trigger:
       - platform: time_pattern
-        hours: 21
-        minutes: 25
+        hours: 18
+        minutes: 55
     condition:
       - condition: state
-        entity_id: binary_sensor.vacuum_bin_status
-        state: 'off'
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: input_boolean.daily_vacuum_done
-            state: 'off'
-          - condition: state
-            entity_id: automation.vacuum_scheduled_start
-            state: 'on'
+        entity_id: binary_sensor.vacuum_able_to_clean
+        state: 'on'
       - condition: or
         conditions:
           - condition: state
@@ -356,15 +351,12 @@ automation:
     alias: vacuum_scheduled_start
     trigger:
       - platform: time_pattern
-        hours: 21
-        minutes: 30
+        hours: 19
+        minutes: 00
     condition:
       - condition: state
-        entity_id: binary_sensor.vacuum_bin_status
-        state: 'off'
-      - condition: state
-        entity_id: input_boolean.daily_vacuum_done
-        state: 'off'
+        entity_id: binary_sensor.vacuum_able_to_clean
+        state: 'on'
     action:
       - service: script.vacuum_start
 
@@ -386,7 +378,6 @@ automation:
     trigger:
       - platform: state
         entity_id: vacuum.valetudo_roborocks5
-        from: 'docked'
         to: 'cleaning'
     action:
       - service: vacuum.set_fan_speed
@@ -399,7 +390,6 @@ automation:
     trigger:
       - platform: state
         entity_id: vacuum.valetudo_roborocks5
-        from: 'cleaning'
         to: 'returning'
     action:
       - service: vacuum.set_fan_speed
@@ -432,7 +422,7 @@ automation:
         entity_id: vacuum.valetudo_roborocks5
         to: 'error'
     action:
-      - delay: 0:00:15
+      - delay: 0:00:30
       - service: script.notify_all
         data:
           message: |
