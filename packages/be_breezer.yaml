@@ -78,7 +78,7 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_co2
-        below: 600
+        below: 550
     action:
       - service: fan.set_preset_mode
         data_template:
@@ -95,7 +95,7 @@ automation:
       - platform: numeric_state
         entity_id: sensor.be_co2
         above: 600
-        below: 800
+        below: 750
     action:
       - service: fan.set_preset_mode
         data_template:
@@ -112,7 +112,7 @@ automation:
       - platform: numeric_state
         entity_id: sensor.be_co2
         above: 800
-        below: 1200
+        below: 1150
     action:
       - service: fan.set_preset_mode
         data_template:
@@ -144,7 +144,7 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_co2
-        below: 800
+        below: 750
     action:
       - service: fan.set_preset_mode
         data_template:
@@ -161,6 +161,7 @@ automation:
       - platform: numeric_state
         entity_id: sensor.be_co2
         above: 800
+        below: 1150
     action:
       - service: fan.set_preset_mode
         data_template:
