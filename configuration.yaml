@@ -65,3 +65,4 @@ script: !include_dir_merge_named conf.d/script
 switch: !include_dir_merge_list conf.d/switch
 light: !include_dir_merge_list conf.d/light
 climate: !include_dir_merge_list conf.d/climate
+fan: !include_dir_merge_list conf.d/fan
