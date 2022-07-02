@@ -46,6 +46,10 @@ input_select:
       - Strong
       - Interval
 
+input_boolean:
+  be_breezer_auto:
+    name: BE breezer auto mode by HA
+
 automation:
   - id: 'Выставить режим бризера в спальне'
     alias: be_breezer_set_preset_mode
@@ -68,6 +72,20 @@ automation:
         entity_id: input_select.be_breezer_mode
         data_template:
           option: '{{ states.fan.be_breezer.attributes.preset_mode }}'
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.be_breezer_auto
+
+  - id: 'Отключить автоматизации при изменении настроек снаружи'
+    alias: be_breezer_disable_automations_after_input
+    trigger:
+      platform: state
+      entity_id: fan.be_breezer
+    action:
+      - delay:
+          hours: 1
+          minutes: 0
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.be_breezer_auto
 
   - id: 'Авто-режим днём при нормальном CO₂'
     alias: be_breezer_day_set_auto_mode_on_normal_co2
@@ -75,6 +93,9 @@ automation:
       - condition: time
         after: '10:00:00'
         before: '00:00:00'
+      - condition: state
+        entity_id: input_boolean.be_breezer_auto
+        state: 'on'
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_co2
@@ -91,6 +112,9 @@ automation:
       - condition: time
         after: '10:00:00'
         before: '00:00:00'
+      - condition: state
+        entity_id: input_boolean.be_breezer_auto
+        state: 'on'
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_co2
@@ -108,6 +132,9 @@ automation:
       - condition: time
         after: '10:00:00'
         before: '00:00:00'
+      - condition: state
+        entity_id: input_boolean.be_breezer_auto
+        state: 'on'
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_co2
@@ -125,6 +152,9 @@ automation:
       - condition: time
         after: '10:00:00'
         before: '00:00:00'
+      - condition: state
+        entity_id: input_boolean.be_breezer_auto
+        state: 'on'
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_co2
@@ -141,6 +171,9 @@ automation:
       - condition: time
         after: '00:00:00'
         before: '10:00:00'
+      - condition: state
+        entity_id: input_boolean.be_breezer_auto
+        state: 'on'
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_co2
@@ -157,6 +190,9 @@ automation:
       - condition: time
         after: '00:00:00'
         before: '10:00:00'
+      - condition: state
+        entity_id: input_boolean.be_breezer_auto
+        state: 'on'
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_co2
@@ -174,6 +210,9 @@ automation:
       - condition: time
         after: '00:00:00'
         before: '10:00:00'
+      - condition: state
+        entity_id: input_boolean.be_breezer_auto
+        state: 'on'
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_co2
