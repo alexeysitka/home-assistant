@@ -49,6 +49,7 @@ input_select:
 input_boolean:
   be_breezer_auto:
     name: BE breezer auto mode by HA
+    initial: true
 
 automation:
   - id: 'Выставить режим бризера в спальне'
