@@ -10,12 +10,12 @@ sensor:
     sensors:
       be_breezer_ntc_temperature:
         friendly_name: Температура обогревателя у бризера в спальне
-        value_template: '{{ states.fan.be_breezer.attributes.ntc_temperature }}'
+        value_template: "{{ state_attr('fan.be_breezer', 'ntc_temperature') }}"
         icon_template: mdi:temperature-low
         unit_of_measurement: '°C'
       be_breezer_co2:
         friendly_name: Углекислый газ бризера спальни
-        value_template: '{{ states.fan.be_breezer.attributes.co2 }}'
+        value_template: "{{ state_attr('fan.be_breezer', 'co2') }}"
         icon_template: mdi:molecule-co2
         unit_of_measurement: 'ppm'
 
@@ -46,11 +46,6 @@ input_select:
       - Strong
       - Interval
 
-input_boolean:
-  be_breezer_auto:
-    name: BE breezer auto mode by HA
-    initial: true
-
 automation:
   - id: 'Выставить режим бризера в спальне'
     alias: be_breezer_set_preset_mode
@@ -61,7 +56,7 @@ automation:
       - service: fan.set_preset_mode
         data_template:
           entity_id: fan.be_breezer
-          preset_mode: '{{ states.input_select.be_breezer_mode.state }}'
+          preset_mode: "{{ states('input_select.be_breezer_mode') }}"
 
   - id: 'Отслеживать режим бризера в спальне'
     alias: be_breezer_track_preset_mode_for_input
@@ -72,9 +67,7 @@ automation:
       - service: input_select.select_option
         entity_id: input_select.be_breezer_mode
         data_template:
-          option: '{{ states.fan.be_breezer.attributes.preset_mode }}'
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.be_breezer_auto
+          option: "{{ state_attr('fan.be_breezer', 'preset_mode') }}"
 
   - id: 'Отключить автоматизации при изменении настроек снаружи'
     alias: be_breezer_disable_automations_after_input
@@ -85,8 +78,6 @@ automation:
       - delay:
           hours: 1
           minutes: 0
-      - service: input_boolean.turn_on
-        entity_id: input_boolean.be_breezer_auto
 
   - id: 'Авто-режим днём при нормальном CO₂'
     alias: be_breezer_day_set_auto_mode_on_normal_co2
@@ -94,9 +85,6 @@ automation:
       - condition: time
         after: '10:00:00'
         before: '00:00:00'
-      - condition: state
-        entity_id: input_boolean.be_breezer_auto
-        state: 'on'
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_co2
@@ -113,9 +101,6 @@ automation:
       - condition: time
         after: '10:00:00'
         before: '00:00:00'
-      - condition: state
-        entity_id: input_boolean.be_breezer_auto
-        state: 'on'
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_co2
@@ -133,9 +118,6 @@ automation:
       - condition: time
         after: '10:00:00'
         before: '00:00:00'
-      - condition: state
-        entity_id: input_boolean.be_breezer_auto
-        state: 'on'
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_co2
@@ -153,9 +135,6 @@ automation:
       - condition: time
         after: '10:00:00'
         before: '00:00:00'
-      - condition: state
-        entity_id: input_boolean.be_breezer_auto
-        state: 'on'
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_co2
@@ -172,9 +151,6 @@ automation:
       - condition: time
         after: '00:00:00'
         before: '10:00:00'
-      - condition: state
-        entity_id: input_boolean.be_breezer_auto
-        state: 'on'
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_co2
@@ -191,9 +167,6 @@ automation:
       - condition: time
         after: '00:00:00'
         before: '10:00:00'
-      - condition: state
-        entity_id: input_boolean.be_breezer_auto
-        state: 'on'
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_co2
@@ -211,9 +184,6 @@ automation:
       - condition: time
         after: '00:00:00'
         before: '10:00:00'
-      - condition: state
-        entity_id: input_boolean.be_breezer_auto
-        state: 'on'
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_co2
