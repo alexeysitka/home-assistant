@@ -27,13 +27,13 @@ yandex_smart_home:
       name: "Полотенцесушитель"
       room: "Ванная"
     climate.be_radiator:
-      name: "Термостат"
+      name: "Радиатор"
       room: "Спальня"
     climate.ch_radiator:
-      name: "Термостат"
+      name: "Радиатор"
       room: "Детская"
     climate.li_radiator:
-      name: "Термостат"
+      name: "Радиатор"
       room: "Гостиная"
 
     sensor.kn_temperature:
