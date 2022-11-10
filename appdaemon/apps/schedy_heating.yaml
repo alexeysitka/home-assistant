@@ -5,8 +5,8 @@ schedy_heating:  # This is app instance name.
   actor_type: thermostat
 
   schedule_append:
-    - v: 'off'
-#    - v: 21
+#    - v: 'off'
+    - v: 21
 
   rooms:
     bath_room:
@@ -14,7 +14,7 @@ schedy_heating:  # This is app instance name.
       actors:
         climate.ba_towel_dryer:
       schedule:
-        - v: 28
+        - v: 27
           rules:
             - weekdays: 1-7
               rules:
@@ -30,8 +30,8 @@ schedy_heating:  # This is app instance name.
       actors:
         climate.be_radiator:
       schedule:
-        - v: 'off'
-#        - v: 23.5
+#        - v: 'off'
+        - v: 23.5
           rules:
             - weekdays: 1-5
               rules:
@@ -45,8 +45,8 @@ schedy_heating:  # This is app instance name.
       actors:
         climate.ch_radiator:
       schedule:
-        - v: 'off'
-#        - v: 23.5
+#        - v: 'off'
+        - v: 23.5
           rules:
             - weekdays: 1-5
               rules:
@@ -60,8 +60,8 @@ schedy_heating:  # This is app instance name.
       actors:
         climate.li_radiator:
       schedule:
-        - v: 'off'
-#        - v: 23.5
+#        - v: 'off'
+        - v: 23.5
           rules:
             - weekdays: 1-5
               rules:
