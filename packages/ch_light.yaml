@@ -1,0 +1,202 @@
+timer:
+  ch_light:
+    name: Свет в детской
+    duration: 300
+
+
+light:
+  - platform: template
+    lights:
+      ch_light:
+        friendly_name: 'Свет в детской'
+        value_template: >-
+          {{ is_state('switch.ch_light_switch', 'on') }}
+        turn_on:
+          - service: switch.turn_on
+            entity_id: switch.ch_light_switch
+        turn_off:
+          - service: switch.turn_off
+            entity_id: switch.ch_light_switch
+
+  - platform: xiaomi_miio_philipslight
+    name: ch_dana_desktop_light
+    host: 192.168.31.242
+    token: 599cd841365b1328a25bc15cd9281395
+    model: philips.light.sread1
+
+  - platform: xiaomi_miio_philipslight
+    name: ch_violetta_desktop_light
+    host: 192.168.31.243
+    token: 0a9142562c95cb04928cc98f08d43d62
+    model: philips.light.sread2
+
+
+automation:
+  - id: 'Запустить таймер при включении света в детской'
+    alias: ch_start_timer_on_light_switched_on
+    trigger:
+      - platform: state
+        entity_id: light.ch_light
+        to: 'on'
+      - platform: state
+        entity_id: light.ch_violetta_desktop_light
+        to: 'on'
+      - platform: state
+        entity_id: light.ch_dana_desktop_light
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.ch_motion_occupancy
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.ch_motionleft_occupancy
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.ch_motionright_occupancy
+        state: 'off'
+    action:
+      - service: timer.start
+        entity_id: timer.ch_light
+
+  - id: 'Отменять таймер при включённом свете и появлении движения на датчиках детской'
+    alias: ch_stop_timer_on_light_switched_on_and_motion_detected
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.ch_motion_occupancy
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.ch_motionleft_occupancy
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.ch_motionright_occupancy
+        to: 'on'
+    condition:
+      - or:
+        - condition: state
+          entity_id: light.ch_light
+          state: 'on'
+        - condition: state
+          entity_id: light.ch_violetta_desktop_light
+          state: 'on'
+        - condition: state
+          entity_id: light.ch_dana_desktop_light
+          state: 'on'
+    action:
+      - service: timer.cancel
+        entity_id: timer.ch_light
+
+  - id: 'Запускать таймер при включённом свете и отсутствии движения на всех датчиках детской'
+    alias: ch_start_timer_on_light_switched_on_and_no_motion_detected
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.ch_motion_occupancy
+        to: 'off'
+      - platform: state
+        entity_id: binary_sensor.ch_motionleft_occupancy
+        to: 'off'
+      - platform: state
+        entity_id: binary_sensor.ch_motionright_occupancy
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.ch_motion_occupancy
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.ch_motionleft_occupancy
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.ch_motionright_occupancy
+        state: 'off'
+      - or:
+        - condition: state
+          entity_id: light.ch_light
+          state: 'on'
+        - condition: state
+          entity_id: light.ch_violetta_desktop_light
+          state: 'on'
+        - condition: state
+          entity_id: light.ch_dana_desktop_light
+          state: 'on'
+    action:
+      - service: timer.start
+        entity_id: timer.ch_light
+
+  - id: 'Остановить таймер при выключении всех светильников в детской'
+    alias: ch_cancel_timer_on_light_switched_off
+    trigger:
+      - platform: state
+        entity_id: light.ch_light
+        to: 'off'
+      - platform: state
+        entity_id: light.ch_violetta_desktop_light
+        to: 'off'
+      - platform: state
+        entity_id: light.ch_dana_desktop_light
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: light.ch_light
+        state: 'off'
+      - condition: state
+        entity_id: light.ch_violetta_desktop_light
+        state: 'off'
+      - condition: state
+        entity_id: light.ch_dana_desktop_light
+        state: 'off'
+    action:
+      - service: timer.cancel
+        entity_id: timer.ch_light
+
+  - id: 'Выключить свет в детской по таймеру'
+    alias: ch_disable_light_on_timer_finished
+    initial_state: true
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data:
+          entity_id: timer.ch_light
+    action:
+      - service: light.turn_off
+        entity_id: light.ch_light
+
+
+  - id: 'Включение настольных ламп с основного выключателя'
+    alias: ch_switch_table_lights_on
+    trigger:
+      - platform: state
+        entity_id: sensor.ch_light_action
+        to: 'double'
+    condition:
+      - condition: state
+        entity_id: light.ch_light
+        state: 'on'
+    action:
+      - service: light.turn_on
+        entity_id: light.ch_dana_desktop_light
+      - service: light.turn_on
+        entity_id: light.ch_dana_desktop_light_ambient_light
+      - service: light.turn_on
+        entity_id: light.ch_violetta_desktop_light
+      - service: light.turn_on
+        entity_id: light.ch_violetta_desktop_light_ambient_light
+
+  - id: 'Выключение настольных ламп с основного выключателя'
+    alias: ch_switch_table_lights_off
+    trigger:
+      - platform: state
+        entity_id: sensor.ch_light_action
+        to: 'double'
+    condition:
+      - condition: state
+        entity_id: light.ch_light
+        state: 'off'
+    action:
+      - service: light.turn_off
+        entity_id: light.ch_dana_desktop_light
+      - service: light.turn_off
+        entity_id: light.ch_dana_desktop_light_ambient_light
+      - service: light.turn_off
+        entity_id: light.ch_violetta_desktop_light
+      - service: light.turn_off
+        entity_id: light.ch_violetta_desktop_light_ambient_light
+
