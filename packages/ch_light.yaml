@@ -1,7 +1,7 @@
 timer:
   ch_light:
     name: Свет в детской
-    duration: 300
+    duration: '00:08:00'
 
 
 light:
@@ -158,6 +158,10 @@ automation:
     action:
       - service: light.turn_off
         entity_id: light.ch_light
+      - service: light.turn_off
+        entity_id: light.ch_violetta_desktop_light
+      - service: light.turn_off
+        entity_id: light.ch_dana_desktop_light
 
 
   - id: 'Включение настольных ламп с основного выключателя'
@@ -174,11 +178,7 @@ automation:
       - service: light.turn_on
         entity_id: light.ch_dana_desktop_light
       - service: light.turn_on
-        entity_id: light.ch_dana_desktop_light_ambient_light
-      - service: light.turn_on
         entity_id: light.ch_violetta_desktop_light
-      - service: light.turn_on
-        entity_id: light.ch_violetta_desktop_light_ambient_light
 
   - id: 'Выключение настольных ламп с основного выключателя'
     alias: ch_switch_table_lights_off
@@ -194,9 +194,5 @@ automation:
       - service: light.turn_off
         entity_id: light.ch_dana_desktop_light
       - service: light.turn_off
-        entity_id: light.ch_dana_desktop_light_ambient_light
-      - service: light.turn_off
         entity_id: light.ch_violetta_desktop_light
-      - service: light.turn_off
-        entity_id: light.ch_violetta_desktop_light_ambient_light
 
