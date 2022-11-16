@@ -87,58 +87,54 @@ sensor:
             {{ state_attr("vacuum.valetudo_roborocks5", "battery_icon") }}
           {% endif %}
 
-  - platform: mqtt
-    object_id: vacuum_cleaning_time
-    name: 'Последняя уборка'
-    state_topic: 'Valetudo/RoborockS5/CurrentStatisticsCapability/time'
-    value_template: >
-      {{ value }}
-    icon: 'mdi:timer'
+mqtt:
+  sensor:
+    - object_id: vacuum_cleaning_time
+      name: 'Последняя уборка'
+      state_topic: 'Valetudo/RoborockS5/CurrentStatisticsCapability/time'
+      value_template: >
+        {{ value }}
+      icon: 'mdi:timer'
 
-  - platform: mqtt
-    object_id: vacuum_cleaned_area
-    name: 'Площадь'
-    unit_of_measurement: 'м²'
-    state_topic: 'Valetudo/RoborockS5/CurrentStatisticsCapability/area'
-    value_template: >
-      {{ (value | float / 10000) | round }}
-    icon: 'mdi:ruler'
+    - object_id: vacuum_cleaned_area
+      name: 'Площадь'
+      unit_of_measurement: 'м²'
+      state_topic: 'Valetudo/RoborockS5/CurrentStatisticsCapability/area'
+      value_template: >
+        {{ (value | float / 10000) | round }}
+      icon: 'mdi:ruler'
 
-  - platform: mqtt
-    object_id: vacuum_cleaner_filter_left_hours
-    name: 'Фильтр'
-    unit_of_measurement: 'ч'
-    state_topic: 'Valetudo/RoborockS5/ConsumableMonitoringCapability/filter-main'
-    value_template: >
-      {{ (value | float / 3600) | round }}
-    icon: 'mdi:air-filter'
+    - object_id: vacuum_cleaner_filter_left_hours
+      name: 'Фильтр'
+      unit_of_measurement: 'ч'
+      state_topic: 'Valetudo/RoborockS5/ConsumableMonitoringCapability/filter-main'
+      value_template: >
+        {{ (value | float / 3600) | round }}
+      icon: 'mdi:air-filter'
 
-  - platform: mqtt
-    object_id: vacuum_cleaner_side_brush_left_hours
-    name: 'Боковая щётка'
-    unit_of_measurement: 'ч'
-    state_topic: 'Valetudo/RoborockS5/ConsumableMonitoringCapability/brush-side_right'
-    value_template: >
-      {{ (value | float / 3600) | round }}
-    icon: 'mdi:star-three-points-outline'
+    - object_id: vacuum_cleaner_side_brush_left_hours
+      name: 'Боковая щётка'
+      unit_of_measurement: 'ч'
+      state_topic: 'Valetudo/RoborockS5/ConsumableMonitoringCapability/brush-side_right'
+      value_template: >
+        {{ (value | float / 3600) | round }}
+      icon: 'mdi:star-three-points-outline'
 
-  - platform: mqtt
-    object_id: vacuum_cleaner_main_brush_left_hours
-    name: 'Основная щётка'
-    unit_of_measurement: 'ч'
-    state_topic: 'Valetudo/RoborockS5/ConsumableMonitoringCapability/brush-main'
-    value_template: >
-      {{ (value | float / 3600) | round }}
-    icon: 'mdi:robot-vacuum-variant'
+    - object_id: vacuum_cleaner_main_brush_left_hours
+      name: 'Основная щётка'
+      unit_of_measurement: 'ч'
+      state_topic: 'Valetudo/RoborockS5/ConsumableMonitoringCapability/brush-main'
+      value_template: >
+        {{ (value | float / 3600) | round }}
+      icon: 'mdi:robot-vacuum-variant'
 
-  - platform: mqtt
-    object_id: vacuum_cleaner_sensor_dirty_left_hours
-    name: 'Сенсоры'
-    unit_of_measurement: 'ч'
-    state_topic: 'Valetudo/RoborockS5/ConsumableMonitoringCapability/sensor-all'
-    value_template: >
-      {{ (value | float / 3600) | round }}
-    icon: 'mdi:leak'
+    - object_id: vacuum_cleaner_sensor_dirty_left_hours
+      name: 'Сенсоры'
+      unit_of_measurement: 'ч'
+      state_topic: 'Valetudo/RoborockS5/ConsumableMonitoringCapability/sensor-all'
+      value_template: >
+        {{ (value | float / 3600) | round }}
+      icon: 'mdi:leak'
 
 script:
   vacuum_start:

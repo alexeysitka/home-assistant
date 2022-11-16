@@ -53,9 +53,6 @@
         {% endif %}
       icon_template: mdi:clock
 
-- platform: uptime
-  name: online
-
 - platform: template
   sensors:
    online_human:

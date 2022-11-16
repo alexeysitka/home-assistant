@@ -3,56 +3,49 @@ homeassistant:
     light.be_sls:
       friendly_name: 'Ночник в спальне'
 
-light:
-  - platform: mqtt
-    name: be_sls
-    availability_topic: 'SLSHubBE/bridge/state'
-    command_topic: 'SLSHubBE/led'
-    rgb_command_topic: 'SLSHubBE/led'
-    rgb_command_template: >-
-      {
-        "mode": "manual",
-        "hex": "#{{ '%02x%02x%02x' | format(red, green, blue) }}"
-      }
-    on_command_type: 'brightness'
-    payload_off: '{"mode": "off"}'
+mqtt:
+  light:
+    - name: be_sls
+      availability_topic: 'SLSHubBE/bridge/state'
+      command_topic: 'SLSHubBE/led'
+      rgb_command_topic: 'SLSHubBE/led'
+      rgb_command_template: >-
+        {
+          "mode": "manual",
+          "hex": "#{{ '%02x%02x%02x' | format(red, green, blue) }}"
+        }
+      on_command_type: 'brightness'
+      payload_off: '{"mode": "off"}'
 
-switch:
-  - platform: mqtt
-    name: be_sls_join
-    state_topic: 'SLSHubBE/bridge/config/permit_join'
-    command_topic: 'SLSHubBE/bridge/config/permit_join'
-    payload_on: 'true'
-    payload_off: 'false'
+  switch:
+    - name: be_sls_join
+      state_topic: 'SLSHubBE/bridge/config/permit_join'
+      command_topic: 'SLSHubBE/bridge/config/permit_join'
+      payload_on: 'true'
+      payload_off: 'false'
 
-sensor:
-  - platform: mqtt
-    name: be_sls_uptimestr
-    state_topic: 'SLSHubBE/bridge/config'
-    value_template: '{{ value_json.UptimeStr }}'
-  - platform: mqtt
-    name: be_sls_ip
-    state_topic: 'SLSHubBE/bridge/config'
-    value_template: '{{ value_json.IP }}'
-  - platform: mqtt
-    name: be_sls_rssi
-    state_topic: 'SLSHubBE/bridge/config'
-    unit_of_measurement: 'dB'
-    value_template: '{{ value_json.RSSI }}'
-  - platform: mqtt
-    name: be_sls_version
-    state_topic: 'SLSHubBE/bridge/config'
-    value_template: '{{ value_json.Version }}'
+  sensor:
+    - name: be_sls_uptimestr
+      state_topic: 'SLSHubBE/bridge/config'
+      value_template: '{{ value_json.UptimeStr }}'
+    - name: be_sls_ip
+      state_topic: 'SLSHubBE/bridge/config'
+      value_template: '{{ value_json.IP }}'
+    - name: be_sls_rssi
+      state_topic: 'SLSHubBE/bridge/config'
+      unit_of_measurement: 'dB'
+      value_template: '{{ value_json.RSSI }}'
+    - name: be_sls_version
+      state_topic: 'SLSHubBE/bridge/config'
+      value_template: '{{ value_json.Version }}'
 
-binary_sensor:
-  - platform: mqtt
-    name: be_sls_pairing
-    state_topic: 'SLSHubBE/bridge/config'
-    payload_on: 'True'
-    payload_off: 'False'
-    value_template: '{{ value_json.permit_join }}'
-  - platform: mqtt
-    name: be_sls_state
-    state_topic: 'SLSHubBE/bridge/state'
-    payload_on: 'online'
-    payload_off: 'offline'
+  binary_sensor:
+    - name: be_sls_pairing
+      state_topic: 'SLSHubBE/bridge/config'
+      payload_on: 'True'
+      payload_off: 'False'
+      value_template: '{{ value_json.permit_join }}'
+    - name: be_sls_state
+      state_topic: 'SLSHubBE/bridge/state'
+      payload_on: 'online'
+      payload_off: 'offline'
