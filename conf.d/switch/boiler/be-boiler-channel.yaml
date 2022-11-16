@@ -7,6 +7,8 @@
       turn_on:
         - service: switch.turn_on
           entity_id: switch.kn_boilerone_switch_l1
+        - service: switch.turn_on
+          entity_id: switch.be_breezer_ptc
         - service: mqtt.publish
           data:
             topic: 'SLSHubBE/BE_Thermostat/set'
@@ -18,6 +20,8 @@
       turn_off:
         - service: switch.turn_off
           entity_id: switch.kn_boilerone_switch_l1
+        - service: switch.turn_off
+          entity_id: switch.be_breezer_ptc
         - service: mqtt.publish
           data:
             topic: 'SLSHubBE/BE_Thermostat/set'

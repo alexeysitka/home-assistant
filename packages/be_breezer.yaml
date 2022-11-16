@@ -13,8 +13,13 @@ sensor:
         value_template: "{{ state_attr('fan.be_breezer', 'ntc_temperature') }}"
         icon_template: mdi:temperature-low
         unit_of_measurement: '°C'
+      be_breezer_temperature:
+        friendly_name: Температура по бризеру в спальне
+        value_template: "{{ state_attr('fan.be_breezer', 'temperature') }}"
+        icon_template: mdi:temperature-low
+        unit_of_measurement: '°C'
       be_breezer_co2:
-        friendly_name: Углекислый газ бризера спальни
+        friendly_name: Углекислый газ по бризеру спальни
         value_template: "{{ state_attr('fan.be_breezer', 'co2') }}"
         icon_template: mdi:molecule-co2
         unit_of_measurement: 'ppm'
@@ -194,12 +199,16 @@ automation:
           entity_id: fan.be_breezer
           preset_mode: Middle
 
-  - id: 'Включить обогрев при низкой температуре на обогревателе'
+  - id: 'Включить обогрев при низкой температуре на обогревателе и в комнате'
     alias: be_breezer_set_ptc_on_on_low_temperature
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_breezer_ntc_temperature
         below: 15
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.be_breezer_temperature
+        below: 21
     action:
       - service: switch.turn_on
         entity_id: switch.be_breezer_ptc
