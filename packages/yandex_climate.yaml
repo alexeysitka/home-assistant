@@ -22,6 +22,9 @@ yandex_smart_home:
 
       - switch.ba_venting_switch
 
+      - fan.be_breezer
+      - switch.be_breezer_ptc
+
   entity_config:
     climate.ba_towel_dryer:
       name: "Полотенцесушитель"
@@ -72,3 +75,10 @@ yandex_smart_home:
     switch.ba_venting_switch:
       name: "Вытяжка"
       room: "Ванная"
+
+    fan.be_breezer:
+      name: "Бризер"
+      room: "Спальня"
+    switch.be_breezer_ptc:
+      name: "Обогреватель бризера"
+      room: "Спальня"

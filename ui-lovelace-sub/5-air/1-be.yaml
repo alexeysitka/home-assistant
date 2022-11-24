@@ -2,6 +2,17 @@
   title: 'Спальня'
   mode: vertical
   cards:
+
+    - type: entities
+      entities:
+        - entity: fan.be_breezer
+          name: 'Бризер'
+        - entity: input_select.be_breezer_mode
+          name: 'Режим'
+        - entity: switch.be_breezer_ptc
+          name: 'Обогреватель'
+        - entity: sensor.be_breezer_ntc_temperature
+          name: 'Температура обогревателя'
     - type: custom:mini-graph-card
       entities:
         - entity: sensor.be_co2
@@ -23,6 +34,7 @@
       points_per_hour: 1
       group_by: hour
       hours_to_show: 48
+
     - type: custom:mini-graph-card
       entities:
         - entity: sensor.be_breezer_co2

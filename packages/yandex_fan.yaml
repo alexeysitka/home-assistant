@@ -1,9 +1,0 @@
-yandex_smart_home:
-  filter:
-    include_entities:
-      - fan.be_breezer
-
-  entity_config:
-    fan.be_breezer:
-      name: "Бризер"
-      room: "Спальня"
