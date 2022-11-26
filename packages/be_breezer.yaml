@@ -247,7 +247,7 @@ automation:
           preset_mode: medium
 
   - id: 'Включить обогрев при низкой температуре на обогревателе и в комнате'
-    alias: be_breezer_set_ptc_on_on_low_temperature
+    alias: be_breezer_enable_ptc_on_low_temperature
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_breezer_ntc_temperature
@@ -261,7 +261,7 @@ automation:
         entity_id: switch.be_breezer_ptc
 
   - id: 'Выключить обогрев при высокой температуре на обогревателе и в комнате'
-    alias: be_breezer_set_ptc_on_on_low_temperature
+    alias: be_breezer_disable_ptc_on_high_temperature
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_breezer_ntc_temperature
