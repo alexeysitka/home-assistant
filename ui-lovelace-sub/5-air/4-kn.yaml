@@ -4,7 +4,7 @@
   cards:
     - type: custom:mini-graph-card
       entities:
-        - entity: sensor.kn_humidity
+        - entity: sensor.kn_temperature_humidity
           name: 'Влажность'
       color_thresholds:
         - value: 20

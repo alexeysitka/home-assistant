@@ -3,7 +3,7 @@ automation:
     alias: be_send_message_on_over_co2
     trigger:
       - platform: numeric_state
-        entity_id: sensor.be_co2
+        entity_id: sensor.be_co2_co2
         above: 1000
     condition:
       - condition: state
@@ -13,7 +13,7 @@ automation:
       - service: notify.alexey
         data:
           message: |
-            Превышение по CO2, {{ states.sensor.be_co2.attributes["co2"] }} ppm
+            Превышение по CO2, {{ states.sensor.be_co2_co2.attributes["co2"] }} ppm
       - service: input_boolean.turn_off
         target:
           entity_id: input_boolean.be_notify_co2_high
@@ -25,7 +25,7 @@ automation:
     alias: be_send_message_on_under_co2
     trigger:
       - platform: numeric_state
-        entity_id: sensor.be_co2
+        entity_id: sensor.be_co2_co2
         below: 600
     condition:
       - condition: state
@@ -35,7 +35,7 @@ automation:
       - service: notify.alexey
         data:
           message: |
-            Нормализация CO2, {{ states.sensor.be_co2.attributes["co2"] }} ppm
+            Нормализация CO2, {{ states.sensor.be_co2_co2.attributes["co2"] }} ppm
       - service: input_boolean.turn_off
         target:
           entity_id: input_boolean.be_notify_co2_low
@@ -47,13 +47,13 @@ automation:
     alias: be_send_message_on_critical_over_co2
     trigger:
       - platform: numeric_state
-        entity_id: sensor.be_co2
+        entity_id: sensor.be_co2_co2
         above: 1200
     action:
       - service: notify.alexey
         data:
           message: |
-            КРИТИЧЕСКОЕ превышение по CO2, {{ states.sensor.be_co2.attributes["co2"] }} ppm
+            КРИТИЧЕСКОЕ превышение по CO2, {{ states.sensor.be_co2_co2.attributes["co2"] }} ppm
 
 input_boolean:
   be_notify_co2_high:

@@ -21,7 +21,7 @@ light:
   - platform: xiaomi_miio_philipslight
     name: ch_dana_desktop_light
     host: 192.168.31.242
-    token: 599cd841365b1328a25bc15cd9281395
+    token: 0e92a9f099df61e0d4f70ddb1e9002b1
     model: philips.light.sread1
 
   - platform: xiaomi_miio_philipslight

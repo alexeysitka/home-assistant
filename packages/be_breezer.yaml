@@ -139,7 +139,7 @@ automation:
         before: '00:00:00'
     trigger:
       - platform: numeric_state
-        entity_id: sensor.be_co2
+        entity_id: sensor.be_co2_co2
         below: 550
     action:
       - service: fan.set_preset_mode
@@ -155,7 +155,7 @@ automation:
         before: '00:00:00'
     trigger:
       - platform: numeric_state
-        entity_id: sensor.be_co2
+        entity_id: sensor.be_co2_co2
         above: 600
         below: 700
     action:
@@ -172,7 +172,7 @@ automation:
         before: '00:00:00'
     trigger:
       - platform: numeric_state
-        entity_id: sensor.be_co2
+        entity_id: sensor.be_co2_co2
         above: 750
         below: 1150
     action:
@@ -189,7 +189,7 @@ automation:
         before: '00:00:00'
     trigger:
       - platform: numeric_state
-        entity_id: sensor.be_co2
+        entity_id: sensor.be_co2_co2
         above: 1200
     action:
       - service: fan.set_preset_mode
@@ -205,7 +205,7 @@ automation:
         before: '10:00:00'
     trigger:
       - platform: numeric_state
-        entity_id: sensor.be_co2
+        entity_id: sensor.be_co2_co2
         below: 750
     action:
       - service: fan.set_preset_mode
@@ -221,7 +221,7 @@ automation:
         before: '10:00:00'
     trigger:
       - platform: numeric_state
-        entity_id: sensor.be_co2
+        entity_id: sensor.be_co2_co2
         above: 800
         below: 1150
     action:
@@ -238,7 +238,7 @@ automation:
         before: '10:00:00'
     trigger:
       - platform: numeric_state
-        entity_id: sensor.be_co2
+        entity_id: sensor.be_co2_co2
         above: 1200
     action:
       - service: fan.set_preset_mode

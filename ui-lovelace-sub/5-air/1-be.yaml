@@ -15,7 +15,7 @@
           name: 'Температура обогревателя'
     - type: custom:mini-graph-card
       entities:
-        - entity: sensor.be_co2
+        - entity: sensor.be_co2_co2
           name: 'Углекислый газ'
       color_thresholds:
         - value: 450
@@ -59,7 +59,7 @@
 
     - type: custom:mini-graph-card
       entities:
-        - entity: sensor.be_humidity
+        - entity: sensor.be_temperature_humidity
           name: 'Влажность'
       color_thresholds:
         - value: 20

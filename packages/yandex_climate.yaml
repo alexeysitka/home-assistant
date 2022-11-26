@@ -11,14 +11,14 @@ yandex_smart_home:
       - sensor.kn_temperature
       - sensor.lo_temperature
 
-      - sensor.be_co2
+      - sensor.be_co2_co2
 
-      - sensor.ba_humidity
-      - sensor.be_humidity
-      - sensor.ch_humidity
-      - sensor.kn_humidity
-      - sensor.li_humidity
-      - sensor.lo_humidity
+      - sensor.ba_temperature_humidity
+      - sensor.be_temperature_humidity
+      - sensor.ch_temperature_humidity
+      - sensor.kn_temperature_humidity
+      - sensor.li_temperature_humidity
+      - sensor.lo_temperature_humidity
 
       - switch.ba_venting_switch
 
@@ -46,29 +46,29 @@ yandex_smart_home:
       name: "Температура"
       room: "Лоджия"
 
-    sensor.be_co2:
+    sensor.be_co2_co2:
       name: "Диоксид углерода"
       room: "Спальня"
       properties:
         - type: co2_level
-          entity: sensor.be_co2
+          entity: sensor.be_co2_co2
 
-    sensor.ba_humidity:
+    sensor.ba_temperature_humidity:
       name: "Влажность"
       room: "Ванная"
-    sensor.be_humidity:
+    sensor.be_temperature_humidity:
       name: "Влажность"
       room: "Спальня"
-    sensor.ch_humidity:
+    sensor.ch_temperature_humidity:
       name: "Влажность"
       room: "Детская"
-    sensor.kn_humidity:
+    sensor.kn_temperature_humidity:
       name: "Влажность"
       room: "Кухня"
-    sensor.li_humidity:
+    sensor.li_temperature_humidity:
       name: "Влажность"
       room: "Гостиная"
-    sensor.lo_humidity:
+    sensor.lo_temperature_humidity:
       name: "Влажность"
       room: "Лоджия"
 

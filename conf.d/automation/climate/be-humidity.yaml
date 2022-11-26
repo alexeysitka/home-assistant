@@ -2,7 +2,7 @@
 #  alias: be_enable_humidifier_on_low_humidity
 #  trigger:
 #    - platform: numeric_state
-#      entity_id: sensor.be_humidity
+#      entity_id: sensor.be_temperature_humidity
 #      below: 45
 #  action:
 #    - service: switch.turn_on
@@ -12,7 +12,7 @@
 #  alias: be_disable_humidifier_on_normal_humidity
 #  trigger:
 #    - platform: numeric_state
-#      entity_id: sensor.be_humidity
+#      entity_id: sensor.be_temperature_humidity
 #      above: 50
 #  action:
 #    - service: switch.turn_off
