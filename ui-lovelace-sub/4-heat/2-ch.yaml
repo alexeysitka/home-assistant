@@ -4,7 +4,7 @@
   cards:
     - type: custom:mini-graph-card
       entities:
-        - entity: sensor.ch_temperature
+        - entity: sensor.ch_temperature_temperature
           name: 'Температура'
       color_thresholds:
         - value: 10
