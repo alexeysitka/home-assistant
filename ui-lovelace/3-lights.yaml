@@ -20,7 +20,7 @@
               name: 'Прикроватная лампа Алексея'
             - entity: light.be_bedlight_julia_light
               name: 'Прикроватная лампа Юлии'
-            - entity: light.be_sls
+            - entity: light.slshubbe_led
               name: 'Ночник в спальне'
 
         - title: 'Детская'
