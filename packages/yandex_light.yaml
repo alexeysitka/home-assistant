@@ -4,7 +4,7 @@ yandex_smart_home:
   filter:
     include_entities:
       - light.be_light
-      - light.be_sls
+      - light.slshubbe_led
       - light.be_wall_light
       - light.be_bedlight_alexey_light
       - light.be_bedlight_julia_light
@@ -16,21 +16,21 @@ yandex_smart_home:
       - light.ch_dana_desktop_light
       - light.ch_violetta_desktop_light
       - light.ch_upper_lights
-      - light.ch_sls
+      - light.slshubch_led
 
       - light.li_light
-      - light.li_sls
+      - light.slshubli_led
       - light.li_upper_light
 
       - light.kn_light
       - light.kn_ambient_light
-      - light.kn_sls
+      - light.slshubkn_led
 
       - light.co_light
       - light.co_mirror_light
-      - light.co_sls
+      - light.slshubco_led
 
-      - light.ha_sls
+      - light.slshubha_led
       - light.ha_light
 
       - light.to_light
@@ -44,7 +44,7 @@ yandex_smart_home:
     light.be_light:
       name: "Свет"
       room: "Спальня"
-    light.be_sls:
+    light.slshubbe_led:
       name: "Ночник"
       room: "Спальня"
     light.be_wall_light:
@@ -76,7 +76,7 @@ yandex_smart_home:
     light.ch_violetta_desktop_light:
       name: "Настольная лампа Виолетты"
       room: "Детская"
-    light.ch_sls:
+    light.slshubch_led:
       name: "Ночник"
       room: "Детская"
     light.ch_upper_lights:
@@ -86,7 +86,7 @@ yandex_smart_home:
     light.li_light:
       name: "Свет"
       room: "Гостиная"
-    light.li_sls:
+    light.slshubli_led:
       name: "Ночник"
       room: "Гостиная"
     light.li_upper_light:
@@ -99,7 +99,7 @@ yandex_smart_home:
     light.kn_ambient_light:
       name: "Подсветка"
       room: "Кухня"
-    light.kn_sls:
+    light.slshubkn_led:
       name: "Ночник"
       room: "Кухня"
 
@@ -109,11 +109,11 @@ yandex_smart_home:
     light.co_mirror_light:
       name: "Подсветка зеркала"
       room: "Коридор"
-    light.co_sls:
+    light.slshubco_led:
       name: "Ночник"
       room: "Коридор"
 
-    light.ha_sls:
+    light.slshubha_led:
       name: "Ночник"
       room: "Прихожая"
     light.ha_light:

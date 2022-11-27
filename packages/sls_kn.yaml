@@ -1,22 +1,9 @@
 homeassistant:
   customize:
-    light.co_sls:
+    light.slshubco_led:
       friendly_name: 'Ночник на кухне'
 
 mqtt:
-  light:
-    - name: kn_sls
-      availability_topic: 'SLSHubKN/bridge/state'
-      command_topic: 'SLSHubKN/led'
-      rgb_command_topic: 'SLSHubKN/led'
-      rgb_command_template: >-
-        {
-          "mode": "manual",
-          "hex": "#{{ '%02x%02x%02x' | format(red, green, blue) }}"
-        }
-      on_command_type: 'brightness'
-      payload_off: '{"mode": "off"}'
-
   switch:
     - name: kn_sls_join
       state_topic: 'SLSHubKN/bridge/config/permit_join'
@@ -25,26 +12,11 @@ mqtt:
       payload_off: 'false'
 
   sensor:
-    - name: kn_sls_uptimestr
-      state_topic: 'SLSHubKN/bridge/config'
-      value_template: '{{ value_json.UptimeStr }}'
-    - name: kn_sls_ip
-      state_topic: 'SLSHubKN/bridge/config'
-      value_template: '{{ value_json.IP }}'
-    - name: kn_sls_rssi
-      state_topic: 'SLSHubKN/bridge/config'
-      unit_of_measurement: 'dB'
-      value_template: '{{ value_json.RSSI }}'
     - name: kn_sls_version
       state_topic: 'SLSHubKN/bridge/config'
       value_template: '{{ value_json.Version }}'
 
   binary_sensor:
-    - name: kn_sls_pairing
-      state_topic: 'SLSHubKN/bridge/config'
-      payload_on: 'True'
-      payload_off: 'False'
-      value_template: '{{ value_json.permit_join }}'
     - name: kn_sls_state
       state_topic: 'SLSHubKN/bridge/state'
       payload_on: 'online'

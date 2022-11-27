@@ -33,7 +33,7 @@
               name: 'Лампа Даны'
             - entity: light.ch_violetta_desktop_light
               name: 'Лампа Виолетты'
-            - entity: light.ch_sls
+            - entity: light.slshubch_led
               name: 'Ночник в детской'
 
         - title: 'Кухня'
@@ -46,7 +46,7 @@
               name: 'Подсветка на кухне'
             - entity: light.lo_light
               name: 'Свет на лоджии'
-            - entity: light.kn_sls
+            - entity: light.slshubkn_led
               name: 'Ночник на кухне'
 
     - type: vertical-stack
@@ -57,7 +57,7 @@
           entities:
             - entity: light.li_light
               name: 'Свет в гостиной'
-            - entity: light.li_sls
+            - entity: light.slshubli_led
               name: 'Ночник в гостиной'
 
         - title: 'Коридор'
@@ -70,9 +70,9 @@
               name: 'Подсветка зеркала в коридоре'
             - entity: light.ha_light
               name: 'Свет в прихожей'
-            - entity: light.co_sls
+            - entity: light.slshubco_led
               name: 'Ночник в коридоре'
-            - entity: light.ha_sls
+            - entity: light.slshubha_led
               name: 'Ночник в прихожей'
 
         - title: 'Санузлы'

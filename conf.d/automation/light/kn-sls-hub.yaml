@@ -14,7 +14,7 @@
   action:
     - service: light.turn_on
       data:
-        entity_id: light.kn_sls
+        entity_id: light.slshubkn_led
         brightness_pct: 70
         rgb_color: [255,0,0]
 
@@ -30,4 +30,4 @@
       above: 10
   action:
     - service: light.turn_off
-      entity_id: light.kn_sls
+      entity_id: light.slshubkn_led

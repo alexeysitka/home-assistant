@@ -2,7 +2,7 @@
   alias: ha_start_timer_on_night_light_switched_on
   trigger:
     - platform: state
-      entity_id: light.ha_sls
+      entity_id: light.slshubha_led
       to: 'on'
   action:
     - service: timer.start
@@ -38,7 +38,7 @@
   action:
     - service: light.turn_on
       data:
-        entity_id: light.ha_sls
+        entity_id: light.slshubha_led
         brightness_pct: 70
         rgb_color: [255,0,0]
 
@@ -56,7 +56,7 @@
       to: 'on'
   condition:
     - condition: state
-      entity_id: light.ha_sls
+      entity_id: light.slshubha_led
       state: 'on'
   action:
     - service: timer.cancel
@@ -76,7 +76,7 @@
       to: 'off'
   condition:
     - condition: state
-      entity_id: light.ha_sls
+      entity_id: light.slshubha_led
       state: 'on'
     - condition: state
       entity_id: binary_sensor.co_motionbathroom_occupancy
@@ -105,7 +105,7 @@
       to: 'on'
   action:
     - service: light.turn_off
-      entity_id: light.ha_sls
+      entity_id: light.slshubha_led
 
 - id: 'Выключить ночник в прихожей по таймеру'
   alias: ha_disable_night_light_on_timer_finished
@@ -116,4 +116,4 @@
         entity_id: timer.ha_night_light
   action:
     - service: light.turn_off
-      entity_id: light.ha_sls
+      entity_id: light.slshubha_led

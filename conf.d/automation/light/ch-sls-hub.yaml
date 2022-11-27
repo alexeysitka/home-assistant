@@ -14,7 +14,7 @@
 #  action:
 #    - service: light.turn_on
 #      data:
-#        entity_id: light.ch_sls
+#        entity_id: light.slshubch_led
 #        brightness_pct: 5
 #        rgb_color: [255,0,0]
 #
@@ -30,4 +30,4 @@
 #      above: 10
 #  action:
 #    - service: light.turn_off
-#      entity_id: light.ch_sls
+#      entity_id: light.slshubch_led

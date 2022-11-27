@@ -1,22 +1,9 @@
 homeassistant:
   customize:
-    light.ch_sls:
+    light.slshubch_led:
       friendly_name: 'Ночник в детской'
 
 mqtt:
-  light:
-    - name: ch_sls
-      availability_topic: 'SLSHubCH/bridge/state'
-      command_topic: 'SLSHubCH/led'
-      rgb_command_topic: 'SLSHubCH/led'
-      rgb_command_template: >-
-        {
-          "mode": "manual",
-          "hex": "#{{ '%02x%02x%02x' | format(red, green, blue) }}"
-        }
-      on_command_type: 'brightness'
-      payload_off: '{"mode": "off"}'
-
   switch:
     - name: ch_sls_join
       state_topic: 'SLSHubCH/bridge/config/permit_join'
@@ -25,26 +12,11 @@ mqtt:
       payload_off: 'false'
 
   sensor:
-    - name: ch_sls_uptimestr
-      state_topic: 'SLSHubCH/bridge/config'
-      value_template: '{{ value_json.UptimeStr }}'
-    - name: ch_sls_ip
-      state_topic: 'SLSHubCH/bridge/config'
-      value_template: '{{ value_json.IP }}'
-    - name: ch_sls_rssi
-      state_topic: 'SLSHubCH/bridge/config'
-      unit_of_measurement: 'dB'
-      value_template: '{{ value_json.RSSI }}'
     - name: ch_sls_version
       state_topic: 'SLSHubCH/bridge/config'
       value_template: '{{ value_json.Version }}'
 
   binary_sensor:
-    - name: ch_sls_pairing
-      state_topic: 'SLSHubCH/bridge/config'
-      payload_on: 'True'
-      payload_off: 'False'
-      value_template: '{{ value_json.permit_join }}'
     - name: ch_sls_state
       state_topic: 'SLSHubCH/bridge/state'
       payload_on: 'online'
