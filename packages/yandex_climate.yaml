@@ -8,8 +8,8 @@ yandex_smart_home:
       - climate.ch_radiator
       - climate.li_radiator
 
-      - sensor.kn_temperature
-      - sensor.lo_temperature
+      - sensor.kn_temperature_temperature
+      - sensor.lo_temperature_temperature
 
       - sensor.be_co2_co2
 
@@ -39,10 +39,10 @@ yandex_smart_home:
       name: "Радиатор"
       room: "Гостиная"
 
-    sensor.kn_temperature:
+    sensor.kn_temperature_temperature:
       name: "Температура"
       room: "Кухня"
-    sensor.lo_temperature:
+    sensor.lo_temperature_temperature:
       name: "Температура"
       room: "Лоджия"
 
