@@ -1,0 +1,57 @@
+# https://yandex.ru/dev/dialogs/smart-home/doc/concepts/device-type-sensor.html
+
+yandex_smart_home:
+  filter:
+    include_entities:
+      - binary_sensor.be_motion_occupancy
+
+      - binary_sensor.ch_motion_occupancy
+      - binary_sensor.ch_motionleft_occupancy
+      - binary_sensor.ch_motionright_occupancy
+
+      - binary_sensor.co_motionbathroom_occupancy
+      - binary_sensor.co_motionkitchen_occupancy
+      - binary_sensor.co_motionmirror_occupancy
+
+      - binary_sensor.ha_motion_occupancy
+
+      - binary_sensor.kn_motion_occupancy
+
+      - binary_sensor.to_motion_occupancy
+
+  entity_config:
+    binary_sensor.be_motion_occupancy:
+      name: "Датчик движения у входа"
+      room: "Спальня"
+
+    binary_sensor.ch_motion_occupancy:
+      name: "Датчик движения у входа"
+      room: "Детская"
+    binary_sensor.ch_motionleft_occupancy:
+      name: "Датчик движения слева"
+      room: "Детская"
+    binary_sensor.ch_motionright_occupancy:
+      name: "Датчик движения справа"
+      room: "Детская"
+
+    binary_sensor.co_motionbathroom_occupancy:
+      name: "Датчик движения у ванной"
+      room: "Коридор"
+    binary_sensor.co_motionkitchen_occupancy:
+      name: "Датчик движения у кухни"
+      room: "Коридор"
+    binary_sensor.co_motionmirror_occupancy:
+      name: "Датчик движения у зеркала"
+      room: "Коридор"
+
+    binary_sensor.ha_motion_occupancy:
+      name: "Датчик движения"
+      room: "Прихожая"
+
+    binary_sensor.kn_motion_occupancy:
+      name: "Датчик движения у входа"
+      room: "Кухня"
+
+    binary_sensor.to_motion_occupancy:
+      name: "Датчик движения"
+      room: "Туалет"
