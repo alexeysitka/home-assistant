@@ -14,7 +14,7 @@ schedy_heating:  # This is app instance name.
       actors:
         climate.ba_towel_dryer:
       schedule:
-        - v: 27
+        - v: 26
           rules:
             - weekdays: 1-7
               rules:
@@ -35,7 +35,7 @@ schedy_heating:  # This is app instance name.
           rules:
             - weekdays: 1-5
               rules:
-                - { start: '11:00', end: '21:00' }
+                - { start: '10:00', end: '21:00' }
         - v: 23.0
           rules:
             - weekdays: 1-7
