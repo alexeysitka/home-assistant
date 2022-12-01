@@ -16,3 +16,17 @@ automation:
         data:
           message: |
             Задымление на кухне!!!
+      - service: media_player.volume_set
+        entity_id: media_player.be_yandex_station
+        data:
+          volume_level: 0.8
+      - service: media_player.play_media
+        entity_id: media_player.be_yandex_station
+        data:
+          media_content_id: 'Внимание! На кухне что-то горит! Надо бы проверить, как бы чего не случилось!'
+          media_content_type: text
+      - delay: 0:00:07
+      - service: media_player.volume_set
+        entity_id: media_player.be_yandex_station
+        data:
+          volume_level: 0.3
