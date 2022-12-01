@@ -13,6 +13,8 @@
           name: 'Обогреватель'
         - entity: sensor.be_breezer_ntc_temperature
           name: 'Температура обогревателя'
+        - entity: sensor.be_breezer_temperature
+          name: 'Температура по бризеру'
     - type: custom:mini-graph-card
       entities:
         - entity: sensor.be_co2_co2
