@@ -13,7 +13,7 @@ automation:
       - service: notify.alexey
         data:
           message: |
-            Превышение по CO2, {{ states.sensor.be_co2_co2.attributes["co2"] }} ppm
+            Превышение по CO2, {{ states('sensor.be_co2_co2') }} ppm
       - service: input_boolean.turn_off
         target:
           entity_id: input_boolean.be_notify_co2_high
@@ -35,7 +35,7 @@ automation:
       - service: notify.alexey
         data:
           message: |
-            Нормализация CO2, {{ states.sensor.be_co2_co2.attributes["co2"] }} ppm
+            Нормализация CO2, {{ states('sensor.be_co2_co2') }} ppm
       - service: input_boolean.turn_off
         target:
           entity_id: input_boolean.be_notify_co2_low
@@ -53,7 +53,7 @@ automation:
       - service: notify.alexey
         data:
           message: |
-            КРИТИЧЕСКОЕ превышение по CO2, {{ states.sensor.be_co2_co2.attributes["co2"] }} ppm
+            КРИТИЧЕСКОЕ превышение по CO2, {{ states('sensor.be_co2_co2') }} ppm
 
 input_boolean:
   be_notify_co2_high:
