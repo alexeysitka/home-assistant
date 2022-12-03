@@ -49,7 +49,7 @@ gledopto_light_on_day_cold:
       data:
         entity_id: '{{ bed_light }}'
         brightness_pct: 100
-        kelvin: 4000
+        color_temp: 150
         transition: 0
 
 gledopto_light_on_evening_warm:
@@ -64,7 +64,7 @@ gledopto_light_on_evening_warm:
       data:
         entity_id: '{{ bed_light }}'
         brightness_pct: 100
-        kelvin: 500
+        color_temp: 500
         transition: 0
 
 gledopto_light_on_night_red:
@@ -78,6 +78,6 @@ gledopto_light_on_night_red:
     - service: light.turn_on
       data:
         entity_id: '{{ bed_light }}'
-        brightness_pct: 80
+        brightness_pct: 50
         rgb_color: [255, 0, 0]
-        transition: 4
+        transition: 1

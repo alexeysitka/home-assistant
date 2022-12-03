@@ -43,16 +43,16 @@
   trigger:
     - platform: state
       entity_id: sensor.be_controlone_action
-      to: right_long
+      to: right_hold
     - platform: state
       entity_id: sensor.be_controltwo_action
-      to: right_long
+      to: right_hold
     - platform: state
       entity_id: sensor.be_controlone_action
-      to: both_long
+      to: both_hold
     - platform: state
       entity_id: sensor.be_controltwo_action
-      to: both_long
+      to: both_hold
   action:
     - service: script.gledopto_light_on_night_red
       data:
