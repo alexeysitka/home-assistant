@@ -18,12 +18,7 @@ fan:
           service: fan.turn_off
           target:
             entity_id: fan.be_breezer_source
-        preset_modes:
-          - 'auto'
-          - 'silent'
-          - 'low'
-          - 'medium'
-          - 'high'
+        preset_modes: [ 'auto', 'silent', 'low', 'medium', 'high' ]
         preset_mode_template: >
           {% if is_state('fan.be_breezer_source', 'on') %}
             {% if is_state_attr('fan.be_breezer_source', 'mode', 'auto') %}
@@ -57,6 +52,11 @@ fan:
                 {% elif preset_mode == 'high' %}
                   strong
                 {% endif %}
+
+input_select:
+  be_breezer_mode:
+    name: Fan mode
+    options: [ 'auto', 'silent', 'low', 'medium', 'high' ]
 
 sensor:
   - platform: template
@@ -98,16 +98,6 @@ switch:
           mdi:radiator-disabled
           {% endif %}
 
-input_select:
-  be_breezer_mode:
-    name: Fan mode
-    options:
-      - auto
-      - silent
-      - low
-      - medium
-      - high
-
 automation:
   - id: 'Выставить режим бризера в спальне'
     alias: be_breezer_set_preset_mode
@@ -129,7 +119,7 @@ automation:
       - service: input_select.select_option
         entity_id: input_select.be_breezer_mode
         data_template:
-          option: "{{ state_attr('fan.be_breezer', 'preset_mode') }}"
+          option: "{{ state_attr('fan.be_breezer', 'preset_mode') if state_attr('fan.be_breezer', 'preset_mode') else 'auto' }}"
 
   - id: 'Авто-режим днём при нормальном CO₂'
     alias: be_breezer_day_set_auto_mode_on_normal_co2
@@ -246,16 +236,39 @@ automation:
           entity_id: fan.be_breezer
           preset_mode: medium
 
+  - id: 'Включить обогрев по расписанию утром при низкой температуре на обогревателе и в комнате'
+    alias: be_breezer_scheduled_enable_ptc_on_low_temperature_morning
+    trigger:
+      - platform: time_pattern
+        hours: 07
+        minutes: 00
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.be_breezer_ntc_temperature
+        below: 15
+      - condition: numeric_state
+        entity_id: sensor.be_breezer_temperature
+        below: 23
+    action:
+      - service: switch.turn_on
+        entity_id: switch.be_breezer_ptc
+
   - id: 'Включить обогрев при низкой температуре на обогревателе и в комнате днём'
     alias: be_breezer_enable_ptc_on_low_temperature_day
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_breezer_ntc_temperature
         below: 15
+      - platform: numeric_state
+        entity_id: sensor.be_breezer_temperature
+        below: 23
     condition:
       - condition: numeric_state
+        entity_id: sensor.be_breezer_ntc_temperature
+        below: 15
+      - condition: numeric_state
         entity_id: sensor.be_breezer_temperature
-        below: 22
+        below: 23
       - condition: time
         after: '07:00:00'
         before: '23:00:00'
@@ -263,19 +276,42 @@ automation:
       - service: switch.turn_on
         entity_id: switch.be_breezer_ptc
 
-  - id: 'Выключить обогрев при высокой температуре на обогревателе и в комнате днём'
-    alias: be_breezer_disable_ptc_on_high_temperature_day
+  - id: 'Выключить обогрев при нормальной температуре на обогревателе и в комнате днём'
+    alias: be_breezer_disable_ptc_on_normal_temperature_day
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_breezer_ntc_temperature
-        above: 21
+        above: 18
+      - platform: numeric_state
+        entity_id: sensor.be_breezer_temperature
+        above: 23.5
     condition:
       - condition: numeric_state
+        entity_id: sensor.be_breezer_ntc_temperature
+        above: 18
+      - condition: numeric_state
         entity_id: sensor.be_breezer_temperature
-        above: 22
+        above: 23.5
       - condition: time
         after: '07:00:00'
         before: '23:00:00'
+    action:
+      - service: switch.turn_off
+        entity_id: switch.be_breezer_ptc
+
+  - id: 'Выключить обогрев по расписанию вечером при нормальной температуре на обогревателе и в комнате'
+    alias: be_breezer_scheduled_disable_ptc_on_normal_temperature_evening
+    trigger:
+      - platform: time_pattern
+        hours: 23
+        minutes: 00
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.be_breezer_ntc_temperature
+        above: 18
+      - condition: numeric_state
+        entity_id: sensor.be_temperature_temperature
+        above: 20
     action:
       - service: switch.turn_off
         entity_id: switch.be_breezer_ptc
@@ -286,7 +322,13 @@ automation:
       - platform: numeric_state
         entity_id: sensor.be_breezer_ntc_temperature
         below: 15
+      - platform: numeric_state
+        entity_id: sensor.be_temperature_temperature
+        below: 20
     condition:
+      - condition: numeric_state
+        entity_id: sensor.be_breezer_ntc_temperature
+        below: 15
       - condition: numeric_state
         entity_id: sensor.be_temperature_temperature
         below: 20
@@ -297,16 +339,22 @@ automation:
       - service: switch.turn_on
         entity_id: switch.be_breezer_ptc
 
-  - id: 'Выключить обогрев при высокой температуре на обогревателе и в комнате ночью'
-    alias: be_breezer_disable_ptc_on_high_temperature_night
+  - id: 'Выключить обогрев при нормальной температуре на обогревателе и в комнате ночью'
+    alias: be_breezer_disable_ptc_on_normal_temperature_night
     trigger:
       - platform: numeric_state
         entity_id: sensor.be_breezer_ntc_temperature
-        above: 19
+        above: 18
+      - platform: numeric_state
+        entity_id: sensor.be_temperature_temperature
+        above: 21
     condition:
       - condition: numeric_state
+        entity_id: sensor.be_breezer_ntc_temperature
+        above: 18
+      - condition: numeric_state
         entity_id: sensor.be_temperature_temperature
-        above: 20
+        above: 21
       - condition: time
         after: '23:00:00'
         before: '07:00:00'
