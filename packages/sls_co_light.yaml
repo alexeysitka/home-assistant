@@ -30,13 +30,13 @@ automation:
       - condition: template
         value_template: "{{ state_attr('sun.sun', 'elevation') < 1 }}"
       - condition: numeric_state
-        entity_id: sensor.co_motionbathroom_illuminance
+        entity_id: sensor.co_motionbathroom_illuminance_raw
         below: 10
       - condition: numeric_state
-        entity_id: sensor.co_motionkitchen_illuminance
+        entity_id: sensor.co_motionkitchen_illuminance_raw
         below: 10
       - condition: numeric_state
-        entity_id: sensor.co_motionmirror_illuminance
+        entity_id: sensor.co_motionmirror_illuminance_raw
         below: 10
       - condition: state
         entity_id: light.co_light
@@ -107,13 +107,13 @@ automation:
     alias: co_disable_night_light_if_main_light_switched_on
     trigger:
       - platform: numeric_state
-        entity_id: sensor.co_motionbathroom_illuminance
+        entity_id: sensor.co_motionbathroom_illuminance_raw
         above: 10
       - platform: numeric_state
-        entity_id: sensor.co_motionkitchen_illuminance
+        entity_id: sensor.co_motionkitchen_illuminance_raw
         above: 10
       - platform: numeric_state
-        entity_id: sensor.co_motionmirror_illuminance
+        entity_id: sensor.co_motionmirror_illuminance_raw
         above: 10
       - platform: state
         entity_id: light.co_light
