@@ -1,0 +1,23 @@
+automation:
+  - id: 'Включить ночник в прихожей вместе с ночником коридора'
+    alias: ha_enable_night_light_with_co_night_light
+    trigger:
+      - platform: state
+        entity_id: light.slshubco_led
+        to: 'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.slshubha_led
+          brightness_pct: 80
+          rgb_color: [255,0,0]
+
+  - id: 'Выключить ночник в прихожей вместе с ночником коридора'
+    alias: ha_enable_night_light_with_co_night_light
+    trigger:
+      - platform: state
+        entity_id: light.slshubco_led
+        to: 'off'
+    action:
+      - service: light.turn_off
+        entity_id: light.slshubha_led
