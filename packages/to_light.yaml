@@ -1,0 +1,123 @@
+timer:
+  to_light:
+    name: Свет в туалете
+    duration: '00:02:00'
+
+
+light:
+  - platform: template
+    lights:
+      to_light:
+        friendly_name: 'Свет в туалете'
+        value_template: >-
+          {{ is_state('switch.to_light_switch', 'on') }}
+        turn_on:
+          - service: switch.turn_on
+            entity_id: switch.to_light_switch
+        turn_off:
+          - service: switch.turn_off
+            entity_id: switch.to_light_switch
+
+
+automation:
+  - id: 'Запустить таймер при включении света в туалете'
+    alias: to_start_timer_on_light_switched_on
+    trigger:
+      - platform: state
+        entity_id: light.to_light
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.to_motion_occupancy
+        state: 'off'
+    action:
+      - service: timer.start
+        entity_id: timer.to_light
+
+  - id: 'Включить свет и запустить таймер при движении в туалете при открытой двери'
+    alias: to_enable_light_and_restart_timer_on_motion_detected
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.to_motion_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.to_door_contact
+        state: 'on'
+      - condition: time
+        after: '11:00:00'
+        before: '22:00:00'
+    action:
+      - service: light.turn_on
+        entity_id: light.to_light
+
+  - id: 'Остановить таймер при закрытии двери в туалет'
+    alias: to_cancel_timer_on_door_close
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.to_door_contact
+        to: 'off'
+    action:
+      - service: timer.cancel
+        entity_id: timer.to_light
+      - service: automation.turn_off
+        entity_id: automation.to_start_timer_on_occupancy_finish_and_light_on
+
+  - id: 'Включить автоматизацию при открытии двери в туалет'
+    alias: to_enable_automatization_on_door_open
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.to_door_contact
+        to: 'on'
+    action:
+      - service: automation.turn_on
+        entity_id: automation.to_start_timer_on_occupancy_finish_and_light_on
+
+  - id: 'Запустить таймер при отсутствии движения и включенном свете'
+    alias: to_start_timer_on_occupancy_finish_and_light_on
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.to_motion_occupancy
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: light.to_light
+        state: 'on'
+    action:
+      - service: timer.start
+        entity_id: timer.to_light
+
+  - id: 'Остановить таймер при движении и включенном свете'
+    alias: to_stop_timer_on_occupancy_start_and_light_on
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.to_motion_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: light.to_light
+        state: 'on'
+    action:
+      - service: timer.cancel
+        entity_id: timer.to_light
+
+  - id: 'Остановить таймер при выключении света в туалете'
+    alias: to_cancel_timer_on_light_switched_off
+    trigger:
+      - platform: state
+        entity_id: light.to_light
+        to: 'off'
+    action:
+      - service: timer.cancel
+        entity_id: timer.to_light
+
+  - id: 'Выключить свет в туалете по таймеру'
+    alias: to_disable_light_on_timer_finished
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data:
+          entity_id: timer.to_light
+    action:
+      - service: light.turn_off
+        entity_id: light.to_light
