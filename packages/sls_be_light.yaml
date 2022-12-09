@@ -1,0 +1,117 @@
+timer:
+  be_night_light:
+    name: Ночник в спальне
+    duration: 60
+
+
+automation:
+  - id: 'Запустить таймер при включении ночника в спальне'
+    alias: be_start_timer_on_night_light_switched_on
+    trigger:
+      - platform: state
+        entity_id: light.slshubbe_led
+        to: 'on'
+    action:
+      - service: timer.start
+        entity_id: timer.be_night_light
+
+  - id: 'Включить ночник в спальне при движении после захода солнца'
+    alias: be_enable_night_light_after_sunset
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.be_motion_occupancy
+        to: 'on'
+    condition:
+      - condition: template
+        value_template: "{{ state_attr('sun.sun', 'elevation') < 1 }}"
+      - condition: numeric_state
+        entity_id: sensor.be_motion_illuminance_raw
+        below: 10
+      - condition: state
+        entity_id: light.be_light
+        state: 'off'
+      - condition: state
+        entity_id: light.be_bedlight_alexey_light
+        state: 'off'
+      - condition: state
+        entity_id: light.be_bedlight_julia_light
+        state: 'off'
+      - condition: state
+        entity_id: light.be_wall_light
+        state: 'off'
+      - condition: state
+        entity_id: light.be_cabinet_light
+        state: 'off'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.slshubbe_led
+          brightness_pct: 5
+          rgb_color: [255,0,0]
+
+  - id: 'Отменять таймер при появлении движения на датчиках спальни'
+    alias: be_stop_timer_on_night_light_switched_on_and_motion_detected
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.be_motion_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: light.slshubbe_led
+        state: 'on'
+    action:
+      - service: timer.cancel
+        entity_id: timer.be_night_light
+
+  - id: 'Запускать таймер при включённом ночнике и отсутствии движения на датчиках спальни'
+    alias: be_start_timer_on_night_light_switched_on_and_no_motion_detected
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.be_motion_occupancy
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: light.slshubbe_led
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.be_motion_occupancy
+        state: 'off'
+    action:
+      - service: timer.start
+        entity_id: timer.be_night_light
+
+  - id: 'Выключить ночник в спальне если включили любой светильник или достаточно другого освещения'
+    alias: be_disable_night_light_if_main_light_switched_on
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.be_motion_illuminance_raw
+        above: 10
+      - platform: state
+        entity_id: light.be_light
+        to: 'on'
+      - platform: state
+        entity_id: light.be_bedlight_alexey_light
+        to: 'on'
+      - platform: state
+        entity_id: light.be_bedlight_julia_light
+        to: 'on'
+      - platform: state
+        entity_id: light.be_wall_light
+        to: 'on'
+      - platform: state
+        entity_id: light.be_cabinet_light
+        to: 'on'
+    action:
+      - service: light.turn_off
+        entity_id: light.slshubbe_led
+
+  - id: 'Выключить ночник в спальне по таймеру'
+    alias: be_disable_night_light_on_timer_finished
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data:
+          entity_id: timer.be_night_light
+    action:
+      - service: light.turn_off
+        entity_id: light.slshubbe_led
