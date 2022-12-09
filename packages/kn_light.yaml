@@ -1,6 +1,9 @@
 timer:
   kn_light:
     name: Свет на кухне
+    duration: '00:06:00'
+  kn_ambient_light:
+    name: Подсветка на кухне
     duration: '00:08:00'
 
 
@@ -53,6 +56,8 @@ automation:
     action:
       - service: timer.start
         entity_id: timer.kn_light
+      - service: timer.start
+        entity_id: timer.kn_ambient_light
 
   - id: 'Отменять таймер при включённом свете и появлении движения на датчиках детской'
     alias: kn_stop_timer_on_light_switched_on_and_motion_detected
@@ -77,6 +82,8 @@ automation:
     action:
       - service: timer.cancel
         entity_id: timer.kn_light
+      - service: timer.cancel
+        entity_id: timer.kn_ambient_light
 
   - id: 'Запускать таймер при включённом свете и отсутствии движения на всех датчиках детской'
     alias: kn_start_timer_on_light_switched_on_and_no_motion_detected
@@ -110,26 +117,42 @@ automation:
     action:
       - service: timer.start
         entity_id: timer.kn_light
+      - service: timer.start
+        entity_id: timer.kn_ambient_light
 
-  - id: 'Остановить таймер при выключении всех светильников на кухне'
+  - id: 'Остановить таймер при выключении света на кухне'
     alias: kn_cancel_timer_on_light_switched_off
     trigger:
       - platform: state
         entity_id: light.kn_light
         to: 'off'
-      - platform: state
-        entity_id: light.kn_ambient_light
-        to: 'off'
+#      - platform: state
+#        entity_id: light.kn_ambient_light
+#        to: 'off'
     condition:
       - condition: state
         entity_id: light.kn_light
         state: 'off'
-      - condition: state
-        entity_id: light.kn_ambient_light
-        state: 'off'
+#      - condition: state
+#        entity_id: light.kn_ambient_light
+#        state: 'off'
     action:
       - service: timer.cancel
         entity_id: timer.kn_light
+
+  - id: 'Остановить таймер при выключении подсветки на кухне'
+    alias: kn_cancel_timer_on_ambient_light_switched_off
+    trigger:
+      - platform: state
+        entity_id: light.kn_ambient_light
+        to: 'off'
+#    condition:
+#      - condition: state
+#        entity_id: light.kn_ambient_light
+#        state: 'off'
+    action:
+      - service: timer.cancel
+        entity_id: timer.kn_ambient_light
 
   - id: 'Выключить свет на кухне по таймеру'
     alias: kn_disable_light_on_timer_finished
@@ -142,5 +165,15 @@ automation:
     action:
       - service: light.turn_off
         entity_id: light.kn_light
+
+  - id: 'Выключить подсветку на кухне по таймеру'
+    alias: kn_disable_ambient_light_on_timer_finished
+    initial_state: true
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data:
+          entity_id: timer.kn_ambient_light
+    action:
       - service: light.turn_off
         entity_id: light.kn_ambient_light
