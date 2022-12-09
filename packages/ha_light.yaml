@@ -1,0 +1,114 @@
+timer:
+  ha_light:
+    name: Свет в прихожей
+    duration: '00:05:00'
+
+
+light:
+  - platform: template
+    lights:
+      ha_light:
+        friendly_name: 'Свет в прихожей'
+        value_template: >-
+          {{ is_state('switch.ha_light_switch', 'on') }}
+        turn_on:
+          - service: switch.turn_on
+            entity_id: switch.ha_light_switch
+        turn_off:
+          - service: switch.turn_off
+            entity_id: switch.ha_light_switch
+
+
+automation:
+  - id: 'Запустить таймер при включении света в прихожей, если не было движения'
+    alias: ha_start_timer_on_light_switched_on_and_no_motion_detected
+    trigger:
+      - platform: state
+        entity_id: light.ha_light
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.ha_motion_occupancy
+        state: 'off'
+    action:
+      - service: timer.start
+        entity_id: timer.ha_light
+
+  - id: 'Включить свет и запустить таймер при движении в прихожей при открытой входной двери'
+    alias: ha_enable_light_and_restart_timer_on_motion_detected_with_opened_door
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.ha_motion_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.ha_door_contact
+        state: 'on'
+    action:
+      - service: light.turn_on
+        entity_id: light.ha_light
+
+  - id: 'Включить свет и запустить таймер при открытии входной двери после заката'
+    alias: ha_enable_light_and_restart_timer_on_opened_door_after_sunset
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.ha_door_contact
+        to: 'on'
+    condition:
+      - condition: template
+        value_template: "{{ state_attr('sun.sun', 'elevation') < 1 }}"
+    action:
+      - service: light.turn_on
+        entity_id: light.ha_light
+      - service: timer.start
+        entity_id: timer.ha_light
+
+  - id: 'Перезапустить таймер при включённом свете и отсутствии движения на датчике прихожей'
+    alias: ha_restart_timer_on_light_switched_on_and_motion_not_detected
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.ha_motion_occupancy
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: light.ha_light
+        state: 'on'
+    action:
+      - service: timer.start
+        entity_id: timer.ha_light
+
+  - id: 'Остановить таймер при движении с включенным светом в прихожей'
+    alias: ha_cancel_timer_on_motion_detected_and_light_switched_on
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.ha_motion_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: light.ha_light
+        state: 'on'
+    action:
+      - service: timer.cancel
+        entity_id: timer.ha_light
+
+  - id: 'Остановить таймер при выключении света в прихожей'
+    alias: ha_cancel_timer_on_light_switched_off
+    trigger:
+      - platform: state
+        entity_id: light.ha_light
+        to: 'off'
+    action:
+      - service: timer.cancel
+        entity_id: timer.ha_light
+
+  - id: 'Выключить свет в прихожей по таймеру'
+    alias: ha_disable_light_on_timer_finished
+    initial_state: true
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data:
+          entity_id: timer.ha_light
+    action:
+      - service: light.turn_off
+        entity_id: light.ha_light
