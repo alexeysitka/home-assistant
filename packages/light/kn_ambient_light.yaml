@@ -1,7 +1,7 @@
 timer:
   kn_ambient_light:
     name: Подсветка на кухне
-    duration: '00:08:00'
+    duration: '00:07:00'
 
 
 light:
