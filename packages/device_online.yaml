@@ -1,0 +1,122 @@
+homeassistant:
+  customize:
+    binary_sensor.alexey_pc_online:
+      friendly_name: 'Компьютер в кабинете онлайн'
+    binary_sensor.alexey_pc_online_1:
+      friendly_name: 'Компьютер в кабинете (верхний)'
+    binary_sensor.alexey_pc_online_2:
+      friendly_name: 'Компьютер в кабинете (нижний)'
+
+    binary_sensor.children_pc_online:
+      friendly_name: 'Компьютер Даны в детской онлайн'
+
+    binary_sensor.julia_pc_online:
+      friendly_name: 'Компьютер Юли в гостиной онлайн'
+
+    binary_sensor.kn_tv_online:
+      friendly_name: 'Телевизор на кухне онлайн'
+
+    binary_sensor.be_tv_online:
+      friendly_name: 'Телевизор в спальне онлайн'
+    binary_sensor.be_tv_online_tv:
+      friendly_name: 'Телевизор в спальне (кабель)'
+    binary_sensor.be_tv_online_mi_box_wire:
+      friendly_name: 'Ми бокс в спальне (кабель)'
+
+    binary_sensor.li_tv_online:
+      friendly_name: 'Телевизор в гостиной онлайн'
+    binary_sensor.li_tv_online_wire:
+      friendly_name: 'Телевизор в гостиной (кабель)'
+    binary_sensor.li_tv_online_wifi:
+      friendly_name: 'Телевизор в гостиной (wifi)'
+
+    binary_sensor.li_tv_online_mi_box_wifi:
+      friendly_name: 'Ми бокс в гостиной (wifi)'
+
+    binary_sensor.li_ps5_online:
+      friendly_name: 'PS5 в гостиной онлайн'
+    binary_sensor.li_ps5_online_wire:
+      friendly_name: 'PS5 в гостиной (кабель)'
+    binary_sensor.li_ps5_online_wifi:
+      friendly_name: 'PS5 в гостиной (wifi)'
+
+    binary_sensor.co_printer_online:
+      friendly_name: 'Принтер в коридоре онлайн'
+
+
+binary_sensor:
+  - platform: ping
+    name: alexey_pc_online_1
+    host: 192.168.31.100
+    scan_interval: 10
+  - platform: ping
+    name: alexey_pc_online_2
+    host: 192.168.31.101
+    scan_interval: 10
+  - platform: template
+    sensors:
+      alexey_pc_online:
+        friendly_name: 'Компьютер в кабинете'
+        value_template: >-
+          {{ states('binary_sensor.alexey_pc_online_1') == 'on' or states('binary_sensor.alexey_pc_online_2') == 'on' }}
+
+  - platform: ping
+    name: children_pc_online
+    host: 192.168.31.102
+    scan_interval: 10
+
+  - platform: ping
+    name: julia_pc_online
+    host: 192.168.31.103
+    scan_interval: 10
+
+  - platform: ping
+    name: kn_tv_online
+    host: 192.168.31.112
+
+  - platform: ping
+    name: be_tv_online_tv
+    host: 192.168.31.113
+  - platform: ping
+    name: be_tv_online_mi_box_wire
+    host: 192.168.31.114
+  - platform: template
+    sensors:
+      li_tv_online:
+        friendly_name: 'Телевизор в спальне'
+        value_template: >-
+          {{ states('binary_sensor.be_tv_online_tv') == 'on' or states('binary_sensor.be_tv_online_mi_box_wire') == 'on' }}
+
+  - platform: ping
+    name: li_tv_online_wire
+    host: 192.168.31.115
+  - platform: ping
+    name: li_tv_online_wifi
+    host: 192.168.31.116
+  - platform: template
+    sensors:
+      li_tv_online:
+        friendly_name: 'Телевизор в гостиной'
+        value_template: >-
+          {{ states('binary_sensor.li_tv_online_wire') == 'on' or states('binary_sensor.li_tv_online_wifi') == 'on' }}
+
+  - platform: ping
+    name: li_tv_online_mi_box_wifi
+    host: 192.168.31.111
+
+  - platform: ping
+    name: li_ps5_online_wire
+    host: 192.168.31.117
+  - platform: ping
+    name: li_ps5_online_wifi
+    host: 192.168.31.118
+  - platform: template
+    sensors:
+      li_tv_online:
+        friendly_name: 'PlayStation 5'
+        value_template: >-
+          {{ states('binary_sensor.li_ps5_online_wire') == 'on' or states('binary_sensor.li_ps5_online_wifi') == 'on' }}
+
+  - platform: ping
+    name: co_printer_online
+    host: 192.168.31.150
