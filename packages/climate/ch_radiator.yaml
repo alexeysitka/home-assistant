@@ -1,0 +1,14 @@
+climate:
+  - platform: generic_thermostat
+    name: ch_radiator
+    heater: switch.ch_boiler_channel
+    target_sensor: sensor.ch_temperature_temperature
+    min_temp: 15
+    max_temp: 30
+    target_temp: 24
+    min_cycle_duration: '00:30:00'
+    cold_tolerance: 0.2
+    hot_tolerance: 0.2
+    away_temp: 19
+    precision: 0.5
+    initial_hvac_mode: 'off'
