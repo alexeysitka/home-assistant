@@ -1,6 +1,6 @@
 homeassistant:
   customize:
-    light.slshubco_led:
+    light.slshubkn_led:
       friendly_name: 'Ночник на кухне'
 
 mqtt:
