@@ -31,13 +31,13 @@ automation:
         value_template: "{{ state_attr('sun.sun', 'elevation') < 1 }}"
       - condition: numeric_state
         entity_id: sensor.kn_motion_illuminance_raw
-        below: 10
+        below: 5
       - condition: numeric_state
         entity_id: sensor.kn_motiontable_illuminance_raw
-        below: 10
+        below: 5
       - condition: numeric_state
         entity_id: sensor.kn_motionpicture_illuminance_raw
-        below: 10
+        below: 5
       - condition: state
         entity_id: light.kn_light
         state: 'off'
@@ -106,13 +106,13 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: sensor.kn_motion_illuminance_raw
-        above: 10
+        above: 5
       - platform: numeric_state
         entity_id: sensor.kn_motiontable_illuminance_raw
-        above: 10
+        above: 5
       - platform: numeric_state
         entity_id: sensor.kn_motionpicture_illuminance_raw
-        above: 10
+        above: 5
       - platform: state
         entity_id: light.kn_light
         to: 'on'
