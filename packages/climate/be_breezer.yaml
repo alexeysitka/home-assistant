@@ -11,13 +11,13 @@ fan:
         friendly_name: "Бризер в спальне"
         value_template: "{{ states('fan.be_breezer_source') }}"
         turn_on:
-          service: fan.turn_on
-          target:
-            entity_id: fan.be_breezer_source
+          - service: fan.turn_on
+            target:
+              entity_id: fan.be_breezer_source
         turn_off:
-          service: fan.turn_off
-          target:
-            entity_id: fan.be_breezer_source
+          - service: fan.turn_off
+            target:
+              entity_id: fan.be_breezer_source
         preset_modes: [ 'auto', 'silent', 'low', 'medium', 'high' ]
         preset_mode_template: >
           {% if is_state('fan.be_breezer_source', 'on') %}
