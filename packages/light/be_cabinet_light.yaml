@@ -1,0 +1,25 @@
+light:
+  - platform: template
+    lights:
+      be_cabinet_light:
+        friendly_name: 'Свет в кабинете'
+        value_template: >-
+          {{ is_state('switch.be_cabinetlight_switch', 'on') }}
+        turn_on:
+          - service: switch.turn_on
+            entity_id: switch.be_cabinetlight_switch
+        turn_off:
+          - service: switch.turn_off
+            entity_id: switch.be_cabinetlight_switch
+
+
+automation:
+  - id: 'Выключение света в кабинете с основного выключателя спальни'
+    alias: be_switch_cabinet_off
+    trigger:
+      - platform: state
+        entity_id: sensor.be_light_action
+        to: 'hold_right'
+    action:
+      - service: light.turn_off
+        entity_id: light.be_cabinet_light

@@ -1,0 +1,48 @@
+automation:
+#  - id: 'Включение настольной лампы при недостатке освещения, когда комп включен'
+#    alias: be_cabinet_desklight_enable_on_insufficient_light
+#    trigger:
+#      - platform: numeric_state
+#        entity_id: sensor.be_cabinetilluminance_illuminance
+#        below: 150
+#    condition:
+#      - condition: state
+#        entity_id: binary_sensor.alexey_pc_online
+#        state: 'on'
+#    action:
+#      - service: light.turn_on
+#        data:
+#          entity_id: light.philips_desklamp
+#      - service: light.turn_on
+#        data:
+#          entity_id: light.philips_desklamp_ambient_light
+#
+#  - id: 'Включение настольной лампы при включении компа и недостатке освещения'
+#    alias: be_cabinet_desklight_enable_on_pc_enable_and_insufficient_light
+#    trigger:
+#      - platform: state
+#        entity_id: binary_sensor.alexey_pc_online
+#        to: 'on'
+#    condition:
+#      - condition: numeric_state
+#        entity_id: sensor.be_cabinetilluminance_illuminance
+#        below: 150
+#    action:
+#      - service: light.turn_on
+#        data:
+#          entity_id: light.philips_desklamp
+#      - service: light.turn_on
+#        data:
+#          entity_id: light.philips_desklamp_ambient_light
+#
+#
+#  - id: 'Выключение настольной лампы при выключении компа'
+#    alias: be_cabinet_desklight_disable_on_pc_disable
+#    trigger:
+#      - platform: state
+#        entity_id: binary_sensor.alexey_pc_online
+#        to: 'off'
+#    action:
+#      - service: light.turn_off
+#        data:
+#          entity_id: light.philips_desklamp
