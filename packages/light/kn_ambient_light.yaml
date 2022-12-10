@@ -1,30 +1,30 @@
 timer:
-  kn_light:
-    name: Свет на кухне
-    duration: '00:06:00'
+  kn_ambient_light:
+    name: Подсветка на кухне
+    duration: '00:08:00'
 
 
 light:
   - platform: template
     lights:
-      kn_light:
-        friendly_name: 'Свет на кухне'
+      kn_ambient_light:
+        friendly_name: 'Подсветка на кухне'
         value_template: >-
-          {{ is_state('switch.kn_light_switch_left', 'on') }}
+          {{ is_state('switch.kn_light_switch_right', 'on') }}
         turn_on:
           - service: switch.turn_on
-            entity_id: switch.kn_light_switch_left
+            entity_id: switch.kn_light_switch_right
         turn_off:
           - service: switch.turn_off
-            entity_id: switch.kn_light_switch_left
+            entity_id: switch.kn_light_switch_right
 
 
 automation:
-  - id: 'Запустить таймер при включении света на кухне'
-    alias: kn_start_timer_on_light_switched_on
+  - id: 'Запустить таймер при включении подсветки на кухне'
+    alias: kn_start_timer_on_ambient_light_switched_on
     trigger:
       - platform: state
-        entity_id: light.kn_light
+        entity_id: light.kn_ambient_light
         to: 'on'
     condition:
       - condition: state
@@ -38,10 +38,10 @@ automation:
         state: 'off'
     action:
       - service: timer.start
-        entity_id: timer.kn_light
+        entity_id: timer.kn_ambient_light
 
-  - id: 'Отменять таймер при включённом свете и появлении движения на датчиках кухни'
-    alias: kn_stop_timer_on_light_switched_on_and_motion_detected
+  - id: 'Отменять таймер при включённой подсветке и появлении движения на датчиках кухни'
+    alias: kn_stop_timer_on_ambient_light_switched_on_and_motion_detected
     trigger:
       - platform: state
         entity_id: binary_sensor.kn_motion_occupancy
@@ -55,14 +55,14 @@ automation:
     condition:
       - or:
           - condition: state
-            entity_id: light.kn_light
+            entity_id: light.kn_ambient_light
             state: 'on'
     action:
       - service: timer.cancel
-        entity_id: timer.kn_light
+        entity_id: timer.kn_ambient_light
 
-  - id: 'Запускать таймер при включённом свете и отсутствии движения на датчиках кухни'
-    alias: kn_start_timer_on_light_switched_on_and_no_motion_detected
+  - id: 'Запускать таймер при включённой подсветке и отсутствии движения на датчиках кухни'
+    alias: kn_start_timer_on_ambient_light_switched_on_and_no_motion_detected
     trigger:
       - platform: state
         entity_id: binary_sensor.kn_motion_occupancy
@@ -85,30 +85,30 @@ automation:
         state: 'off'
       - or:
           - condition: state
-            entity_id: light.kn_light
+            entity_id: light.kn_ambient_light
             state: 'on'
     action:
       - service: timer.start
-        entity_id: timer.kn_light
+        entity_id: timer.kn_ambient_light
 
-  - id: 'Остановить таймер при выключении света на кухне'
-    alias: kn_cancel_timer_on_light_switched_off
+  - id: 'Остановить таймер при выключении подсветки на кухне'
+    alias: kn_cancel_timer_on_ambient_light_switched_off
     trigger:
       - platform: state
-        entity_id: light.kn_light
+        entity_id: light.kn_ambient_light
         to: 'off'
     action:
       - service: timer.cancel
-        entity_id: timer.kn_light
+        entity_id: timer.kn_ambient_light
 
-  - id: 'Выключить свет на кухне по таймеру'
-    alias: kn_disable_light_on_timer_finished
+  - id: 'Выключить подсветку на кухне по таймеру'
+    alias: kn_disable_ambient_light_on_timer_finished
     initial_state: true
     trigger:
       - platform: event
         event_type: timer.finished
         event_data:
-          entity_id: timer.kn_light
+          entity_id: timer.kn_ambient_light
     action:
       - service: light.turn_off
-        entity_id: light.kn_light
+        entity_id: light.kn_ambient_light
