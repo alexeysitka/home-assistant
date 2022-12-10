@@ -48,11 +48,11 @@ binary_sensor:
   - platform: ping
     name: alexey_pc_online_1
     host: 192.168.31.100
-    scan_interval: 10
+    scan_interval: 60
   - platform: ping
     name: alexey_pc_online_2
     host: 192.168.31.101
-    scan_interval: 10
+    scan_interval: 60
   - platform: template
     sensors:
       alexey_pc_online:
@@ -63,23 +63,26 @@ binary_sensor:
   - platform: ping
     name: children_pc_online
     host: 192.168.31.102
-    scan_interval: 10
+    scan_interval: 60
 
   - platform: ping
     name: julia_pc_online
     host: 192.168.31.103
-    scan_interval: 10
+    scan_interval: 60
 
   - platform: ping
     name: kn_tv_online
     host: 192.168.31.112
+    scan_interval: 60
 
   - platform: ping
     name: be_tv_online_tv
     host: 192.168.31.113
+    scan_interval: 60
   - platform: ping
     name: be_tv_online_mi_box_wire
     host: 192.168.31.114
+    scan_interval: 60
   - platform: template
     sensors:
       li_tv_online:
@@ -90,9 +93,11 @@ binary_sensor:
   - platform: ping
     name: li_tv_online_wire
     host: 192.168.31.115
+    scan_interval: 60
   - platform: ping
     name: li_tv_online_wifi
     host: 192.168.31.116
+    scan_interval: 60
   - platform: template
     sensors:
       li_tv_online:
@@ -103,13 +108,16 @@ binary_sensor:
   - platform: ping
     name: li_tv_online_mi_box_wifi
     host: 192.168.31.111
+    scan_interval: 60
 
   - platform: ping
     name: li_ps5_online_wire
     host: 192.168.31.117
+    scan_interval: 60
   - platform: ping
     name: li_ps5_online_wifi
     host: 192.168.31.118
+    scan_interval: 60
   - platform: template
     sensors:
       li_tv_online:
@@ -120,3 +128,4 @@ binary_sensor:
   - platform: ping
     name: co_printer_online
     host: 192.168.31.150
+    scan_interval: 60
