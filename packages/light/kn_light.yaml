@@ -59,7 +59,7 @@ automation:
       - service: timer.start
         entity_id: timer.kn_ambient_light
 
-  - id: 'Отменять таймер при включённом свете и появлении движения на датчиках детской'
+  - id: 'Отменять таймер при включённом свете и появлении движения на датчиках кухни'
     alias: kn_stop_timer_on_light_switched_on_and_motion_detected
     trigger:
       - platform: state
@@ -85,7 +85,7 @@ automation:
       - service: timer.cancel
         entity_id: timer.kn_ambient_light
 
-  - id: 'Запускать таймер при включённом свете и отсутствии движения на всех датчиках детской'
+  - id: 'Запускать таймер при включённом свете и отсутствии движения на датчиках кухни'
     alias: kn_start_timer_on_light_switched_on_and_no_motion_detected
     trigger:
       - platform: state
