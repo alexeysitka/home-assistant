@@ -20,7 +20,7 @@ yandex_smart_home:
       - sensor.li_temperature_humidity
       - sensor.lo_temperature_humidity
 
-      - switch.ba_venting_switch
+      - fan.ba_venting
 
       - fan.be_breezer
       - switch.be_breezer_ptc
@@ -72,7 +72,7 @@ yandex_smart_home:
       name: "Влажность"
       room: "Лоджия"
 
-    switch.ba_venting_switch:
+    fan.ba_venting:
       name: "Вытяжка"
       room: "Ванная"
 
