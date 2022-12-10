@@ -1,3 +1,0 @@
-ch_sls_reboot:
-  name: Недоступность шлюза в детской
-  duration: 300

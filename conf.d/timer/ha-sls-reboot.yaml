@@ -1,3 +1,0 @@
-ha_sls_reboot:
-  name: Недоступность шлюза в прихожей
-  duration: 300

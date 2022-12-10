@@ -3,6 +3,13 @@ homeassistant:
     light.slshubco_led:
       friendly_name: 'Ночник в коридоре'
 
+
+timer:
+  co_sls_reboot:
+    name: Недоступность шлюза в коридоре
+    duration: 300
+
+
 mqtt:
   switch:
     - name: co_sls_join
@@ -21,3 +28,37 @@ mqtt:
       state_topic: 'SLSHubCO/bridge/state'
       payload_on: 'online'
       payload_off: 'offline'
+
+
+automation:
+  - id: 'Шлюз в коридоре оффлайн, запустить таймер недоступности'
+    alias: co_offline_sls
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.co_sls_state
+        to: 'off'
+    action:
+      - service: timer.start
+        entity_id: timer.co_sls_reboot
+
+  - id: 'Шлюз в коридоре онлайн, отменить таймер недоступности'
+    alias: co_online_sls
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.co_sls_state
+        to: 'on'
+    action:
+      - service: timer.cancel
+        entity_id: timer.co_sls_reboot
+
+  - id: 'Уведомить о недоступности SLS шлюза в коридоре и запустить перезагрузку'
+    alias: co_reboot_sls
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data:
+          entity_id: timer.co_sls_reboot
+    action:
+      - service: script.reboot_sls
+        data:
+          name: 'SLSHubCO'

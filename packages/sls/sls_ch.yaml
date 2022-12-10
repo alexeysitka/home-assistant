@@ -3,6 +3,13 @@ homeassistant:
     light.slshubch_led:
       friendly_name: 'Ночник в детской'
 
+
+timer:
+  ch_sls_reboot:
+    name: Недоступность шлюза в детской
+    duration: 300
+
+
 mqtt:
   switch:
     - name: ch_sls_join
@@ -21,3 +28,37 @@ mqtt:
       state_topic: 'SLSHubCH/bridge/state'
       payload_on: 'online'
       payload_off: 'offline'
+
+
+automation:
+  - id: 'Шлюз в детской оффлайн, запустить таймер недоступности'
+    alias: ch_offline_sls
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.ch_sls_state
+        to: 'off'
+    action:
+      - service: timer.start
+        entity_id: timer.ch_sls_reboot
+
+  - id: 'Шлюз в детской онлайн, отменить таймер недоступности'
+    alias: ch_online_sls
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.ch_sls_state
+        to: 'on'
+    action:
+      - service: timer.cancel
+        entity_id: timer.ch_sls_reboot
+
+  - id: 'Уведомить о недоступности SLS шлюза в детской и запустить перезагрузку'
+    alias: ch_reboot_sls
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data:
+          entity_id: timer.ch_sls_reboot
+    action:
+      - service: script.reboot_sls
+        data:
+          name: 'SLSHubCH'
