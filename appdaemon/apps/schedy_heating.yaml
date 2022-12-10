@@ -35,7 +35,7 @@ schedy_heating:  # This is app instance name.
           rules:
             - weekdays: 1-5
               rules:
-                - { start: '9:00', end: '21:00' }
+                - { start: '11:00', end: '21:00' }
         - v: 22.0
           rules:
             - weekdays: 1-7
@@ -55,7 +55,7 @@ schedy_heating:  # This is app instance name.
                 - { start: '12:00', end: '21:00' }
             - weekdays: 6-7
               rules:
-                - { start: '9:00', end: '21:00' }
+                - { start: '10:00', end: '21:00' }
         - v: 22.0
           rules:
             - weekdays: 1-7
