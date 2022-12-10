@@ -1,0 +1,46 @@
+homeassistant:
+  customize:
+    light.be_bedlight:
+      friendly_name: 'Прикроватные лампы'
+
+
+light:
+  - platform: group
+    name: be_bedlight
+    entities:
+      - light.be_bedlight_alexey_light
+      - light.be_bedlight_julia_light
+
+
+automation:
+  - id: 'Включение прикроватных ламп с основного выключателя'
+    alias: be_switch_bedlight_on
+    trigger:
+      - platform: state
+        entity_id: switch.be_light_switch_left
+        to: 'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.be_bedlight
+
+  - id: 'Выключение прикроватных ламп с основного выключателя'
+    alias: be_switch_bedlight_off
+    trigger:
+      - platform: state
+        entity_id: switch.be_light_switch_left
+        to: 'off'
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.be_bedlight
+
+  - id: 'Синхронизация основного выключателя с лампами, выключение'
+    alias: be_switch_sync_bedlight_off
+    trigger:
+      - platform: state
+        entity_id: light.be_bedlight
+        to: 'off'
+    action:
+      - service: switch.turn_off
+        entity_id: switch.be_light_switch_left

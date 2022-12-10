@@ -6,6 +6,7 @@ yandex_smart_home:
       - light.be_light
       - light.slshubbe_led
       - light.be_wall_light
+      - light.be_bedlight
       - light.be_bedlight_alexey_light
       - light.be_bedlight_julia_light
       - light.be_cabinet_light
@@ -49,6 +50,9 @@ yandex_smart_home:
       room: "Спальня"
     light.be_wall_light:
       name: "Гирлянда"
+      room: "Спальня"
+    light.be_bedlight:
+      name: "Прикроватные лампы"
       room: "Спальня"
     light.be_bedlight_alexey_light:
       name: "Моя лампа"
