@@ -11,3 +11,24 @@ light:
         turn_off:
           - service: switch.turn_off
             entity_id: switch.be_walllight_switch
+
+
+automation:
+  - id: 'Включить гирлянду в спальне за полчаса до заката'
+    alias: be_enable_wall_light_on_30_min_before_sunset
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: '-00:30:00'
+    action:
+      - service: light.turn_on
+        entity_id: light.be_wall_light
+
+  - id: 'Выключить гирлянду в спальне в 00:00'
+    alias: be_disable_wall_light_at_midnight
+    trigger:
+      - platform: time
+        at: '00:00:00'
+    action:
+      - service: light.turn_off
+        entity_id: light.be_wall_light
