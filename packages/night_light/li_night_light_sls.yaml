@@ -1,0 +1,7 @@
+timer:
+  li_night_light:
+    name: Ночник в гостиной
+    duration: 60
+
+
+automation:

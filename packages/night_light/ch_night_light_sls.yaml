@@ -1,0 +1,7 @@
+timer:
+  ch_night_light:
+    name: Ночник в детской
+    duration: 60
+
+
+automation:
