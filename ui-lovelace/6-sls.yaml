@@ -13,7 +13,7 @@
         - entity: binary_sensor.be_sls_state
           state_color: true
           name: 'Состояние'
-        - entity: light.be_sls
+        - entity: light.slshubbe_led
           name: 'Подсветка'
         - entity: sensor.slshubbe_uptimestr
           name: 'В работе'

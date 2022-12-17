@@ -39,6 +39,9 @@
               name: 'Объём БД'
               icon: mdi:database
 
+        - type: weather-forecast
+          entity: weather.ha
+
     - type: vertical-stack
       cards:
         - type: markdown
