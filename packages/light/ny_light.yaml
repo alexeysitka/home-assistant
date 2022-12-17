@@ -1,0 +1,90 @@
+homeassistant:
+  customize:
+    light.li_ny_light:
+      friendly_name: 'Огоньки в гостиной'
+
+light:
+  - platform: group
+    name: li_ny_light
+    entities:
+      - light.li_upper_light
+      - light.li_yolka_light
+  - platform: template
+    lights:
+      li_upper_light:
+        friendly_name: 'Гирлянда в гостиной'
+        value_template: >-
+          {{ is_state('switch.li_upperlight_switch', 'on') }}
+        turn_on:
+          - service: switch.turn_on
+            entity_id: switch.li_upperlight_switch
+        turn_off:
+          - service: switch.turn_off
+            entity_id: switch.li_upperlight_switch
+
+  - platform: template
+    lights:
+      li_yolka_light:
+        friendly_name: 'Ёлка в гостиной'
+        value_template: >-
+          {{ is_state('switch.li_yolka_switch', 'on') }}
+        turn_on:
+          - service: switch.turn_on
+            entity_id: switch.li_yolka_switch
+        turn_off:
+          - service: switch.turn_off
+            entity_id: switch.li_yolka_switch
+
+
+automation:
+  - id: 'Включение гирлянд с основного выключателя'
+    alias: li_switch_ny_light_on
+    trigger:
+      - platform: state
+        entity_id: switch.li_light_switch_right
+        to: 'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.li_ny_light
+
+  - id: 'Выключение гирлянд с основного выключателя'
+    alias: li_switch_ny_light_off
+    trigger:
+      - platform: state
+        entity_id: switch.li_light_switch_right
+        to: 'off'
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.li_ny_light
+
+  - id: 'Синхронизация основного выключателя с гирляндами, выключение'
+    alias: li_switch_sync_ny_light_off
+    trigger:
+      - platform: state
+        entity_id: light.li_ny_light
+        to: 'off'
+    action:
+      - service: switch.turn_off
+        entity_id: switch.li_light_switch_right
+
+
+  - id: 'Включить гирлянды в гостиной за полчаса до заката'
+    alias: li_enable_ny_light_on_30_min_before_sunset
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: '-00:30:00'
+    action:
+      - service: light.turn_on
+        entity_id: light.li_ny_light
+
+  - id: 'Выключить гирлянды в гостиной в 01:00'
+    alias: li_disable_ny_light_at_night
+    trigger:
+      - platform: time
+        at: '01:00:00'
+    action:
+      - service: light.turn_off
+        entity_id: light.li_ny_light

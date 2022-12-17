@@ -21,7 +21,10 @@ yandex_smart_home:
 
       - light.li_light
       - light.slshubli_led
+#      Новогодние гирлянды в гостиной
       - light.li_upper_light
+      - light.li_yolka_light
+      - light.li_ny_light
 
       - light.kn_light
       - light.kn_ambient_light
@@ -93,10 +96,17 @@ yandex_smart_home:
     light.slshubli_led:
       name: "Ночник"
       room: "Гостиная"
+
     light.li_upper_light:
       name: "Гирлянда"
       room: "Гостиная"
-
+    light.li_yolka_light:
+      name: "Ёлка"
+      room: "Гостиная"
+    light.li_ny_light:
+      name: "Огоньки"
+      room: "Гостиная"
+# Новогодние гирлянды в гостиной
     light.kn_light:
       name: "Свет"
       room: "Кухня"
