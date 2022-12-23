@@ -9,7 +9,7 @@ fan:
             target:
               entity_id: switch.ba_venting_switch
         turn_off:
-          - service: fan.turn_off
+          - service: switch.turn_off
             target:
               entity_id: switch.ba_venting_switch
 
@@ -61,7 +61,7 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: sensor.ba_temperature_humidity
-        above: 85
+        above: 90
     action:
       - service: fan.turn_on
         target:
@@ -71,7 +71,7 @@ automation:
     alias: ba_check_humidity_in_on_minute_after_venting_disable
     trigger:
       - platform: state
-        entity_id: switch.ba_venting_switch
+        entity_id: fan.ba_venting
         to: 'off'
         for: '00:01:00'
     condition:
