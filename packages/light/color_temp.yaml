@@ -1,0 +1,25 @@
+sensor:
+  - platform: template
+    sensors:
+      day_light_temp:
+        friendly_name: Суточная температура ламп
+        value_template: >-
+          {% if             states('sensor.time') <= '08:00' %}{% set mired = 500 %}
+          {% elif '08:00' < states('sensor.time') <= '18:00' %}{% set mired = 153 %}
+          {% elif '18:00' < states('sensor.time') <= '18:15' %}{% set mired = 182 %}
+          {% elif '18:15' < states('sensor.time') <= '18:30' %}{% set mired = 211 %}
+          {% elif '18:30' < states('sensor.time') <= '18:45' %}{% set mired = 240 %}
+          {% elif '18:45' < states('sensor.time') <= '19:00' %}{% set mired = 269 %}
+          {% elif '19:00' < states('sensor.time') <= '19:15' %}{% set mired = 298 %}
+          {% elif '19:15' < states('sensor.time') <= '19:30' %}{% set mired = 327 %}
+          {% elif '19:30' < states('sensor.time') <= '19:45' %}{% set mired = 356 %}
+          {% elif '19:45' < states('sensor.time') <= '20:00' %}{% set mired = 385 %}
+          {% elif '20:00' < states('sensor.time') <= '20:15' %}{% set mired = 414 %}
+          {% elif '20:15' < states('sensor.time') <= '20:30' %}{% set mired = 443 %}
+          {% elif '20:30' < states('sensor.time') <= '20:45' %}{% set mired = 472 %}
+          {% elif '20:45' < states('sensor.time') <= '21:00' %}{% set mired = 500 %}
+          {% elif '21:00' < states('sensor.time')            %}{% set mired = 500 %}
+          {% endif %}
+          {{ mired }}
+        icon_template: mdi:theme-light-dark
+        unit_of_measurement: 'M'

@@ -40,7 +40,7 @@ automation:
           entity_id: light.be_bedlight_julia_light
         data:
           brightness_pct: 100
-          color_temp: 500
+          color_temp: "{{ states('sensor.day_light_temp') }}"
 
   - id: 'Включение прикроватной лампы справа, цветной свет'
     alias: be_bedlight_julia_on_color
