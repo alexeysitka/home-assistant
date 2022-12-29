@@ -1,0 +1,16 @@
+binary_sensor:
+  - platform: ping
+    name: alexey_at_home
+    host: 192.168.31.50
+
+  - platform: ping
+    name: julia_at_home
+    host: 192.168.31.51
+
+  - platform: ping
+    name: dana_at_home
+    host: 192.168.31.52
+
+  - platform: ping
+    name: violetta_at_home
+    host: 192.168.31.53
