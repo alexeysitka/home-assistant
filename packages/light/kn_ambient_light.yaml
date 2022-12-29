@@ -1,7 +1,10 @@
 timer:
   kn_ambient_light:
     name: Подсветка на кухне
-    duration: '00:07:00'
+    duration: '00:12:00'
+  kn_ambient_light_back:
+    name: Подсветка на кухне (включение)
+    duration: '00:01:00'
 
 
 light:
@@ -111,4 +114,26 @@ automation:
           entity_id: timer.kn_ambient_light
     action:
       - service: light.turn_off
+        entity_id: light.kn_ambient_light
+      - service: timer.start
+        entity_id: timer.kn_ambient_light_back
+
+  - id: 'Включить подсветку на кухне при появлении движения на датчиках кухни если таймер после отключения работает'
+    alias: kn_enable_ambient_light_on_motion_detected_during_back_timer
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.kn_motion_occupancy
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.kn_motiontable_occupancy
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.kn_motionpicture_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: timer.kn_tv_back
+        state: 'active'
+    action:
+      - service: light.turn_on
         entity_id: light.kn_ambient_light
