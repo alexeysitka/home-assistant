@@ -116,7 +116,7 @@ automation:
       - service: light.turn_off
         entity_id: light.kn_light
       - service: timer.start
-        entity_id: timer.kn_ambient_light_back
+        entity_id: timer.kn_light_back
 
   - id: 'Включить свет на кухне при появлении движения на датчиках кухни если таймер после отключения работает'
     alias: kn_enable_light_on_motion_detected_during_back_timer
@@ -132,7 +132,7 @@ automation:
         to: 'on'
     condition:
       - condition: state
-        entity_id: timer.kn_tv_back
+        entity_id: timer.kn_light_back
         state: 'active'
     action:
       - service: light.turn_on

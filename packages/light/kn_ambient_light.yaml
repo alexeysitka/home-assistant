@@ -132,7 +132,7 @@ automation:
         to: 'on'
     condition:
       - condition: state
-        entity_id: timer.kn_tv_back
+        entity_id: timer.kn_ambient_light_back
         state: 'active'
     action:
       - service: light.turn_on
