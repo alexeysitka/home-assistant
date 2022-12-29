@@ -1,7 +1,7 @@
 timer:
   co_night_light:
     name: Ночник в коридоре
-    duration: 60
+    duration: 120
 
 automation:
   - id: 'Запустить таймер при включении ночника в коридоре'
@@ -10,6 +10,16 @@ automation:
       - platform: state
         entity_id: light.slshubco_led
         to: 'on'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.co_motionbathroom_occupancy
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.co_motionkitchen_occupancy
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.co_motionmirror_occupancy
+        state: 'off'
     action:
       - service: timer.start
         entity_id: timer.co_night_light

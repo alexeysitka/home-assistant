@@ -1,7 +1,7 @@
 timer:
   be_night_light:
     name: Ночник в спальне
-    duration: 60
+    duration: 120
 
 
 automation:
@@ -11,6 +11,10 @@ automation:
       - platform: state
         entity_id: light.slshubbe_led
         to: 'on'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.be_motion_occupancy
+        state: 'off'
     action:
       - service: timer.start
         entity_id: timer.be_night_light

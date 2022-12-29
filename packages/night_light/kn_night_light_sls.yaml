@@ -1,7 +1,7 @@
 timer:
   kn_night_light:
     name: Ночник на кухне
-    duration: 60
+    duration: 120
 
 automation:
   - id: 'Запустить таймер при включении ночника на кухне'
@@ -10,6 +10,16 @@ automation:
       - platform: state
         entity_id: light.slshubkn_led
         to: 'on'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.kn_motion_occupancy
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.kn_motiontable_occupancy
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.kn_motionpicture_occupancy
+        state: 'off'
     action:
       - service: timer.start
         entity_id: timer.kn_night_light
