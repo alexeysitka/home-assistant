@@ -40,21 +40,20 @@ tts:
   - platform: google_translate
 
 #Вынос во внешние файлы
-input_boolean: !include conf.d/input_boolean.yaml
-group: !include conf.d/groups.yaml
-scene: !include conf.d/scenes.yaml
-recorder: !include conf.d/recorder.yaml
-
-input_number: !include conf.d/input_number.yaml
-input_select: !include_dir_merge_named conf.d/input-select
+#input_boolean: !include conf.d/input_boolean.yaml
+#group: !include conf.d/groups.yaml
+#scene: !include conf.d/scenes.yaml
+#recorder: !include conf.d/recorder.yaml
+#input_number: !include conf.d/input_number.yaml
 
 #Вынос во внешние папки
-timer: !include_dir_merge_named conf.d/timer
-sensor: !include_dir_merge_list conf.d/sensor
-binary_sensor: !include_dir_merge_list conf.d/bin-sensor
-automation: !include_dir_merge_list conf.d/automation
-script: !include_dir_merge_named conf.d/script
-switch: !include_dir_merge_list conf.d/switch
-light: !include_dir_merge_list conf.d/light
-climate: !include_dir_merge_list conf.d/climate
-fan: !include_dir_merge_list conf.d/fan
+#input_select: !include_dir_merge_named conf.d/input-select
+#timer: !include_dir_merge_named conf.d/timer
+#sensor: !include_dir_merge_list conf.d/sensor
+#binary_sensor: !include_dir_merge_list conf.d/bin-sensor
+#automation: !include_dir_merge_list conf.d/automation
+#script: !include_dir_merge_named conf.d/script
+#switch: !include_dir_merge_list conf.d/switch
+#light: !include_dir_merge_list conf.d/light
+#climate: !include_dir_merge_list conf.d/climate
+#fan: !include_dir_merge_list conf.d/fan
