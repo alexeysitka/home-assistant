@@ -1,3 +1,9 @@
+homeassistant:
+  customize:
+    light.ch_desktop_light:
+      friendly_name: 'Настольные лампы'
+
+
 timer:
   ch_desktop_light:
     name: Настольные лампы в детской
@@ -8,6 +14,12 @@ timer:
 
 
 light:
+  - platform: group
+    name: ch_desktop_light
+    entities:
+      - light.ch_dana_desktop_light
+      - light.ch_violetta_desktop_light
+
   - platform: xiaomi_miio_philipslight
     name: ch_dana_desktop_light
     host: 192.168.31.242
@@ -26,10 +38,7 @@ automation:
     alias: ch_start_timer_on_desktop_light_switched_on
     trigger:
       - platform: state
-        entity_id: light.ch_violetta_desktop_light
-        to: 'on'
-      - platform: state
-        entity_id: light.ch_dana_desktop_light
+        entity_id: light.ch_desktop_light
         to: 'on'
     condition:
       - condition: state
@@ -60,10 +69,7 @@ automation:
     condition:
       - or:
         - condition: state
-          entity_id: light.ch_violetta_desktop_light
-          state: 'on'
-        - condition: state
-          entity_id: light.ch_dana_desktop_light
+          entity_id: light.ch_desktop_light
           state: 'on'
     action:
       - service: timer.cancel
@@ -93,10 +99,7 @@ automation:
         state: 'off'
       - or:
         - condition: state
-          entity_id: light.ch_violetta_desktop_light
-          state: 'on'
-        - condition: state
-          entity_id: light.ch_dana_desktop_light
+          entity_id: light.ch_desktop_light
           state: 'on'
     action:
       - service: timer.cancel
@@ -106,18 +109,8 @@ automation:
     alias: ch_cancel_timer_on_desktop_light_switched_off
     trigger:
       - platform: state
-        entity_id: light.ch_violetta_desktop_light
+        entity_id: light.ch_desktop_light
         to: 'off'
-      - platform: state
-        entity_id: light.ch_dana_desktop_light
-        to: 'off'
-    condition:
-      - condition: state
-        entity_id: light.ch_violetta_desktop_light
-        state: 'off'
-      - condition: state
-        entity_id: light.ch_dana_desktop_light
-        state: 'off'
     action:
       - service: timer.cancel
         entity_id: timer.ch_light
@@ -134,9 +127,7 @@ automation:
           entity_id: timer.ch_desktop_light
     action:
       - service: light.turn_off
-        entity_id: light.ch_violetta_desktop_light
-      - service: light.turn_off
-        entity_id: light.ch_dana_desktop_light
+        entity_id: light.ch_desktop_light
       - service: timer.start
         entity_id: timer.ch_desktop_light_back
 
@@ -158,10 +149,7 @@ automation:
         state: 'active'
     action:
       - service: light.turn_on
-        entity_id: light.ch_violetta_desktop_light
-      - service: light.turn_on
-        entity_id: light.ch_dana_desktop_light
-
+        entity_id: light.ch_desktop_light
 
 
   - id: 'Включение настольных ламп с основного выключателя'
@@ -176,9 +164,7 @@ automation:
         state: 'on'
     action:
       - service: light.turn_on
-        entity_id: light.ch_dana_desktop_light
-      - service: light.turn_on
-        entity_id: light.ch_violetta_desktop_light
+        entity_id: light.ch_desktop_light
 
   - id: 'Выключение настольных ламп с основного выключателя'
     alias: ch_switch_desktop_lights_off
@@ -192,6 +178,4 @@ automation:
         state: 'off'
     action:
       - service: light.turn_off
-        entity_id: light.ch_dana_desktop_light
-      - service: light.turn_off
-        entity_id: light.ch_violetta_desktop_light
+        entity_id: light.ch_desktop_light
