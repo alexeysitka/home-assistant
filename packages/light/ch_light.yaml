@@ -141,3 +141,14 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.ch_light
+
+  - id: 'Выключить таймер восстановления при включении света в детской'
+    alias: ch_cancel_back_timer_on_light_switched_on
+    trigger:
+      - platform: state
+        entity_id: light.ch_light
+        to: 'on'
+    action:
+      - service: timer.cancel
+        entity_id: timer.ch_light_back
+

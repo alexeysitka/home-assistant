@@ -137,3 +137,13 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.kn_ambient_light
+
+  - id: 'Выключить таймер восстановления при включении подсветки на кухне'
+    alias: kn_cancel_back_timer_on_ambient_light_switched_on
+    trigger:
+      - platform: state
+        entity_id: light.kn_ambient_light
+        to: 'on'
+    action:
+      - service: timer.cancel
+        entity_id: timer.kn_ambient_light_back

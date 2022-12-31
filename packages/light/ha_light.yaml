@@ -2,6 +2,9 @@ timer:
   ha_light:
     name: Свет в прихожей
     duration: '00:05:00'
+  ha_light_back:
+    name: Свет в прихожей
+    duration: '00:01:00'
 
 
 light:
@@ -112,3 +115,29 @@ automation:
     action:
       - service: light.turn_off
         entity_id: light.ha_light
+      - service: timer.start
+        entity_id: timer.ha_light_back
+
+  - id: 'Включить свет в прихожей при появлении движения на датчике прихожей если таймер после отключения работает'
+    alias: ha_enable_light_on_motion_detected_during_back_timer
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.ha_motion_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: timer.ha_light_back
+        state: 'active'
+    action:
+      - service: light.turn_on
+        entity_id: light.ha_light
+
+  - id: 'Выключить таймер восстановления при включении света в прихожей'
+    alias: ha_cancel_back_timer_on_light_switched_on
+    trigger:
+      - platform: state
+        entity_id: light.ha_light
+        to: 'on'
+    action:
+      - service: timer.cancel
+        entity_id: timer.ha_light_back
