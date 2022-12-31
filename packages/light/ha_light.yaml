@@ -5,6 +5,9 @@ timer:
   ha_light_back:
     name: Свет в прихожей
     duration: '00:01:00'
+  ha_light_off:
+    name: Без автоматизации в прихожей
+    duration: '00:00:30'
 
 
 light:
@@ -60,6 +63,9 @@ automation:
     condition:
       - condition: template
         value_template: "{{ state_attr('sun.sun', 'elevation') < 1 }}"
+      - condition: state
+        entity_id: timer.ha_light_off
+        state: 'idle'
     action:
       - service: light.turn_on
         entity_id: light.ha_light
@@ -141,3 +147,13 @@ automation:
     action:
       - service: timer.cancel
         entity_id: timer.ha_light_back
+
+  - id: 'Включить таймер без автоматизации при выключении света в прихожей'
+    alias: ha_cancel_off_timer_on_light_switched_off
+    trigger:
+      - platform: state
+        entity_id: light.ha_light
+        to: 'off'
+    action:
+      - service: timer.start
+        entity_id: timer.ha_light_off
