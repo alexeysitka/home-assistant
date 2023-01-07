@@ -4,7 +4,7 @@ binary_sensor:
       be_thermostat_valve:
         friendly_name: 'Термостат спальня'
         value_template: >-
-          {{ states('sensor.be_thermostat_position') | default(0) | int > 0 }}
+          {{ states('sensor.be_thermostat_position') | int(0) | int > 0 }}
         device_class: lock
         icon_template: >-
           {% if is_state('binary_sensor.be_thermostat_valve', 'on') %}

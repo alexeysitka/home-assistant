@@ -16,9 +16,9 @@ binary_sensor:
         friendly_name: 'Мусор в корзине'
         device_class: problem
         value_template: >-
-          {{ states('sensor.roborocks5bin') | default(0) | int > 30 }}
+          {{ states('sensor.roborocks5bin') | int(0) | int > 30 }}
         icon_template: >
-          {% set val = states("sensor.roborocks5bin") | int  %}
+          {% set val = states("sensor.roborocks5bin") | int(0) | int  %}
           {% if val > 30 %}
             mdi:delete-alert
           {% else %}
