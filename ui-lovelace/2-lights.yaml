@@ -85,3 +85,25 @@
               name: 'Свет в ванной'
             - entity: switch.ba_venting_switch
               name: 'Вытяжка в ванной'
+
+    - type: vertical-stack
+      cards:
+        - title: 'Таймеры'
+          type: entities
+          show_header_toggle: false
+          entities:
+            - entity: timer.be_night_light
+            - entity: timer.ch_night_light
+            - entity: timer.co_night_light
+            - entity: timer.kn_night_light
+            - entity: timer.ch_desktop_light
+            - entity: timer.ch_light
+            - entity: timer.co_light
+            - entity: timer.ha_light
+            - entity: timer.kn_light
+            - entity: timer.kn_light_back
+            - entity: timer.kn_ambient_light
+            - entity: timer.kn_ambient_light_back
+            - entity: timer.kn_tv
+            - entity: timer.kn_tv_back
+            - entity: timer.to_light
