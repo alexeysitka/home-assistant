@@ -13,7 +13,13 @@ binary_sensor:
   - platform: template
     sensors:
       vacuum_bin_status:
-        friendly_name: 'Мусор в корзине'
+        friendly_name: >
+          {% set val = states("sensor.roborocks5bin") | int(0) | int  %}
+          {% if val > 30 %}
+            Контейнер полный
+          {% else %}
+            Контейнер пустой
+          {% endif %}
         device_class: problem
         value_template: >-
           {{ states('sensor.roborocks5bin') | int(0) | int > 30 }}

@@ -63,7 +63,6 @@
           show_header_toggle: false
           entities:
             - entity: binary_sensor.vacuum_bin_status
-              name: 'Мусор в корзине'
             - entity: automation.vacuum_scheduled_start
               name: 'Авто-уборка'
             - entity: input_boolean.daily_vacuum_done
