@@ -98,8 +98,13 @@
             - entity: timer.kn_night_light
             - entity: timer.ch_desktop_light
             - entity: timer.ch_light
+            - entity: timer.ch_light_back
             - entity: timer.co_light
+            - entity: timer.co_light_back
+            - entity: timer.co_mirror_light
+            - entity: timer.co_mirror_light_back
             - entity: timer.ha_light
+            - entity: timer.ha_light_back
             - entity: timer.kn_light
             - entity: timer.kn_light_back
             - entity: timer.kn_ambient_light

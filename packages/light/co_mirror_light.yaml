@@ -1,7 +1,10 @@
 timer:
   co_mirror_light:
-    name: Подсветка зеркала в коридоре
+    name: Подсветка зеркала
     duration: 180
+  co_mirror_light_back:
+    name: Подсветка зеркала (включение)
+    duration: '00:01:00'
 
 light:
   - platform: template
@@ -81,3 +84,29 @@ automation:
     action:
       - service: light.turn_off
         entity_id: light.co_mirror_light
+      - service: timer.start
+        entity_id: timer.co_mirror_light_back
+
+  - id: 'Включить подсветку зеркала в коридоре при появлении движения на датчике если таймер после отключения работает'
+    alias: co_enable_mirror_light_on_motion_detected_during_back_timer
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.co_motionmirror_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: timer.co_mirror_light_back
+        state: 'active'
+    action:
+      - service: light.turn_on
+        entity_id: light.co_mirror_light
+
+  - id: 'Выключить таймер восстановления при включении света в коридоре'
+    alias: co_cancel_back_timer_on_mirror_light_switched_on
+    trigger:
+      - platform: state
+        entity_id: light.co_mirror_light
+        to: 'on'
+    action:
+      - service: timer.cancel
+        entity_id: timer.co_mirror_light_back

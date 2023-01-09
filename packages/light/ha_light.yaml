@@ -3,7 +3,7 @@ timer:
     name: Свет в прихожей
     duration: '00:05:00'
   ha_light_back:
-    name: Свет в прихожей
+    name: Свет в прихожей (включение)
     duration: '00:01:00'
   ha_light_off:
     name: Без автоматизации в прихожей

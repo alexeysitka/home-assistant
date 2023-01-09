@@ -1,7 +1,10 @@
 timer:
   co_light:
-    name: Основной свет в коридоре
+    name: Свет в коридоре
     duration: 180
+  co_light_back:
+    name: Свет в коридоре (включение)
+    duration: '00:01:00'
 
 light:
   - platform: template
@@ -110,6 +113,8 @@ automation:
     action:
       - service: light.turn_off
         entity_id: light.co_light
+      - service: timer.start
+        entity_id: timer.co_light_back
 
   - id: 'Переключить свет в коридоре с ремоута возле спальни'
     alias: co_enable_light_using_remote
@@ -154,3 +159,33 @@ automation:
         entity_id: light.co_mirror_light
       - service: light.turn_off
         entity_id: light.ha_light
+
+  - id: 'Включить свет в коридоре при появлении движения на датчиках коридора если таймер после отключения работает'
+    alias: co_enable_light_on_motion_detected_during_back_timer
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.co_motionbathroom_occupancy
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.co_motionkitchen_occupancy
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.co_motionmirror_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: timer.co_light_back
+        state: 'active'
+    action:
+      - service: light.turn_on
+        entity_id: light.co_light
+
+  - id: 'Выключить таймер восстановления при включении света в коридоре'
+    alias: co_cancel_back_timer_on_light_switched_on
+    trigger:
+      - platform: state
+        entity_id: light.co_light
+        to: 'on'
+    action:
+      - service: timer.cancel
+        entity_id: timer.co_light_back

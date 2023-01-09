@@ -3,7 +3,7 @@ timer:
     name: Свет на кухне
     duration: '00:08:00'
   kn_light_back:
-    name: Подсветка на кухне (включение)
+    name: Свет на кухне (включение)
     duration: '00:01:00'
 
 
@@ -147,4 +147,3 @@ automation:
     action:
       - service: timer.cancel
         entity_id: timer.kn_light_back
-
