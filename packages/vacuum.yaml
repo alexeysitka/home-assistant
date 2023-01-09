@@ -49,7 +49,7 @@ binary_sensor:
           {% else %}
             mdi:toggle-switch-variant-off
           {% endif %}
-        
+
 
 sensor:
   - platform: template
@@ -192,7 +192,7 @@ script:
         data:
           topic: 'Valetudo/RoborockS5/MapSegmentationCapability/clean/set'
           payload: >
-            { "segment_ids": [ "21" ]}
+            { "segment_ids": [ "17" ]}
       - service: notify.alexey
         data:
           message: |
@@ -231,7 +231,7 @@ script:
         data:
           topic: 'Valetudo/RoborockS5/MapSegmentationCapability/clean/set'
           payload: >
-            { "segment_ids": [ "17", "18" ]}
+            { "segment_ids": [ "21", "23" ]}
       - service: notify.alexey
         data:
           message: |
@@ -244,7 +244,7 @@ script:
         data:
           topic: 'Valetudo/RoborockS5/MapSegmentationCapability/clean/set'
           payload: >
-            { "segment_ids": [ "18" ]}
+            { "segment_ids": [ "23" ]}
       - service: notify.alexey
         data:
           message: |
