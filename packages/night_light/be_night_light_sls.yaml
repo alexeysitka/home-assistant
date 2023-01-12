@@ -28,9 +28,6 @@ automation:
     condition:
       - condition: template
         value_template: "{{ state_attr('sun.sun', 'elevation') < 1 }}"
-      - condition: numeric_state
-        entity_id: sensor.be_motion_illuminance_raw
-        below: 5
       - condition: state
         entity_id: light.be_light
         state: 'off'
@@ -87,9 +84,6 @@ automation:
   - id: 'Выключить ночник в спальне если включили любой светильник или достаточно другого освещения'
     alias: be_disable_night_light_if_main_light_switched_on
     trigger:
-      - platform: numeric_state
-        entity_id: sensor.be_motion_illuminance_raw
-        above: 5
       - platform: state
         entity_id: light.be_light
         to: 'on'
