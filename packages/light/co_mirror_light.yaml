@@ -101,7 +101,7 @@ automation:
       - service: light.turn_on
         entity_id: light.co_mirror_light
 
-  - id: 'Выключить таймер восстановления при включении света в коридоре'
+  - id: 'Выключить таймер восстановления при включении подсветки зеркала в коридоре'
     alias: co_cancel_back_timer_on_mirror_light_switched_on
     trigger:
       - platform: state
