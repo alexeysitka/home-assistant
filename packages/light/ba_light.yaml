@@ -4,10 +4,32 @@ light:
       ba_light:
         friendly_name: 'Свет в ванной'
         value_template: >-
-          {{ is_state('switch.ba_light_switch', 'on') }}
+          {{ is_state('switch.ba_light_switch_right', 'on') }}
         turn_on:
           - service: switch.turn_on
-            entity_id: switch.ba_light_switch
+            entity_id: switch.ba_light_switch_right
         turn_off:
           - service: switch.turn_off
-            entity_id: switch.ba_light_switch
+            entity_id: switch.ba_light_switch_right
+      ba_ambient_light:
+        friendly_name: 'Подсветка в ванной'
+        value_template: >-
+          {{ is_state('switch.ba_light_switch_left', 'on') }}
+        turn_on:
+          - service: switch.turn_on
+            entity_id: switch.ba_light_switch_left
+        turn_off:
+          - service: switch.turn_off
+            entity_id: switch.ba_light_switch_left
+
+automation:
+  - id: 'Включение подсветки вместе с основным светом в ванной'
+    alias: ba_switch_ambient_light_on_with main
+    trigger:
+      - platform: state
+        entity_id: light.ba_light
+        to: 'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.ba_ambient_light

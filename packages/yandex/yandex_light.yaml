@@ -40,6 +40,7 @@ yandex_smart_home:
       - light.to_light
 
       - light.ba_light
+      - light.ba_ambient_light
 
       - light.lo_light
       - light.lo_ny_light
@@ -140,6 +141,9 @@ yandex_smart_home:
 
     light.ba_light:
       name: "Свет"
+      room: "Ванная"
+    light.ba_ambient_light:
+      name: "Подсветка"
       room: "Ванная"
 
     light.lo_light:
