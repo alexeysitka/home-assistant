@@ -1,6 +1,6 @@
 automation:
   - id: 'Проиграть уведомление при открытой входной двери'
-    alias: be_play_siren_on_opened_entrance
+    alias: be_inform_on_opened_entrance
     trigger:
       - platform: state
         entity_id: binary_sensor.ha_door_contact
@@ -11,18 +11,26 @@ automation:
         after: '09:00:00'
         before: '06:00:00'
     action:
-      - service: script.be_alarm_siren
+#      - service: script.be_alarm_siren
+#        data:
+#          sls_name: 'SLSHubBE'
+#          device_name: 'BE_AlarmSiren'
+#          melody: 16
+#          duration: 3
+      - service: switch.turn_on
         data:
-          sls_name: 'SLSHubBE'
-          device_name: 'BE_AlarmSiren'
-          melody: 16
-          duration: 3
+          entity_id: switch.be_informer_switch_pattern_3
+      - service: light.turn_on
+        data:
+          entity_id: light.be_informer_light
+          brightness_pct: 80
+          rgb_color: [255,0,0]
       - service: notify.alexey
         data:
           message: 'Открылась входная дверь'
 
   - id: 'Уведомление о закрытой входной двери'
-    alias: be_play_siren_on_closed_entrance
+    alias: be_inform_on_closed_entrance
     trigger:
       - platform: state
         entity_id: binary_sensor.ha_door_contact
@@ -39,6 +47,12 @@ automation:
           device_name: 'BE_AlarmSiren'
           melody: 16
           duration: 1
+      - service: light.turn_off
+        data:
+          entity_id: light.be_informer_light
+      - service: switch.turn_off
+        data:
+          entity_id: switch.be_informer_switch_pattern_3
       - service: notify.alexey
         data:
           message: 'Закрылась входная дверь'

@@ -1,21 +1,31 @@
 automation:
   - id: 'Уведомить о задымлении на кухне'
-    alias: kn_alarm_on_smoke
+    alias: kn_inform_on_smoke
     trigger:
       - platform: state
         entity_id: binary_sensor.kn_smoke_smoke
         to: 'on'
     action:
-      - service: script.be_alarm_siren
+#      - service: script.be_alarm_siren
+#        data:
+#          sls_name: 'SLSHubBE'
+#          device_name: 'BE_AlarmSiren'
+#          melody: 11
+#          duration: 5
+      - service: switch.turn_on
         data:
-          sls_name: 'SLSHubBE'
-          device_name: 'BE_AlarmSiren'
-          melody: 11
-          duration: 5
+          entity_id: switch.be_informer_switch_pattern_1
+      - service: light.turn_on
+        data:
+          entity_id: light.be_informer_light
+          brightness_pct: 80
+          rgb_color: [255,0,0]
+
       - service: script.notify_all
         data:
           message: |
             Задымление на кухне!!!
+
       - service: media_player.volume_set
         entity_id: media_player.be_yandex_station
         data:
@@ -30,3 +40,22 @@ automation:
         entity_id: media_player.be_yandex_station
         data:
           volume_level: 0.3
+
+  - id: 'Уведомить об окончании задымления на кухне'
+    alias: kn_inform_on_smoke_end
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.kn_smoke_smoke
+        to: 'off'
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.be_informer_light
+      - service: switch.turn_off
+        data:
+          entity_id: switch.be_informer_switch_pattern_1
+
+      - service: script.notify_all
+        data:
+          message: |
+            Задымление на кухне закончилось.
