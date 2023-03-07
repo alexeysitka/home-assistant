@@ -46,6 +46,7 @@ automation:
     trigger:
       - platform: state
         entity_id: binary_sensor.kn_smoke_smoke
+        from: 'on'
         to: 'off'
     action:
       - service: light.turn_off
