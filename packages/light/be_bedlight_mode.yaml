@@ -1,0 +1,45 @@
+mqtt:
+  sensor:
+    - object_id: be_bedlight_alexey_mode
+      name: 'Режим прикроватной лампы слева'
+      state_topic: 'SLSHubBE/BE_BedLight_Alexey/mode'
+
+    - object_id: be_bedlight_alexey_mode_track
+      name: 'Режим прикроватной лампы слева (отслеживание)'
+      state_topic: 'SLSHubBE/BE_BedLight_Alexey/set'
+      value_template: >-
+        {% set state = 'unknown' %}
+        {% if value_json.color_temp %}{% set state = 'white' %}
+        {% elif value_json.color %}{% set state = 'color' %}
+        {% endif %}
+        {{ state }}
+
+#    - object_id: be_bedlight_julia_mode
+#      name: 'Режим прикроватной лампы справа'
+#      state_topic: 'SLSHubBE/BE_BedLight_Julia/set'
+#      value_template: >-
+#        {% set state = states('sensor.be_bedlight_alexey_mode') %}
+#        {% if value_json.color %}{% set state = 'color' %}
+#        {% elif value_json.color_temp %}{% set state = 'white' %}
+#        {% endif %}
+#        {{ state }}
+
+automation:
+  - id: 'Выставление режима для прикроватной лампы слева'
+    alias: be_bedlight_alexey_set_mode
+    trigger:
+      - platform: state
+        entity_id: sensor.be_bedlight_alexey_mode_track
+    action:
+      - service: mqtt.publish
+        data:
+          topic: SLSHubBE/BE_BedLight_Alexey/mode
+          payload_template: >-
+            {% set initial = states('sensor.be_bedlight_alexey_mode') %}
+            {% set state = states('sensor.be_bedlight_alexey_mode_track') %}
+            {% if state == 'unknown' %}
+              {% if initial == 'unknown' %}{% set state = 'white' %}
+              {% else %}{% set state = initial %}
+              {% endif %}
+            {% endif %}
+            {{ state }}
