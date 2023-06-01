@@ -10,6 +10,7 @@ yandex_smart_home:
       - light.be_bedlight_alexey_light
       - light.be_bedlight_julia_light
       - light.be_cabinet_light
+      - light.be_informer_light
 
       - sensor.be_cabinetilluminance_illuminance
 
@@ -66,6 +67,9 @@ yandex_smart_home:
       room: "Спальня"
     light.be_cabinet_light:
       name: "Свет в кабинете"
+      room: "Спальня"
+    light.be_informer_light:
+      name: "Информер"
       room: "Спальня"
 
     sensor.be_cabinetilluminance_illuminance:
