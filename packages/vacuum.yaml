@@ -1,3 +1,8 @@
+homeassistant:
+  customize:
+    vacuum.valetudo_roborocks5:
+      friendly_name: 'Пылесос'
+
 input_boolean:
   daily_vacuum_done:
     name: Ежедневная уборка выполнена
