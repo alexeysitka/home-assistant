@@ -1,0 +1,41 @@
+schedy_heating:  # App instance name.
+  module: hass_apps_loader
+  class: SchedyApp
+
+  actor_type: thermostat
+
+  schedule_append:
+    - v: 'off'
+
+  rooms:
+    bath_room:
+      rescheduling_delay: 60
+      actors:
+        climate.ba_towel_dryer:
+      schedule:
+        - v: 26
+          rules:
+            - weekdays: 1-7
+              rules:
+                - { start: '22:00', end: '02:00' }
+
+    bedroom:
+      rescheduling_delay: 60
+      actors:
+        climate.be_radiator:
+      schedule:
+        - v: 'off'
+
+    children_room:
+      rescheduling_delay: 60
+      actors:
+        climate.ch_radiator:
+      schedule:
+        - v: 'off'
+
+    living_room:
+      rescheduling_delay: 60
+      actors:
+        climate.li_radiator:
+      schedule:
+        - v: 'off'
