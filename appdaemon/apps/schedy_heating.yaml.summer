@@ -9,7 +9,7 @@ schedy_heating:  # App instance name.
 
   rooms:
     bath_room:
-      rescheduling_delay: 60
+      rescheduling_delay: 240
       actors:
         climate.ba_towel_dryer:
       schedule:
