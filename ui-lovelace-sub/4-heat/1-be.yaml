@@ -29,7 +29,8 @@
 
     - type: custom:simple-thermostat
       entity: climate.be_radiator
-      step_layout: row
+      layout:
+        step: row
       header: false
 
     - type: entities

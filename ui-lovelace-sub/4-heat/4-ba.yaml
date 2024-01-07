@@ -29,7 +29,8 @@
 
     - type: custom:simple-thermostat
       entity: climate.ba_towel_dryer
-      step_layout: row
+      layout:
+        step: row
       header: false
 
     - type: entities
