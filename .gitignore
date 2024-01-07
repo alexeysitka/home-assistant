@@ -7,3 +7,4 @@ secrets.yaml
 custom_components
 www/community
 appdaemon/apps/schedy_heating.yaml
+tts
