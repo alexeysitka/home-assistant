@@ -9,7 +9,6 @@ recorder:
       - climate
       - media_player
 
-
 automation:
   - id: 'Сжатие базы'
     alias: 00_purge_everyday
@@ -19,5 +18,5 @@ automation:
     action:
       - service: recorder.purge
         data:
-          keep_days: 60
+          keep_days: 14
           repack: true
