@@ -1,5 +1,7 @@
+# Установил симлинк из новой папки настроек AppDaemon
+# appdaemon -> /addon_config/a0d7b954_appdaemon
 ---
-secrets: /config/secrets.yaml
+secrets: /homeassistant/secrets.yaml
 appdaemon:
   latitude: !secret latitude_coord
   longitude: !secret longitude_coord
