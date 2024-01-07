@@ -21,19 +21,17 @@ fan:
         preset_modes: [ 'auto', 'silent', 'low', 'medium', 'high' ]
         preset_mode_template: >
           {% if is_state('fan.be_breezer_source', 'on') %}
-            {% if is_state_attr('fan.be_breezer_source', 'mode', 'auto') %}
+            {% if is_state_attr('fan.be_breezer_source', 'mode', 'Auto') %}
               auto
-            {% elif is_state_attr('fan.be_breezer_source', 'mode', 'silent') %}
+            {% elif is_state_attr('fan.be_breezer_source', 'mode', 'Silent') %}
               silent
-            {% elif is_state_attr('fan.be_breezer_source', 'mode', 'low') %}
+            {% elif is_state_attr('fan.be_breezer_source', 'mode', 'Low') %}
               low
-            {% elif is_state_attr('fan.be_breezer_source', 'mode', 'middle') %}
+            {% elif is_state_attr('fan.be_breezer_source', 'mode', 'Middle') %}
               medium
-            {% elif is_state_attr('fan.be_breezer_source', 'mode', 'strong') %}
+            {% elif is_state_attr('fan.be_breezer_source', 'mode', 'Strong') %}
               high
             {% endif %}
-          {% else %}
-            off
           {% endif %}
         set_preset_mode:
           - service: fan.set_preset_mode
@@ -42,15 +40,15 @@ fan:
             data:
               preset_mode: >-
                 {% if preset_mode == 'auto' %}
-                  auto
+                  Auto
                 {% elif preset_mode == 'silent' %}
-                  silent
+                  Silent
                 {% elif preset_mode == 'low' %}
-                  low
+                  Low
                 {% elif preset_mode == 'medium' %}
-                  middle
+                  Middle
                 {% elif preset_mode == 'high' %}
-                  strong
+                  Strong
                 {% endif %}
 
 input_select:
@@ -174,7 +172,7 @@ automation:
           entity_id: fan.be_breezer
           preset_mode: silent
 
-  - id: 'Низкий режим ночью при повышенной CO₂'
+  - id: 'Низкий режим ночью при повышенном CO₂'
     alias: be_breezer_night_set_low_mode_on_heightened_co2
     condition:
       - condition: time
