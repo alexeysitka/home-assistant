@@ -4,29 +4,29 @@ sensor:
       last_google_backup:
         friendly_name: 'Последний удачный бэкап'
         value_template: >
-          {% if states.sensor.backup_state %}
-            {{ (as_timestamp(states.sensor.backup_state.attributes.last_backup)) | timestamp_custom("%d.%m.%Y %H:%M") }}
-          {% else %}
+          {% if states("sensor.backup_state") == "unavailable" or states("sensor.backup_state") == "unknown" or state_attr("sensor.backup_state", "last_backup") == "Never" %}
             Not initialized yet
+          {% else %}
+            {{ (as_timestamp(state_attr("sensor.backup_state", "last_backup"))) | timestamp_custom("%d.%m.%Y %H:%M") }}
           {% endif %}
         icon_template: mdi:calendar-check-outline
 
       backups_in_google_drive:
         friendly_name: 'Бэкапов на Google Drive'
         value_template: >
-          {% if states.sensor.backup_state %}
-            {{ states.sensor.backup_state.attributes.backups_in_google_drive }}
-          {% else %}
+          {% if states("sensor.backup_state") == "unavailable" or states("sensor.backup_state") == "unknown" %}
             Not initialized yet
+          {% else %}
+            {{ state_attr("sensor.backup_state", "backups_in_google_drive") }}
           {% endif %}
         icon_template: mdi:folder-google-drive
 
       backups_in_ha:
         friendly_name: 'Бэкапов в Home Assistant'
         value_template: >
-          {% if states.sensor.backup_state %}
-            {{ states.sensor.backup_state.attributes.backups_in_home_assistant }}
-          {% else %}
+          {% if states("sensor.backup_state") == "unavailable" or states("sensor.backup_state") == "unknown" %}
             Not initialized yet
+          {% else %}
+            {{ state_attr("sensor.backup_state", "backups_in_home_assistant") }}
           {% endif %}
         icon_template: mdi:home-assistant
