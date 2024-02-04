@@ -7,7 +7,7 @@ timer:
     duration: '00:01:00'
   ha_light_off:
     name: Без автоматизации в прихожей
-    duration: '00:00:30'
+    duration: '00:01:00'
 
 
 light:

@@ -1,7 +1,7 @@
 timer:
   kn_light:
     name: Свет на кухне
-    duration: '00:08:00'
+    duration: '00:20:00'
   kn_light_back:
     name: Свет на кухне (включение)
     duration: '00:01:00'

@@ -11,12 +11,12 @@ automation:
         after: '09:00:00'
         before: '06:00:00'
     action:
-#      - service: script.be_alarm_siren
-#        data:
-#          sls_name: 'SLSHubBE'
-#          device_name: 'BE_AlarmSiren'
-#          melody: 16
-#          duration: 3
+      - service: script.be_alarm_siren
+        data:
+          sls_name: 'SLSHubBE'
+          device_name: 'BE_AlarmSiren'
+          melody: 16
+          duration: 2
       - service: switch.turn_on
         data:
           entity_id: switch.be_informer_switch_pattern_3
@@ -38,7 +38,7 @@ automation:
         to: 'off'
     condition:
       - condition: time
-        after: '10:00:00'
+        after: '09:00:00'
         before: '06:00:00'
     action:
       - service: script.be_alarm_siren

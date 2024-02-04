@@ -1,0 +1,4 @@
+homeassistant:
+  customize:
+    binary_sensor.keenetic_ultra_kn_1810_online:
+      friendly_name: 'Интернет'

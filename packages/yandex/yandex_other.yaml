@@ -1,0 +1,11 @@
+# https://yandex.ru/dev/dialogs/smart-home/doc/concepts/device-type-sensor.html
+
+yandex_smart_home:
+  filter:
+    include_entities:
+      - binary_sensor.keenetic_ultra_kn_1810_online
+
+  entity_config:
+    binary_sensor.keenetic_ultra_kn_1810_online:
+      name: "Интернет"
+      room: "Коридор"

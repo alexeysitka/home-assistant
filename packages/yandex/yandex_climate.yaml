@@ -11,6 +11,9 @@ yandex_smart_home:
       - sensor.kn_temperature_temperature
       - sensor.lo_temperature_temperature
 
+      - sensor.ha_outdoor_temperature
+      - sensor.ha_outdoor_humidity
+
       - sensor.be_co2_co2
 
       - sensor.ba_temperature_humidity
@@ -38,6 +41,13 @@ yandex_smart_home:
     climate.li_radiator:
       name: "Радиатор"
       room: "Гостиная"
+
+    sensor.ha_outdoor_temperature:
+      name: "Температура"
+      room: "Улица"
+    sensor.ha_outdoor_humidity:
+      name: "Влажность"
+      room: "Улица"
 
     sensor.kn_temperature_temperature:
       name: "Температура"

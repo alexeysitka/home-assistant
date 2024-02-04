@@ -14,12 +14,66 @@
           entities:
             - entity: sensor.last_boot_human
             - entity: sensor.online_human
-            - entity: sensor.time
+            - entity: sensor.time_date
               name: 'Текущее время'
               icon: mdi:clock-outline
-            - entity: sensor.date
-              name: 'Дата'
-              icon: mdi:calendar-check-outline
+#            - entity: sensor.date
+#              name: 'Дата'
+#              icon: mdi:calendar-check-outline
+            - entity: binary_sensor.keenetic_ultra_kn_1810_online
+
+        - type: custom:stack-in-card
+          title: 'Улица'
+          mode: vertical
+          cards:
+            - type: custom:mini-graph-card
+              entities:
+                - entity: sensor.ha_outdoor_temperature
+                  name: 'Температура'
+              color_thresholds:
+                - value: 0
+                  color: "#193570"
+                - value: 10
+                  color: "#00d9ff"
+                - value: 15
+                  color: "#ade6d4"
+                - value: 20
+                  color: "#e0ffe7"
+                - value: 25
+                  color: "#ffff00"
+                - value: 30
+                  color: "#ff9d00"
+              animate: true
+              line_width: 2
+              hour24: true
+              points_per_hour: 1
+              group_by: hour
+              hours_to_show: 24
+#              lower_bound: 20
+            - type: custom:mini-graph-card
+              entities:
+                - entity: sensor.ha_outdoor_humidity
+                  name: 'Влажность'
+              color_thresholds:
+                - value: 30
+                  color: "#ff9d00"
+                - value: 40
+                  color: "#ffff00"
+                - value: 50
+                  color: "#e0ffe7"
+                - value: 60
+                  color: "#ade6d4"
+                - value: 70
+                  color: "#00d9ff"
+                - value: 80
+                  color: "#193570"
+              animate: true
+              line_width: 2
+              hour24: true
+              points_per_hour: 1
+              group_by: hour
+              hours_to_show: 24
+#              lower_bound: 20
 
         - type: markdown
           content: >
