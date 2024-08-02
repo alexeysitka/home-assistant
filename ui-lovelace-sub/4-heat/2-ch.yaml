@@ -25,7 +25,7 @@
       points_per_hour: 1
       group_by: hour
       hours_to_show: 48
-      lower_bound: 20
+      lower_bound: 18
 
     - type: custom:simple-thermostat
       entity: climate.ch_radiator
