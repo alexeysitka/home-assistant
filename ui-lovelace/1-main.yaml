@@ -22,6 +22,9 @@
 #              icon: mdi:calendar-check-outline
             - entity: binary_sensor.keenetic_ultra_kn_1810_online
 
+        - type: weather-forecast
+          entity: weather.ha
+
         - type: custom:stack-in-card
           title: 'Улица'
           mode: vertical
@@ -75,26 +78,7 @@
               hours_to_show: 24
 #              lower_bound: 20
 
-        - type: markdown
-          content: >
-            **Резервное копирование**
 
-        - type: entities
-          show_header_toggle: false
-          entities:
-            - entity: sensor.last_google_backup
-            - entity: sensor.backups_in_ha
-            - entity: sensor.backups_in_google_drive
-
-        - type: entities
-          show_header_toggle: false
-          entities:
-            - entity: sensor.db_size
-              name: 'Объём БД'
-              icon: mdi:database
-
-        - type: weather-forecast
-          entity: weather.ha
 
     - type: vertical-stack
       cards:
@@ -139,3 +123,22 @@
           entities:
             - entity: sensor.db_size
               name: 'SQLite DB'
+
+        - type: markdown
+          content: >
+            **Резервное копирование**
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: sensor.last_google_backup
+            - entity: sensor.backups_in_ha
+            - entity: sensor.backups_in_google_drive
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: sensor.db_size
+              name: 'Объём БД'
+              icon: mdi:database
+
