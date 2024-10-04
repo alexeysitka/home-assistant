@@ -7,11 +7,16 @@ homeassistant:
   unit_system: metric
   time_zone: Europe/Kaliningrad
   packages: !include_dir_named packages
+  external_url: "https://alexeysitka.duckdns.org"
+  internal_url: "https://hassio.lan"
 
 # customize: !include customize.yaml
 
 http:
   server_port: 443
+  cors_allowed_origins:
+    - https://google.com
+    - https://www.home-assistant.io
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
 

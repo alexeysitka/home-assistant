@@ -34,7 +34,7 @@ automation:
       - service: mqtt.publish
         data:
           topic: SLSHubBE/BE_BedLight_Alexey/mode
-          payload_template: >-
+          payload: >-
             {% set initial = states('sensor.be_bedlight_alexey_mode') %}
             {% set state = states('sensor.be_bedlight_alexey_mode_track') %}
             {% if state == 'unknown' %}
