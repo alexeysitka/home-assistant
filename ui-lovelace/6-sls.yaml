@@ -1,9 +1,50 @@
 - title: 'SLS'
   icon: mdi:router
   cards:
-#
-#    - type: vertical-stack
-#      cards:
+
+    - type: entities
+      title: 'SLS Коридор'
+      show_header_toggle: false
+      state_color: true
+      entities:
+        - entity: binary_sensor.co_sls_state
+          state_color: true
+          name: 'Состояние'
+        - entity: light.slshubco_led
+          name: 'Подсветка'
+        - entity: sensor.slshubco_uptimestr
+          name: 'В работе'
+        - entity: sensor.slshubco_rssi
+          name: 'Сигнал WiFi'
+        - entity: sensor.slshubco_ip
+          name: 'IP'
+        - entity: sensor.co_sls_version
+          name: 'Прошивка'
+        - entity: switch.co_sls_join
+          state_color: true
+          name: 'Подключение'
+
+    - type: entities
+      title: 'SLS Прихожая'
+      show_header_toggle: false
+      state_color: true
+      entities:
+        - entity: binary_sensor.ha_sls_state
+          state_color: true
+          name: 'Состояние'
+        - entity: light.slshubha_led
+          name: 'Подсветка'
+        - entity: sensor.slshubha_uptimestr
+          name: 'В работе'
+        - entity: sensor.slshubha_rssi
+          name: 'Сигнал WiFi'
+        - entity: sensor.slshubha_ip
+          name: 'IP'
+        - entity: sensor.ha_sls_version
+          name: 'Прошивка'
+        - entity: switch.ha_sls_join
+          state_color: true
+          name: 'Подключение'
 
     - type: entities
       title: 'SLS Спальня'
@@ -68,72 +109,5 @@
         - entity: sensor.ch_sls_version
           name: 'Прошивка'
         - entity: switch.ch_sls_join
-          state_color: true
-          name: 'Подключение'
-
-
-    - type: entities
-      title: 'SLS Коридор'
-      show_header_toggle: false
-      state_color: true
-      entities:
-        - entity: binary_sensor.co_sls_state
-          state_color: true
-          name: 'Состояние'
-        - entity: light.slshubco_led
-          name: 'Подсветка'
-        - entity: sensor.slshubco_uptimestr
-          name: 'В работе'
-        - entity: sensor.slshubco_rssi
-          name: 'Сигнал WiFi'
-        - entity: sensor.slshubco_ip
-          name: 'IP'
-        - entity: sensor.co_sls_version
-          name: 'Прошивка'
-        - entity: switch.co_sls_join
-          state_color: true
-          name: 'Подключение'
-
-    - type: entities
-      title: 'SLS Гостиная'
-      show_header_toggle: false
-      state_color: true
-      entities:
-        - entity: binary_sensor.li_sls_state
-          state_color: true
-          name: 'Состояние'
-        - entity: light.slshubli_led
-          name: 'Подсветка'
-        - entity: sensor.slshubli_uptimestr
-          name: 'В работе'
-        - entity: sensor.slshubli_rssi
-          name: 'Сигнал WiFi'
-        - entity: sensor.slshubli_ip
-          name: 'IP'
-        - entity: sensor.li_sls_version
-          name: 'Прошивка'
-        - entity: switch.li_sls_join
-          state_color: true
-          name: 'Подключение'
-
-    - type: entities
-      title: 'SLS Прихожая'
-      show_header_toggle: false
-      state_color: true
-      entities:
-        - entity: binary_sensor.ha_sls_state
-          state_color: true
-          name: 'Состояние'
-        - entity: light.slshubha_led
-          name: 'Подсветка'
-        - entity: sensor.slshubha_uptimestr
-          name: 'В работе'
-        - entity: sensor.slshubha_rssi
-          name: 'Сигнал WiFi'
-        - entity: sensor.slshubha_ip
-          name: 'IP'
-        - entity: sensor.ha_sls_version
-          name: 'Прошивка'
-        - entity: switch.ha_sls_join
           state_color: true
           name: 'Подключение'
