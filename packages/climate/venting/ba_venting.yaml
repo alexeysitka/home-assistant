@@ -13,14 +13,20 @@ fan:
             target:
               entity_id: switch.ba_venting_switch
 
+template:
+    - sensor:
+      - name: ba_humidity_diff
+        device_class: humidity
+        unit_of_measurement: '%'
+        state: "{{ states('sensor.ba_temperature_humidity')|int(60) - states('sensor.kn_temperature_humidity')|int(60) }}"
 
 automation:
   - id: 'Включить вытяжку в ванной при высокой влажности и выключенном свете'
     alias: ba_enable_venting_on_high_humidity
     trigger:
       - platform: numeric_state
-        entity_id: sensor.ba_temperature_humidity
-        above: 70
+        entity_id: sensor.ba_humidity_diff
+        above: 10
     condition:
       - condition: state
         entity_id: light.ba_light
@@ -34,8 +40,8 @@ automation:
     alias: ba_disable_venting_on_normal_humidity
     trigger:
       - platform: numeric_state
-        entity_id: sensor.ba_temperature_humidity
-        below: 65
+        entity_id: sensor.ba_humidity_diff
+        below: 5
     action:
       - service: fan.turn_off
         target:
@@ -49,8 +55,8 @@ automation:
         to: 'off'
     condition:
       - condition: numeric_state
-        entity_id: sensor.ba_temperature_humidity
-        above: 70
+        entity_id: sensor.ba_humidity_diff
+        above: 10
     action:
       - service: fan.turn_on
         target:
@@ -60,8 +66,8 @@ automation:
     alias: ba_enable_venting_on_very_high_humidity
     trigger:
       - platform: numeric_state
-        entity_id: sensor.ba_temperature_humidity
-        above: 90
+        entity_id: sensor.ba_humidity_diff
+        above: 20
     action:
       - service: fan.turn_on
         target:
@@ -76,8 +82,8 @@ automation:
         for: '00:01:00'
     condition:
       - condition: numeric_state
-        entity_id: sensor.ba_temperature_humidity
-        above: 70
+        entity_id: sensor.ba_humidity_diff
+        above: 10
     action:
       - service: fan.turn_on
         target:
@@ -90,8 +96,8 @@ automation:
         minutes: /30
     condition:
       - condition: numeric_state
-        entity_id: sensor.ba_temperature_humidity
-        below: 65
+        entity_id: sensor.ba_humidity_diff
+        below: 5
     action:
       - service: fan.turn_off
         target:
