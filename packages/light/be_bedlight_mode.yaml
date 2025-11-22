@@ -1,10 +1,10 @@
 mqtt:
   sensor:
-    - object_id: be_bedlight_alexey_mode
+    - default_entity_id: sensor.be_bedlight_alexey_mode
       name: 'Режим прикроватной лампы слева'
       state_topic: 'SLSHubBE/BE_BedLight_Alexey/mode'
 
-    - object_id: be_bedlight_alexey_mode_track
+    - default_entity_id: sensor.be_bedlight_alexey_mode_track
       name: 'Режим прикроватной лампы слева (отслеживание)'
       state_topic: 'SLSHubBE/BE_BedLight_Alexey/set'
       value_template: >-
