@@ -13,11 +13,11 @@ schedy_heating:  # App instance name.
       actors:
         climate.ba_towel_dryer:
       schedule:
-        - v: 26
+        - v: 28
           rules:
             - weekdays: 1-7
               rules:
-                - { start: '22:00', end: '02:00' }
+                - { start: '21:00', end: '02:00' }
 
     bedroom:
       rescheduling_delay: 60

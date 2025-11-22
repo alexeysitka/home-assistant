@@ -1,0 +1,23 @@
+switch:
+  - platform: template
+    switches:
+      kn_boiler_channel:
+        friendly_name: 'Обогрев кухни'
+        value_template: >-
+          {{ is_state('switch.kn_boilertwo_switch_l2', 'on') }}
+        turn_on:
+          - service: switch.turn_on
+            entity_id: switch.kn_boilertwo_switch_l2
+          - service: switch.turn_on
+            entity_id: switch.kn_floor_switch
+        turn_off:
+          - service: switch.turn_off
+            entity_id: switch.kn_boilertwo_switch_l2
+          - service: switch.turn_off
+            entity_id: switch.kn_floor_switch
+        icon_template: >-
+          {% if is_state('switch.kn_floor_switch', 'on') %}
+          mdi:radiator
+          {% else %}
+          mdi:radiator-disabled
+          {% endif %}

@@ -32,6 +32,11 @@
       layout:
         step: row
       header: false
+      control:
+        hvac:
+          _name: Режим
+        preset:
+          _hide_when_off: true
 
     - type: entities
       show_state: true

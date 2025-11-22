@@ -26,3 +26,22 @@
       group_by: hour
       hours_to_show: 48
       lower_bound: 18
+
+    - type: custom:simple-thermostat
+      entity: climate.kn_floor
+      layout:
+        step: row
+      header: false
+      control:
+        hvac:
+          _name: Режим
+        preset:
+          _hide_when_off: true
+
+    - type: entities
+      show_state: true
+      show_name: true
+      state_color: true
+      entities:
+        - entity: switch.kn_boiler_channel
+          name: 'Обогрев кухни'
