@@ -5,7 +5,7 @@ schedy_heating:  # App instance name.
   actor_type: thermostat
 
   schedule_append:
-    - v: 21
+    - v: 20
 
   rooms:
     bath_room:
@@ -24,18 +24,13 @@ schedy_heating:  # App instance name.
             - weekdays: 1,4
               rules:
                 - { start: '10:30', end: '12:00' }
-#        - v: 23.5
-#          rules:
-#            - weekdays: 1-7
-#              rules:
-#                - { start: '02:00', end: '22:00' }
 
     kitchen:
       rescheduling_delay: 60
       actors:
         climate.kn_floor:
       schedule:
-        - v: 22.5
+        - v: 22.0
           rules:
             - weekdays: 1-6
               rules:
@@ -62,7 +57,7 @@ schedy_heating:  # App instance name.
       actors:
         climate.be_radiator:
       schedule:
-        - v: 22.8
+        - v: 22.0
           rules:
             - weekdays: 1-7
               rules:
@@ -71,19 +66,19 @@ schedy_heating:  # App instance name.
           rules:
             - weekdays: 1-7
               rules:
-                - { start: '10:00', end: '21:00' }
+                - { start: '10:00', end: '22:00' }
         - v: 22.0
           rules:
             - weekdays: 1-7
               rules:
-                - { start: '21:00', end: '22:00' }
+                - { start: '22:00', end: '23:00' }
 
     children_room:
       rescheduling_delay: 60
       actors:
         climate.ch_radiator:
       schedule:
-        - v: 22.8
+        - v: 22.0
           rules:
             - weekdays: 1-5
               rules:
